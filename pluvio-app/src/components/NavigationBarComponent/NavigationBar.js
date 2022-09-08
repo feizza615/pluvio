@@ -22,9 +22,11 @@ export default class NavigationBar extends Component {
 
 
     return (
+      <>
       <div>
         <Drawer anchor={"left"} open={true} onClose={null}>
-          <div style={{backgroundColor:"#0B0725", height:"90%",margin:5,borderRadius: 10,}}>
+          <div style={{backgroundColor:"black",height:"100%"}}>
+          <div style={{backgroundColor:"#0B0725", height:"95%",margin:10,borderRadius: 12,}}>
           <List>
             {["Home", "Profile", "Friends", "Match"].map((text, index) => (
               <ListItem key={text} disablePadding>
@@ -38,7 +40,7 @@ export default class NavigationBar extends Component {
                     {
                       bgcolor: "#0B0725",
                       boxShadow: 1,
-                      borderRadius: 2,
+                      borderRadius: 5,
                       margin: 1,
                       minWidth: 70,
                       maxHeight: 50,
@@ -57,8 +59,10 @@ export default class NavigationBar extends Component {
             ))}
           </List>
           </div>
+          </div>
         </Drawer>
       </div>
+      </>
     );
   }
 }
