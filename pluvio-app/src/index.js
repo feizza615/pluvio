@@ -7,11 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import NavigationBar from './components/NavigationBarComponent/NavigationBar';
 import "@fontsource/poppins";
 import Header from './components/Header';
+import HomePage from './mainPages/HomePage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Header/>
-    <NavigationBar/>
+    <HomePage/>
   </React.StrictMode>
 );
 

@@ -10,7 +10,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import GroupIcon from '@mui/icons-material/Group';
 import { Box, ThemeProvider, createTheme } from '@mui/system';
-
+import "./NavigationBar.css"
 export default class NavigationBar extends Component {
 
   render() {
@@ -22,11 +22,8 @@ export default class NavigationBar extends Component {
 
 
     return (
-      <>
-      <div>
-        <Drawer anchor={"left"} open={true} onClose={null}>
-          <div style={{backgroundColor:"black",height:"100%"}}>
-          <div style={{backgroundColor:"#0B0725", height:"95%",margin:10,borderRadius: 12,}}>
+
+      <div id="navContainer">
           <List>
             {["Home", "Profile", "Friends", "Match"].map((text, index) => (
               <ListItem key={text} disablePadding>
@@ -41,7 +38,7 @@ export default class NavigationBar extends Component {
                       bgcolor: "#0B0725",
                       boxShadow: 1,
                       borderRadius: 5,
-                      margin: 1,
+                      margin: 2,
                       minWidth: 70,
                       maxHeight: 50,
                     },
@@ -58,11 +55,9 @@ export default class NavigationBar extends Component {
               </ListItem>
             ))}
           </List>
-          </div>
-          </div>
-        </Drawer>
+    
       </div>
-      </>
+
     );
   }
 }
