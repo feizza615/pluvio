@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import NavigationBar from './components/NavigationBarComponent/NavigationBar';
+import LoginComponent from './components/LoginComponent/LoginComponent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <NavigationBar/>
+    <LoginComponent/>
   </React.StrictMode>
 );
 
