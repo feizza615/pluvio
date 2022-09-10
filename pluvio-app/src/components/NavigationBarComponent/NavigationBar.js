@@ -9,34 +9,55 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import GroupIcon from '@mui/icons-material/Group';
-
+import { Box, ThemeProvider, createTheme } from '@mui/system';
+import "./NavigationBar.css"
 export default class NavigationBar extends Component {
 
   render() {
 
     const iconArray = [
-      <HomeIcon/>, <AccountBoxIcon/>, <TheaterComedyIcon/>,<GroupIcon/>
+      <HomeIcon/>, <AccountBoxIcon/>, <GroupIcon/>,<TheaterComedyIcon/>
       ];
+
+
+
     return (
-      <div>
-        <h1>Hello</h1>
-        <Drawer
-            anchor={"left"}
-            open={true}
-            onClose={null}
-          >
-        <List>
-        {['Home', 'Profile', 'Friends', 'Match'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>{iconArray[index]}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        </Drawer>
+
+      <div id="navContainer">
+          <List>
+            {["Home", "Profile", "Friends", "Match"].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton
+                  sx={[
+                    {
+                      "&:hover": {
+                        backgroundColor: "#180F53",
+                      },
+                    },
+                    {
+                      bgcolor: "#0B0725",
+                      boxShadow: 1,
+                      borderRadius: 5,
+                      margin: 2,
+                      minWidth: 70,
+                      maxHeight: 50,
+                    },
+                  ]}
+                >
+                  <ListItemIcon sx={{ color: "white" }}>
+                    {iconArray[index]}
+                  </ListItemIcon>
+                  <ListItemText
+                    sx={{ color: "white" }}
+                    primary={<h5>{text}</h5>}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+    
       </div>
-    )
+
+    );
   }
 }
