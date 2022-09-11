@@ -4,6 +4,11 @@ body {
   font-family: "Poppins";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  background-image: url(rain.png);
+  background-position: bottom 20px right;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {

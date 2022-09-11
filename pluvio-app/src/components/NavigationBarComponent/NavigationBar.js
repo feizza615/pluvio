@@ -41,6 +41,7 @@ export default class NavigationBar extends Component {
                       margin: 2,
                       minWidth: 70,
                       maxHeight: 50,
+                      transition: "background-color 500ms ease"
                     },
                   ]}
                 >
