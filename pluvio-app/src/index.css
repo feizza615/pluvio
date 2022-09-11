@@ -4,12 +4,15 @@ body {
   font-family: "Poppins";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  
 }
 
 code {
   font-family: "Poppins";
 }
 
-h5{
+div,h5{
   font-family: "Poppins";
+  color: white;
 }

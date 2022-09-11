@@ -2,8 +2,9 @@
     display: flex;
     position: fixed;
     margin: 10px;
-    margin-top: 60px;
+    margin-top: 70px;
+    margin-left: 15px;
     border-radius: 20px;
     background-color: #0B0725;
-    height: 90%;
+    height: 88%;
 }
