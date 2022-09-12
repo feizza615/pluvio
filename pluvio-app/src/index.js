@@ -5,11 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import NavigationBar from './components/NavigationBarComponent/NavigationBar';
 import LoginComponent from './components/LoginComponent/LoginComponent';
+import SignUpComponent from './components/LoginComponent/SignUpComponent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <LoginComponent/>
+    <SignUpComponent/>
   </React.StrictMode>
 );
 
