@@ -1,0 +1,47 @@
+#container{    
+    display: inline-block;
+}
+
+#text{     
+    text-align: left;
+    font-size: 15px;
+}
+
+#welcomepage_header{
+    text-align: left;
+    margin-left: 10%;
+    margin-top: 10%;
+    color: white;
+    margin-bottom: -150px;
+    font-size: 50px;
+
+}
+
+#thumbnail{
+    height: 500px;
+    width: auto;
+}
+
+#block{
+    display: flex;  
+    margin-left: 10%;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: -5%;
+}
+
+#sign_in{    
+    background-color: #4930FF;
+    align-content: center;
+    margin-left: 50px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 5px 15px 5px 15px;
+    color: white;
+}
+
+#centered{
+  margin: 0;
+  position: absolute;
+  left: 25%;
+}
