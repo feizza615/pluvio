@@ -3,7 +3,7 @@
     flex-direction: column;
     font-family: "Poppins";
     width: fit-content;
-    padding: 200px 0;
+    padding: 150px 0;
     margin: auto;
     justify-content: space-around;
 }
@@ -43,4 +43,10 @@
 
 #centered{
     display: flex;
+}
+
+@media screen and (max-width: 640px) {
+    #textImageContainer {
+        flex-direction: column;
+    }
 }
