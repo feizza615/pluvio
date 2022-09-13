@@ -65,17 +65,18 @@ export default function SignUpComponent(){
               Sign Up
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 3, fontFamily: 'Poppins',}}>
-              First Name
+              Username
             </Typography>
             <InputField />
             <Typography id="modal-modal-description" sx={{ mt: 3, fontFamily: 'Poppins',}}>
-              Last Name
+              Email
             </Typography>
             <InputField />
             <Typography id="modal-modal-description" sx={{ mt: 3, fontFamily: 'Poppins',}}>
               Password
             </Typography>
             <InputField type="password"/>
+            
             <button>
 
             </button>
