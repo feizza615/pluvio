@@ -17,7 +17,7 @@ const Header = () => {
         <AppBar
             sx={{
                 background: "#000",
-                paddingBottom:"10px"
+                marginBottom:"50px"
             }}
         >
             <Toolbar>
