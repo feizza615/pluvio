@@ -10,7 +10,7 @@ export default class WelcomePage extends Component {
     return (
       <div id="contentContainer">
         <Header />
-        <div id="welcomeTitle">
+        <div id="welcomeTitle" style={{display: "flex",width: "fit-content"}}>
           <p id="welcomepage_header">Don't Know What To Watch?</p>
         </div>
         <div id="textImageContainer">

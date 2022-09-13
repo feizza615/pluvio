@@ -3,22 +3,21 @@
     margin: 0 auto;
     padding: 20vh 10vw;
     flex-direction: column;
-    overflow: auto;
     font-family: "Poppins";
-    width: 100%;
     justify-content: space-between;
 }
 
 #textImageContainer{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 #textContainer{
-    width: 40vh;
+    width: 35vw;
 }
 #text{     
     text-align: left;
-    font-size: 15px;
+    font-size: 24px;
     color: white;
 }
 
@@ -26,7 +25,7 @@
     text-align: left;
     color: white;
     font-size: 48px;
-    display: flexbox;
+    display: flex;
 
 }
 
@@ -54,4 +53,10 @@
 
 #centered{
     display: flex;
+}
+
+@media screen and (max-width: 640px) {
+    #textImageContainer {
+        flex-direction: column;
+    }
 }
