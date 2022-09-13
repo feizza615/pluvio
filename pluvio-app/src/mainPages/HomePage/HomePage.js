@@ -8,9 +8,8 @@ export default class HomePage extends Component {
     return (
       <div id="container">
         <div id="header">
-          <Header />
+          <Header/>
         </div>
-
         <NavigationBar />
       </div>
     );

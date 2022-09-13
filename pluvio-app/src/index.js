@@ -9,6 +9,7 @@ import FriendsPage from './mainPages/FriendsPage/FriendsPage';
 import MatchPage from './mainPages/MatchPage/MatchPage';
 import ProfilePage from './mainPages/ProfilePage/ProfilePage';
 import WelcomePage from './mainPages/WelcomePage/WelcomePage';
+import Header from './components/HeaderComponent/Header';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

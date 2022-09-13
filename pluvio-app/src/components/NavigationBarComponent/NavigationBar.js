@@ -22,12 +22,12 @@ export default class NavigationBar extends Component {
       <TheaterComedyIcon />,
     ];
 
-    const linkArray = ["/home/","/profile/","/friends/","/match/", "/welcome/"]
+    const linkArray = ["/home/","/profile/","/friends/","/match/"]
 
     return (
       <div id="navContainer">
         <List>
-          {["Home", "Profile", "Friends", "Match", "Welcome"].map((text, index) => (
+          {["Home", "Profile", "Friends", "Match"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <Link to={linkArray[index]} style ={{textDecoration: 'none'}}>
               <ListItemButton
