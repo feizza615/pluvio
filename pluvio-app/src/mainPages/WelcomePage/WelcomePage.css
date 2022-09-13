@@ -1,33 +1,45 @@
-#container{    
-    display: inline-block;
+#contentContainer{
+    display: flex;
+    margin: 0 auto;
+    padding: 20vh 10vw;
+    flex-direction: column;
+    overflow: auto;
+    font-family: "Poppins";
+    width: 100%;
+    justify-content: space-between;
 }
 
+#textImageContainer{
+    display: flex;
+    flex-direction: row;
+}
+#textContainer{
+    width: 40vh;
+}
 #text{     
     text-align: left;
     font-size: 15px;
+    color: white;
 }
 
 #welcomepage_header{
     text-align: left;
-    margin-left: 10%;
-    margin-top: 10%;
     color: white;
-    margin-bottom: -150px;
-    font-size: 50px;
+    font-size: 48px;
+    display: flexbox;
 
 }
 
 #thumbnail{
-    height: 500px;
-    width: auto;
+    height:40vh;
+    width: 40vw;
 }
 
 #block{
     display: flex;  
-    margin-left: 10%;
+    padding-left: 10%;
     align-items: center;
     flex-direction: row;
-    margin-bottom: -5%;
 }
 
 #sign_in{    
@@ -41,7 +53,5 @@
 }
 
 #centered{
-  margin: 0;
-  position: absolute;
-  left: 25%;
+    display: flex;
 }
