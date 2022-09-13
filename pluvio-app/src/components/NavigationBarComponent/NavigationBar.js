@@ -11,6 +11,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import "./NavigationBar.css";
 import { NavLink } from "react-router-dom";
 import { Typography } from "@mui/material";
+import WelcomePage from "../../mainPages/WelcomePage/WelcomePage";
 
 
 
@@ -28,7 +29,7 @@ const NavigationBar = () => {
     <TheaterComedyIcon />,
   ];
 
-  const linkArray = ["/home/","/profile/","/friends/","/match/"]
+  const linkArray = ["/home/","/profile/","/friends/","/match/","/welcome/"]
 
   return (
     <div id="navContainer">
@@ -42,7 +43,7 @@ const NavigationBar = () => {
             padding: 1
           }} 
         >Menu</Typography>
-        {["Home", "Profile", "Friends", "Match"].map((text, index) => (
+        {["Home", "Profile", "Friends", "Match","Welcome"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <NavLink to={linkArray[index]} 
               onClick={onClickHandler}

@@ -1,0 +1,62 @@
+#contentContainer{
+    display: flex;
+    margin: 0 auto;
+    padding: 20vh 10vw;
+    flex-direction: column;
+    font-family: "Poppins";
+    justify-content: space-between;
+}
+
+#textImageContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#textContainer{
+    width: 35vw;
+}
+#text{     
+    text-align: left;
+    font-size: 24px;
+    color: white;
+}
+
+#welcomepage_header{
+    text-align: left;
+    color: white;
+    font-size: 48px;
+    display: flex;
+
+}
+
+#thumbnail{
+    height:40vh;
+    width: 40vw;
+}
+
+#block{
+    display: flex;  
+    padding-left: 10%;
+    align-items: center;
+    flex-direction: row;
+}
+
+#sign_in{    
+    background-color: #4930FF;
+    align-content: center;
+    margin-left: 50px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 5px 15px 5px 15px;
+    color: white;
+}
+
+#centered{
+    display: flex;
+}
+
+@media screen and (max-width: 640px) {
+    #textImageContainer {
+        flex-direction: column;
+    }
+}
