@@ -1,54 +1,44 @@
 #contentContainer{
     display: flex;
-    margin: 0 auto;
-    padding: 20vh 10vw;
     flex-direction: column;
     font-family: "Poppins";
-    justify-content: space-between;
+    width: fit-content;
+    padding: 150px 0;
+    margin: auto;
+    justify-content: space-around;
 }
 
 #textImageContainer{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    text-align: left;
+    justify-content: space-around;
+   
 }
 #textContainer{
-    width: 35vw;
+    width: 50vh;
+    flex-direction: row;
+    justify-content: space-between;
 }
 #text{     
     text-align: left;
-    font-size: 24px;
+    font-size: 20px;
     color: white;
 }
 
-#welcomepage_header{
-    text-align: left;
-    color: white;
-    font-size: 48px;
-    display: flex;
 
-}
 
 #thumbnail{
     height:40vh;
-    width: 40vw;
+    width: auto;
+    padding: 50px;
 }
 
-#block{
-    display: flex;  
-    padding-left: 10%;
-    align-items: center;
-    flex-direction: row;
-}
-
-#sign_in{    
-    background-color: #4930FF;
-    align-content: center;
-    margin-left: 50px;
-    font-size: 20px;
-    border-radius: 10px;
-    padding: 5px 15px 5px 15px;
-    color: white;
+#thumbnail_container{
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
 }
 
 #centered{
