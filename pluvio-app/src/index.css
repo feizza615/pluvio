@@ -1,18 +1,19 @@
-
 body {
   margin: 0;
   font-family: "Poppins";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
-  
+  background-image: url(rain.png);
+  background-position: bottom 20px right;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {
   font-family: "Poppins";
 }
 
-div,h5{
+h5{
   font-family: "Poppins";
-  color: white;
 }

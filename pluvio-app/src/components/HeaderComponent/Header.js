@@ -4,7 +4,7 @@ import { Toolbar, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 
 export const AppLogo = styled(Typography) ({
-    fontSize: '25px',
+    fontSize: '20px',
     fontFamily: 'Poppins',
     fontWeight: 1000,
 })
@@ -16,7 +16,6 @@ const Header = () => {
         <AppBar
             sx={{
                 background: "#000",
-
             }}
         >
             <Toolbar>
