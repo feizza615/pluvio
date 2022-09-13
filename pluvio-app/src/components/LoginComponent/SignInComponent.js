@@ -21,13 +21,6 @@ export const InputField = styled.input`
     box-shadow: 5px 5px 0px 2px #4930ff;
     transform: translateY(5px);
   }
-
-  &::before {
-    content: "test";
-    width: 5px;
-    height: 5px;
-    background: red;
-  }
 `;
 
 const style = {
@@ -45,7 +38,7 @@ const style = {
   p: 8,
 };
 
-export default function SignUpComponent() {
+export default function LoginComponent() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -66,7 +59,7 @@ export default function SignUpComponent() {
             fontSize: "20px",
             fontWeight: "bold",
             textTransform: "uppercase",
-            margin: "10px"
+            margin:"10px"
           },
           {
             "&:hover": {
@@ -77,7 +70,7 @@ export default function SignUpComponent() {
         ]}
         onClick={handleOpen}
       >
-        Sign Up
+        Sign In
       </Button>
       <Modal
         open={open}
@@ -96,7 +89,7 @@ export default function SignUpComponent() {
               fontFamily: "Poppins",
             }}
           >
-            Sign Up
+            Sign In
           </Typography>
           <Typography
             id="modal-modal-description"
@@ -109,23 +102,15 @@ export default function SignUpComponent() {
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
           >
-            Email
-          </Typography>
-          <InputField />
-          <Typography
-            id="modal-modal-description"
-            sx={{ mt: 3, fontFamily: "Poppins" }}
-          >
             Password
           </Typography>
           <InputField type="password" />
-
           <button></button>
           <Typography
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
           >
-            Already a user? Login!
+            Need an account? Sign Up!
           </Typography>
         </Box>
       </Modal>
