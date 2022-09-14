@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
+import ButtonComponent from "./ButtonComponent";
 
 export const InputField = styled.input`
   width: 100%;
@@ -45,33 +45,7 @@ export default function LoginComponent() {
 
   return (
     <div>
-      <Button
-        sx={[
-          {
-            backgroundColor: "#4930FF",
-            color: "white",
-            width: "150px",
-            height: "50px",
-            border: "none",
-            borderRadius: "25px 0px",
-            transition: "background-color 500ms ease, border-radius 500ms ease",
-            fontFamily: "Poppins",
-            fontSize: "20px",
-            fontWeight: "bold",
-            textTransform: "uppercase",
-            margin:"10px"
-          },
-          {
-            "&:hover": {
-              backgroundColor: "#25159D",
-              borderRadius: "0px 25px",
-            },
-          },
-        ]}
-        onClick={handleOpen}
-      >
-        Sign In
-      </Button>
+      <ButtonComponent onClick={handleOpen}> Sign In </ButtonComponent>
       <Modal
         open={open}
         onClose={handleClose}
@@ -105,7 +79,8 @@ export default function LoginComponent() {
             Password
           </Typography>
           <InputField type="password" />
-          <button></button>
+          <br/><br></br>
+          <ButtonComponent> Sign In </ButtonComponent>
           <Typography
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
