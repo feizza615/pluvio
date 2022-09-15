@@ -2,8 +2,7 @@
     display: flex;
     flex-direction: column;
     font-family: "Poppins";
-    width: fit-content;
-    padding: 150px 0;
+    padding: 150px 20px;
     margin: auto;
     justify-content: space-around;
 }
@@ -12,8 +11,8 @@
     display: flex;
     flex-direction: row;
     text-align: left;
-    justify-content: space-around;
-   
+    justify-content: center;
+    gap: 100px;
 }
 #textContainer{
     width: 50vh;
@@ -31,7 +30,7 @@
 #thumbnail{
     height:40vh;
     width: auto;
-    padding: 50px;
+    border-radius: 25px;
 }
 
 #thumbnail_container{
@@ -41,12 +40,24 @@
     display: flex;
 }
 
-#centered{
+#centered {
     display: flex;
 }
 
-@media screen and (max-width: 640px) {
+@media (max-width: 640px) {
     #textImageContainer {
         flex-direction: column;
+    }
+
+    #centered {
+        justify-content: center;
+    }
+
+    #textContainer {
+        width: 100%;
+    }
+
+    #thumbnail {
+        display: none;
     }
 }

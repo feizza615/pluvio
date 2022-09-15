@@ -4,7 +4,7 @@ import { Toolbar, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { Link } from "react-router-dom";
 export const AppLogo = styled(Typography) ({
-    fontSize: '30px',
+    fontSize: '18px',
     fontFamily: 'Poppins',
     fontWeight: 1000,
     color:"white"
@@ -17,7 +17,11 @@ const Header = () => {
         <AppBar
             sx={{
                 background: "#000",
-                marginBottom:"50px"
+                marginBottom:"50px",
+                width: "100%",
+                margin: "0 auto",
+                left: 0,
+                right: 0,
             }}
         >
             <Toolbar>

@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import ButtonComponent from "./ButtonComponent";
+import axios from "axios";
 
 export const InputField = styled.input`
   width: 100%;
@@ -36,12 +37,47 @@ const style = {
   boxSizing: "border-box",
   boxShadow: 15,
   p: 8,
+
+  "@media (max-width: 640px)": {
+    width: "90%",
+    p: 5
+  }
 };
 
 export default function LoginComponent() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [login, setLogin] = useState(false);
+
+  const handleSubmit = (e) => {
+    // prevent the form from refreshing the whole page
+    const configuration = {
+      method: "post",
+      url: "http://localhost:5000/users/login",
+      data: {
+        email,
+        password,
+      },
+    };
+    // make a popup alert showing the "submitted" text
+    axios(configuration)
+      .then((result) => 
+      {
+        console.log(result.status);
+
+          console.log("SUCCESS")
+          alert("PASS")
+      })
+      .catch((error) => {
+        error = new Error();
+        alert("FAIL")
+      });
+  
+  }
 
   return (
     <div>
@@ -51,6 +87,11 @@ export default function LoginComponent() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx = {{
+          ".MuiBackdrop-root": {
+            backdropFilter: "blur(10px)",
+          }
+        }}
       >
         <Box sx={style}>
           <Typography
@@ -69,18 +110,18 @@ export default function LoginComponent() {
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
           >
-            Username
+            Email
           </Typography>
-          <InputField />
+          <InputField value={email} onChange={(e) => setEmail(e.target.value)}/>
           <Typography
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
           >
             Password
           </Typography>
-          <InputField type="password" />
+          <InputField type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
           <br/><br></br>
-          <ButtonComponent> Sign In </ButtonComponent>
+          <ButtonComponent onClick={(e)=>handleSubmit(e)}> Sign In </ButtonComponent>
           <Typography
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
