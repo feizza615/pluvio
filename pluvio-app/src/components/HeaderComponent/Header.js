@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 export const AppLogo = styled(Typography) ({
-    fontSize: '18px',
+    fontSize: '30px',
     fontFamily: 'Poppins',
     fontWeight: 1000,
     color:"white"
@@ -19,10 +19,9 @@ const user = useSelector(selectUser);
 
 function Greeting(props) {
     const isLoggedIn = props.isLoggedIn;
-    if (isLoggedIn==null) {
-      return <h3 style={{marginRight:"50px"}}>Welcome!</h3>;
-    }
+    if (isLoggedIn!=null) {
     return <h3 style={{marginRight:"50px"}}>Welcome {isLoggedIn.name}!</h3>
+    }
   }
 console.log(user)
   return (
