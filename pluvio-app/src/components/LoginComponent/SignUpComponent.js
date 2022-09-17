@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import ButtonComponent from "./ButtonComponent";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginFunc } from "../../features/userSlice";
 
 export const InputField = styled.input`
   width: 100%;
@@ -52,6 +54,9 @@ const style = {
 };
 
 export default function SignUpComponent() {
+
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -63,9 +68,17 @@ export default function SignUpComponent() {
 
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
+    e.preventDefault();
+    dispatch(loginFunc({
+      name: name,
+      email: email,
+      password:password,
+      loggedIn: true
+    }));
+
     const configuration = {
       method: "post",
-      url: "http://localhost:5000/users/register",
+      url: "http://localhost:5001/users/register",
       data: {
         name,
         email,

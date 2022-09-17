@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import ButtonComponent from "./ButtonComponent";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 export const InputField = styled.input`
   width: 100%;
@@ -53,11 +54,19 @@ export default function LoginComponent() {
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
+    e.preventDefault();
+    // dispatch(login({
+    //   email: email,
+    //   password:password,
+    //   loggedIn: login
+    // }))
     const configuration = {
       method: "post",
-      url: "http://localhost:5000/users/login",
+      url: "http://localhost:5001/users/login",
       data: {
         email,
         password,

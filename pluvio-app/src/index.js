@@ -10,9 +10,13 @@ import MatchPage from './mainPages/MatchPage/MatchPage';
 import ProfilePage from './mainPages/ProfilePage/ProfilePage';
 import WelcomePage from './mainPages/WelcomePage/WelcomePage';
 import Header from './components/HeaderComponent/Header';
+import { Provider } from 'react-redux';
+import store from "./app/store"
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route index element = {<HomePage/>}/>
@@ -23,6 +27,7 @@ root.render(
         <Route path="/match/" element = {<MatchPage/>}/>
       </Routes>
     </BrowserRouter>
+    </Provider>
 
   </React.StrictMode>
 );

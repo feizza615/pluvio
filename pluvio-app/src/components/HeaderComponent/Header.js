@@ -3,6 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import { Toolbar, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
 export const AppLogo = styled(Typography) ({
     fontSize: '18px',
     fontFamily: 'Poppins',
@@ -12,6 +14,17 @@ export const AppLogo = styled(Typography) ({
 
 
 const Header = () => {
+    
+const user = useSelector(selectUser);
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if (isLoggedIn==null) {
+      return <h3 style={{marginRight:"50px"}}>Welcome!</h3>;
+    }
+    return <h3 style={{marginRight:"50px"}}>Welcome {isLoggedIn.name}!</h3>
+  }
+console.log(user)
   return (
     <>
         <AppBar
@@ -24,11 +37,16 @@ const Header = () => {
                 right: 0,
             }}
         >
+            <div style={{display: "flex", justifyContent:"space-between"}}>
             <Toolbar>
             <Link to={"/welcome/"} style ={{textDecoration: 'none'}}>
                 <AppLogo >pluvio</AppLogo>
             </Link>
+            
             </Toolbar>
+            <Greeting isLoggedIn={user} />
+            </div>
+            
         </AppBar>
     </>
   )
