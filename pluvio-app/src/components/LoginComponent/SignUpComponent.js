@@ -39,18 +39,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "25vw",
+  width: "min(400px, 90%)",
   height: "fit-content",
   color: "white",
   borderRadius: "15px",
   bgcolor: "#0B0725",
   boxSizing: "border-box",
   boxShadow: 15,
-  p: 8,
+  p: 5,
 
   "@media (max-width: 640px)": {
-    width: "90%",
-    p: 5
   }
 };
 
