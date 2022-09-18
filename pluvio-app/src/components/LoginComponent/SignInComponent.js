@@ -76,7 +76,7 @@ export default function LoginComponent() {
     axios(configuration)
       .then((result) => 
       {
-        console.log(result.status);
+        console.log(result);
 
           console.log("SUCCESS")
           alert("PASS")

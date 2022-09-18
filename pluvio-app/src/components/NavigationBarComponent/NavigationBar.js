@@ -13,13 +13,18 @@ import "./NavigationBar.css";
 import { NavLink } from "react-router-dom";
 import { Typography } from "@mui/material";
 import WelcomePage from "../../mainPages/WelcomePage/WelcomePage";
-
-
+import { loginFunc } from "../../features/userSlice";
+import { useDispatch } from "react-redux";
 
 const NavigationBar = () => {
   const [click, setIsClicked] = useState(false)
+  const dispatch = useDispatch();
 
-  const onClickHandler = () => {
+  const onClickHandler = value => () => {
+      console.log(value)
+      if(value==="Logout"){
+        dispatch(loginFunc(null))
+      }
       setIsClicked(!click)
   }
 
@@ -48,7 +53,7 @@ const NavigationBar = () => {
         {["Home", "Profile", "Friends", "Match","Logout"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <NavLink to={linkArray[index]} 
-              onClick={onClickHandler}
+              onClick={onClickHandler(text)}
               style = {{
                 textDecoration: 'none',
               }}

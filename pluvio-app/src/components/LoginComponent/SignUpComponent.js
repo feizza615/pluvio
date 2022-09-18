@@ -7,6 +7,7 @@ import ButtonComponent from "./ButtonComponent";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginFunc } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const InputField = styled.input`
   width: 100%;
@@ -66,6 +67,8 @@ export default function SignUpComponent() {
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
 
+  let navigate = useNavigate(); 
+
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
     e.preventDefault();
@@ -94,6 +97,9 @@ export default function SignUpComponent() {
         error = new Error();
       });
     alert("Submited");
+    let path = "/home/"; 
+    navigate(path);
+    
   }
   return (
     <div>
