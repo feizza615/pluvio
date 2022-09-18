@@ -4,9 +4,8 @@ import "./WelcomePage.css";
 import thumbnail from "./thumbnail.png";
 import SignInComponent from "../../components/LoginComponent/SignInComponent";
 import SignUpComponent from "../../components/LoginComponent/SignUpComponent";
-
-export default class WelcomePage extends Component {
-  render() {
+  
+  const WelcomePage = () => {
     return (
       <>
         <div id="contentContainer">
@@ -32,6 +31,8 @@ export default class WelcomePage extends Component {
           </div>
       </div>
     </>
-    );
+    )
   }
-}
+  
+
+  export default WelcomePage;
