@@ -1,24 +1,23 @@
 .spoilerStyle {
-  width: 100%;
-  height: auto;
-  background-color: #707070;
-  filter: blur(8px);
+  filter: blur(24px);
   color: white;
 }
 
 .unBlurSpoilerStyle {
-  width: 100%;
-  height: auto;
-  background-color: transparent;
   filter: blur(0px);
 }
 
 .spoilerWarning {
-  color: #4930ff;
+  color: #fff;
   filter: blur(0px);
-  font-size: 20px;
 }
 
-.spoilerGone {
-  color: transparent;
+.spoilerGone .hide{
+  display: none;
+}
+
+.hide {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

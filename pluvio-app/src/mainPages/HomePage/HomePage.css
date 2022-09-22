@@ -1,14 +1,11 @@
 div {
   display: block;
+  color: white;
 }
 
 #header {
   margin-bottom: 500px;
   position: fixed;
-}
-
-h1 {
-  color: white;
 }
 
 #nav {

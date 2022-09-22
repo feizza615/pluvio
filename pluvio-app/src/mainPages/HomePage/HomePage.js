@@ -6,7 +6,8 @@ import NavigationBar from "../../components/NavigationBarComponent/NavigationBar
 import Card from "../../components/Card";
 import "./HomePage.css";
 import styled from "styled-components";
-
+import ProfileBox from "../../components/ProfileBoxComponent/ProfileBox";
+import Spoiler from "../../components/SpoilerComponent/Spoiler";
 
 export const Text = styled.p`
   color: white;
@@ -16,23 +17,24 @@ export const Text = styled.p`
 `;
 
 
+
 export default class HomePage extends Component {
   render() {
     return (
       <>
-        <div id="container">
-          <div id="header">
-            <Header />
-          </div>
-          <NavigationBar />
-          <Container>
+        <div style={{display: "flex", flexDirection: "column", gap: "40px"}}>
+          <MovieCard />
+          <h2>
+            Recent Activity
+          </h2>
+          <MovieCard />
+          <Spoiler>
             <MovieCard />
-          </Container>
+          </Spoiler>
+          <MovieCard />
         </div>
+        <ProfileBox />
       </>
     );
   }
 }
-
-
-
