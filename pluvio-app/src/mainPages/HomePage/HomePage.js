@@ -19,17 +19,20 @@ export const Text = styled.p`
 export default class HomePage extends Component {
   render() {
     return (
-      <div id="container">
-        <div id="header">
-          <Header/>
+      <>
+        <div id="container">
+          <div id="header">
+            <Header />
+          </div>
+          <NavigationBar />
+          <Container>
+            <MovieCard />
+          </Container>
         </div>
-        <NavigationBar />
-        <Container>
-          <MovieCard />
-        </Container>
-      </div>
+      </>
     );
   }
 }
+
 
 
