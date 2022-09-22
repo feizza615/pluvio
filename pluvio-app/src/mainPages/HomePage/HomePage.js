@@ -16,7 +16,12 @@ export const Text = styled.p`
   font-weight: bold;
 `;
 
-
+const userdata = {
+  username: "tamim",
+  following: 20,
+  followers: 1,
+  reviews: 21
+}
 
 export default class HomePage extends Component {
   render() {
@@ -33,7 +38,7 @@ export default class HomePage extends Component {
           </Spoiler>
           <MovieCard />
         </div>
-        <ProfileBox />
+        <ProfileBox userdata={userdata} />
       </>
     );
   }
