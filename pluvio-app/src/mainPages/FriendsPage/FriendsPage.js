@@ -12,7 +12,7 @@ const data = {
   rating: "PG-13",
   genre: "Comedy, Children",
   duration: "2 Hours",
-  description: "blah blah blah"
+  description: "Despicable Me 3 is a 2017 American computer-animated comedy film produced by Illumination and distributed by Universal Pictures. It is the sequal to Despicable Me 2, the third main installment, and the fourth installment overall in the Despicable Me."
 };
 
 export default class FriendsPage extends Component {
@@ -29,7 +29,7 @@ export default class FriendsPage extends Component {
         rating={data.rating}
         genre={data.genre}
         duration={data.duration}
-        decsription={data.description}
+        description={data.description}
       />
     </div>
     )

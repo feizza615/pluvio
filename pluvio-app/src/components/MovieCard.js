@@ -2,6 +2,8 @@ import React from 'react'
 import Card from './Card'
 import styled from "styled-components";
 
+//Review Button not implemented
+
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -40,18 +42,18 @@ const MovieCard = ({
   description,
 }) => {
   return (
-    <Card>
+    <Card style={{width: "800px"}}>
       <RowContainer>
         <Image />
         <div className="container">
           <h2 style={{marginBottom: "5px", textAlign: "left" }}>{title}</h2>
           <Container>
-            <h4>Release: {release} </h4>
-            <h4>Platform: {platform} </h4>
-            <h4>Score: {score} </h4>
-            <h4>Rating: {rating} </h4>
-            <h4>Genre: {genre} </h4>
-            <h4>Duration: {duration} </h4>
+            <h4>Release: {release} </h4> 
+            <h4>Rating: {rating} </h4> 
+            <h4>Platform: {platform} </h4> 
+            <h4>Genre: {genre} </h4> 
+            <h4>Rating: {rating} </h4> 
+            <h4>Duration: {duration} </h4> 
           </Container>
         </div>
       </RowContainer>
