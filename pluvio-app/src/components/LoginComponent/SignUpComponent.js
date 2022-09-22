@@ -5,6 +5,9 @@ import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import ButtonComponent from "./ButtonComponent";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginFunc } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const InputField = styled.input`
   width: 100%;
@@ -36,22 +39,23 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "25vw",
+  width: "min(400px, 90%)",
   height: "fit-content",
   color: "white",
   borderRadius: "15px",
   bgcolor: "#0B0725",
   boxSizing: "border-box",
   boxShadow: 15,
-  p: 8,
+  p: 5,
 
   "@media (max-width: 640px)": {
-    width: "90%",
-    p: 5
   }
 };
 
 export default function SignUpComponent() {
+
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -61,11 +65,21 @@ export default function SignUpComponent() {
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
 
+  let navigate = useNavigate(); 
+
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
+    e.preventDefault();
+    dispatch(loginFunc({
+      name: name,
+      email: email,
+      password:password,
+      loggedIn: true
+    }));
+
     const configuration = {
       method: "post",
-      url: "http://localhost:5000/users/register",
+      url: "http://localhost:5001/users/register",
       data: {
         name,
         email,
@@ -81,6 +95,9 @@ export default function SignUpComponent() {
         error = new Error();
       });
     alert("Submited");
+    let path = "/home/"; 
+    navigate(path);
+    
   }
   return (
     <div>

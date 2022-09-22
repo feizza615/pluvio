@@ -5,6 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import GroupIcon from "@mui/icons-material/Group";
@@ -12,13 +13,18 @@ import "./NavigationBar.css";
 import { NavLink } from "react-router-dom";
 import { Typography } from "@mui/material";
 import WelcomePage from "../../mainPages/WelcomePage/WelcomePage";
-
-
+import { loginFunc } from "../../features/userSlice";
+import { useDispatch } from "react-redux";
 
 const NavigationBar = () => {
   const [click, setIsClicked] = useState(false)
+  const dispatch = useDispatch();
 
-  const onClickHandler = () => {
+  const onClickHandler = value => () => {
+      console.log(value)
+      if(value==="Logout"){
+        dispatch(loginFunc(null))
+      }
       setIsClicked(!click)
   }
 
@@ -27,9 +33,10 @@ const NavigationBar = () => {
     <AccountBoxIcon />,
     <GroupIcon />,
     <TheaterComedyIcon />,
+    <LogoutIcon/>
   ];
 
-  const linkArray = ["/home/","/profile/","/friends/","/match/"]
+  const linkArray = ["/home/","/profile/","/friends/","/match/","/welcome/"]
 
   return (
     <div id="navContainer">
@@ -43,10 +50,10 @@ const NavigationBar = () => {
             padding: 1
           }} 
         >Menu</Typography>
-        {["Home", "Profile", "Friends", "Match"].map((text, index) => (
+        {["Home", "Profile", "Friends", "Match","Logout"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <NavLink to={linkArray[index]} 
-              onClick={onClickHandler}
+              onClick={onClickHandler(text)}
               style = {{
                 textDecoration: 'none',
               }}

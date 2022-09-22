@@ -7,6 +7,10 @@
     justify-content: space-around;
 }
 
+h1 {
+    font-size: clamp(32px, 5vw, 48px);
+}
+
 #textImageContainer{
     display: flex;
     flex-direction: row;
@@ -50,7 +54,11 @@
     }
 
     #centered {
-        justify-content: center;
+        justify-content: space-around;
+    }
+
+    #centered button {
+        margin-right: 0;
     }
 
     #textContainer {

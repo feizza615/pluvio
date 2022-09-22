@@ -1,10 +1,20 @@
 const router = require('express').Router();
 let User = require('../models/User');
 
+function isEmail(email) {
+    var emailFormat = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    if (email !== '' && email.match(emailFormat)) { return true; }
+    
+    return false;
+}
+
 router.post('/register',(req, res, next) => {
     data = req.body;
+    if (!isEmail(data.email)) return res.send('Invalid email');
+
     User.create(data, (err, user) => {
         if (err) return next(err);
+        return res.send('User created')
     });
 });
 
