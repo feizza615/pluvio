@@ -1,0 +1,30 @@
+.top
+{
+  flex-direction: row;
+  display: flex;
+  gap: 20px;
+}
+
+.texts
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+}
+
+.texts>*
+{
+  margin: 0;
+}
+
+.bottom
+{
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
+}
+
+/*p{
+
+}*/

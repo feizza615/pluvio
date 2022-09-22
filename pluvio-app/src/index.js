@@ -22,11 +22,11 @@ let persistor = persistStore(store);
 
 export const HomeContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   padding: 5vh 15px;
   height: auto;
   justify-content: space-between;
-  gap: 2.0rem;
+  gap: 10vw;
   box-sizing: border-bow;
 
   #navContainer {

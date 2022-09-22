@@ -4,7 +4,7 @@ import Card from './Card';
 const MovieCard = () => {
   return (
     <>
-      <Card>
+      <Card style={{width: "auto"}}>
         <h1>Test</h1>
       </Card>
     </>
