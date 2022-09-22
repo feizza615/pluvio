@@ -6,7 +6,7 @@ import React from 'react';
 
 export default function ProfileBox() {
     return (
-        <Card style={{width: "auto"}}>
+        <Card style={{width: "auto", position: "sticky", top: "10vh"}}>
             <div className="top">
                 <img src={Picture} alt="profile" />
                     <div className="texts">

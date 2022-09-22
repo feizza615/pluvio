@@ -43,7 +43,7 @@ const NavigationBar = () => {
 
   return (
     <div id="navContainer">
-      <List>
+      <List sx={{width: "100%"}}>
         <Typography variant="h5" 
           sx={{
             fontFamily: "Poppins",
@@ -59,6 +59,7 @@ const NavigationBar = () => {
               onClick={onClickHandler(text)}
               style = {{
                 textDecoration: 'none',
+                width: "100%"
               }}
             >
             <ListItemButton
@@ -76,7 +77,6 @@ const NavigationBar = () => {
                   boxShadow: 1,
                   borderRadius: 5,
                   margin: 2,
-                  width: "200px",
                   maxHeight: 50,
                 },
               ]}

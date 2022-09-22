@@ -29,7 +29,8 @@ export default class HomePage extends Component {
           </h2>
           <MovieCard />
           <Spoiler>
-          <MovieCard /></Spoiler>
+            <MovieCard />
+          </Spoiler>
           <MovieCard />
         </div>
         <ProfileBox />

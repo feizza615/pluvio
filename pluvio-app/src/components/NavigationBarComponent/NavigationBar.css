@@ -1,8 +1,11 @@
 #navContainer{
     display: flex;
+    position: sticky;
     border-radius: 25px;
     background-color: #0B0725;
     height: 75vh;
+    width: auto;
+    top: 10vh;
 }
 
 @media screen and (max-width: 768px) {
