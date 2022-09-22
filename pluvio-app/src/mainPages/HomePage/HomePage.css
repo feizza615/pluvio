@@ -1,26 +1,24 @@
-div{
-    display: block;
+div {
+  display: block;
+  color: white;
 }
 
-#header{
-    margin-bottom: 500px;
-    position: fixed;
+#header {
+  margin-bottom: 500px;
+  position: fixed;
 }
 
-h1{
-    color: white;
+#nav {
+  margin-top: 100px;
 }
 
-#nav{
-    margin-top: 100px;
-}
-
-#container{
-    display: flex;
-    flex-direction: column;
+#container {
+  display: flex;
+  flex-direction: column;
 }
 
 #rowContainer{
     display: flex;
     flex-direction: row;
 }
+

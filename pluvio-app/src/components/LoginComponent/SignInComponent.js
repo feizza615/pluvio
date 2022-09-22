@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import ButtonComponent from "./ButtonComponent";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 export const InputField = styled.input`
   width: 100%;
@@ -29,19 +30,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "25vw",
+  width: "min(400px, 90%)",
   height: "fit-content",
   color: "white",
   borderRadius: "15px",
   bgcolor: "#0B0725",
   boxSizing: "border-box",
   boxShadow: 15,
-  p: 8,
+  p: 5,
 
-  "@media (max-width: 640px)": {
-    width: "90%",
-    p: 5
-  }
+  "@media (max-width: 640px)": {},
 };
 
 export default function LoginComponent() {
@@ -53,8 +51,16 @@ export default function LoginComponent() {
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
+    e.preventDefault();
+    // dispatch(login({
+    //   email: email,
+    //   password:password,
+    //   loggedIn: login
+    // }))
     const configuration = {
       method: "post",
       url: "http://localhost:5000/users/login",
@@ -65,19 +71,20 @@ export default function LoginComponent() {
     };
     // make a popup alert showing the "submitted" text
     axios(configuration)
+
       .then((result) => 
       {
-        console.log(result.status);
+        console.log(result);
 
-          console.log("SUCCESS")
-          alert("PASS")
+
+        console.log("SUCCESS");
+        alert("PASS");
       })
       .catch((error) => {
         error = new Error();
-        alert("FAIL")
+        alert("FAIL");
       });
-  
-  }
+  };
 
   return (
     <div>
@@ -87,10 +94,10 @@ export default function LoginComponent() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        sx = {{
+        sx={{
           ".MuiBackdrop-root": {
             backdropFilter: "blur(10px)",
-          }
+          },
         }}
       >
         <Box sx={style}>
@@ -112,16 +119,27 @@ export default function LoginComponent() {
           >
             Email
           </Typography>
-          <InputField value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <InputField
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Typography
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
           >
             Password
           </Typography>
-          <InputField type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-          <br/><br></br>
-          <ButtonComponent onClick={(e)=>handleSubmit(e)}> Sign In </ButtonComponent>
+          <InputField
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <br />
+          <br></br>
+          <ButtonComponent onClick={(e) => handleSubmit(e)}>
+            {" "}
+            Sign In{" "}
+          </ButtonComponent>
           <Typography
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}

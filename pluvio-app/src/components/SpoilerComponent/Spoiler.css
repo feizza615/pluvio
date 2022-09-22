@@ -1,0 +1,23 @@
+.spoilerStyle {
+  filter: blur(24px);
+  color: white;
+}
+
+.unBlurSpoilerStyle {
+  filter: blur(0px);
+}
+
+.spoilerWarning {
+  color: #fff;
+  filter: blur(0px);
+}
+
+.spoilerGone .hide{
+  display: none;
+}
+
+.hide {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

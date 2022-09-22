@@ -52,7 +52,7 @@ const MovieCard = ({
             <h4>Rating: {rating} </h4> 
             <h4>Platform: {platform} </h4> 
             <h4>Genre: {genre} </h4> 
-            <h4>Rating: {rating} </h4> 
+            <h4>Score: {score} </h4> 
             <h4>Duration: {duration} </h4> 
           </Container>
         </div>
@@ -62,4 +62,4 @@ const MovieCard = ({
   )
 }
 
-export default MovieCard
+export default MovieCard;
