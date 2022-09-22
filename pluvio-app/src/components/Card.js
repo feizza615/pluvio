@@ -7,7 +7,6 @@ const Card = styled.div`
     border-radius: 25px;
     color: white;
     padding: 25px; 
-
 `;
 
 export default Card; 

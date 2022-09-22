@@ -7,7 +7,6 @@ import Card from "../../components/Card";
 import "./HomePage.css";
 import styled from "styled-components";
 
-
 export const Text = styled.p`
   color: white;
   font-family: "Poppins";
@@ -16,20 +15,16 @@ export const Text = styled.p`
 `;
 
 
+
 export default class HomePage extends Component {
   render() {
     return (
-      <div id="container">
-        <div id="header">
-          <Header/>
-        </div>
-        <NavigationBar />
-        <Container>
+      <>
+        <div>
           <MovieCard />
-        </Container>
-      </div>
+        </div>
+        <MovieCard />
+      </>
     );
   }
 }
-
-

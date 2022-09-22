@@ -10,7 +10,7 @@ function isEmail(email) {
 
 router.post('/register',(req, res, next) => {
     data = req.body;
-    if (!isEmail(data.email)) return res.send('Invalid email');
+    if (!isEmail(data.email)) return res.status(40).send('Invalid email');
 
     User.create(data, (err, user) => {
         if (err) return next(err);

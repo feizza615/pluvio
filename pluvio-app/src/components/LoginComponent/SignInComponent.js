@@ -63,7 +63,7 @@ export default function LoginComponent() {
     // }))
     const configuration = {
       method: "post",
-      url: "http://localhost:5001/users/login",
+      url: "http://localhost:5000/users/login",
       data: {
         email,
         password,

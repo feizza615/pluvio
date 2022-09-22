@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     font-family: "Poppins";
-    padding: 150px 20px;
     margin: auto;
     justify-content: space-around;
 }

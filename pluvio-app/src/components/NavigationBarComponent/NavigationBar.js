@@ -38,6 +38,9 @@ const NavigationBar = () => {
 
   const linkArray = ["/home/","/profile/","/friends/","/match/","/welcome/"]
 
+  if (window.location.pathname === "/welcome/") 
+    return null;
+
   return (
     <div id="navContainer">
       <List>

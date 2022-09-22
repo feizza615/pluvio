@@ -9,7 +9,6 @@ import SignUpComponent from "../../components/LoginComponent/SignUpComponent";
     return (
       <>
         <div id="contentContainer">
-          <Header />
           <div id="textImageContainer">
             <div id="textContainer">
               <h1>DON'T KNOW WHAT TO WATCH?</h1>

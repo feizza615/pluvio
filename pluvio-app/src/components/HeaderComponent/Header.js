@@ -34,6 +34,7 @@ console.log(user)
                 margin: "0 auto",
                 left: 0,
                 right: 0,
+                position: "static",
             }}
         >
             <div style={{display: "flex", justifyContent:"space-between"}}>
