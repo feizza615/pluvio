@@ -22,17 +22,21 @@ let persistor = persistStore(store);
 
 export const HomeContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  padding: 5vh 15px;
+  grid-template-columns: 1fr 3fr 1fr;
+  padding: 5vh 15vw;
   height: auto;
   justify-content: space-between;
-  gap: 10vw;
+  gap: 20px;
   box-sizing: border-bow;
   
-  @media (max-width: 768px) {
-    display: block;
+  @media (max-width: 1300px) {
+    padding: 5vh 5vw;
   }
 
+  @media (max-width: 768px) {
+    padding: 10px;
+    display: block;
+  }
 `;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -47,7 +51,7 @@ root.render(
         <Routes>
           <Route index element = {<WelcomePage/>}/>
           <Route path='/home/' element = {<HomePage/>}/>
-          <Route path="/welcome/" element = {<WelcomePage/>}/>
+          <Route path="/" element = {<WelcomePage/>}/>
           <Route path="/friends/" element = {<FriendsPage/>}/>
           <Route path="/profile/" element = {<ProfilePage/>}/>
           <Route path="/match/" element = {<MatchPage/>}/>

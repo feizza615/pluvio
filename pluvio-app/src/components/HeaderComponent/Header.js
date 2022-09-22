@@ -39,7 +39,7 @@ console.log(user)
         >
             <div style={{display: "flex", justifyContent:"space-between"}}>
             <Toolbar>
-            <Link to={"/welcome/"} style ={{textDecoration: 'none'}}>
+            <Link to={"/"} style ={{textDecoration: 'none'}}>
                 <AppLogo >pluvio</AppLogo>
             </Link>
             
