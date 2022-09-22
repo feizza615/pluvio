@@ -1,5 +1,5 @@
 .spoilerStyle {
-  filter: blur(8px);
+  filter: blur(24px);
   color: white;
 }
 
@@ -12,6 +12,12 @@
   filter: blur(0px);
 }
 
-.spoilerGone strong{
+.spoilerGone .hide{
   display: none;
+}
+
+.hide {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

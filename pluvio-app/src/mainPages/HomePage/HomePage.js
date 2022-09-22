@@ -28,12 +28,11 @@ export default class HomePage extends Component {
             Recent Activity
           </h2>
           <MovieCard />
-          <MovieCard />
+          <Spoiler>
+          <MovieCard /></Spoiler>
           <MovieCard />
         </div>
-        <Spoiler>
-          <ProfileBox />
-        </Spoiler>
+        <ProfileBox />
       </>
     );
   }
