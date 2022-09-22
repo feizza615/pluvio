@@ -25,25 +25,3 @@ h1 {
     flex-direction: row;
 }
 
-.top
-{
-  width: 50vh;
-  flex-direction: row;
-  justify-content: space-between;
-  display: flex;
-
-}
-
-.texts
-{
-  display: flex;
-  flex-direction: column;
-
-}
-
-.bottom
-{
-  display: flex;
-  gap: 25px;
-
-}
