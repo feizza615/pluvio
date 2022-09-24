@@ -4,10 +4,15 @@ import "./WelcomePage.css";
 import thumbnail from "./thumbnail.png";
 import SignInComponent from "../../components/LoginComponent/SignInComponent";
 import SignUpComponent from "../../components/LoginComponent/SignUpComponent";
-
+import {motion} from 'framer-motion';
   const WelcomePage = () => {
     return (
-      <>
+      <motion.div
+        className = "welcome"
+        initial={{opacity: 0}}
+        animate={{ opacity: 1}}
+        exit={{ opacity: 0}}
+      >
         <div id="contentContainer">
           <div id="textImageContainer">
             <div id="textContainer">
@@ -29,7 +34,7 @@ import SignUpComponent from "../../components/LoginComponent/SignUpComponent";
 
           </div>
       </div>
-    </>
+    </motion.div>
     )
   }
   
