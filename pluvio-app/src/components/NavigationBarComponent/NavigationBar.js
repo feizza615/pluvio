@@ -38,7 +38,9 @@ const NavigationBar = () => {
 
   const linkArray = ["/home/","/profile/","/friends/","/match/","/", "/welcome/"]
 
-  if (window.location.pathname === "/" || window.location.pathname === "/splash") 
+  if (window.location.pathname === "/welcome") 
+    return null;
+  else if  (window.location.pathname === "/")
     return null;
 
   return (
