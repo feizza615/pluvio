@@ -36,9 +36,11 @@ const NavigationBar = () => {
     <LogoutIcon/>
   ];
 
-  const linkArray = ["/home/","/profile/","/friends/","/match/","/"]
+  const linkArray = ["/home/","/profile/","/friends/","/match/","/", "/welcome/"]
 
-  if (window.location.pathname === "/") 
+  if (window.location.pathname === "/welcome") 
+    return null;
+  else if  (window.location.pathname === "/")
     return null;
 
   return (
