@@ -1,6 +1,7 @@
 import ButtonComponent from "../LoginComponent/ButtonComponent";
 import styled from "styled-components";
-import balls from "./balls.png"
+import balls from "./balls.png";
+import Card from "../Card";
 
 export const Title = styled.h1`
   margin: 0;
