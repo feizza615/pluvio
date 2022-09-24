@@ -15,14 +15,8 @@
     background-color: transparent;
   }
  
-  .box {
+  .splash {
     font-size: 70px;
-    position: relative;
-    margin: 10px;
-    background-color: transparent;
-  }
-  .box2{
-    font-size: 30px;
     position: relative;
     margin: 10px;
     background-color: transparent;

@@ -29,21 +29,21 @@ export default function Splash(){
     ref: pluvioRef
   });
  
-  const subRef = useSpringRef();
-  const spring2 = useSpring({
-    from: { opacity: "0%", left: "-50%", top: "60%" },
-    to: { opacity: "100%", left: "0%"},
-    ref: subRef
-  });
+//   const subRef = useSpringRef();
+//   const spring2 = useSpring({
+//     from: { opacity: "0%", left: "-50%", top: "60%" },
+//     to: { opacity: "100%", left: "0%"},
+//     ref: subRef
+//   });
  
-    useChain([logoRef, pluvioRef, subRef], [1, 2]);
+    useChain([logoRef, pluvioRef, /*subRef*/], [1, 2]);
  
     return (
     <div className = "App">
      
      
-      <animated.div className="box"  style={spring}> <img src= {splash} width = "70"/>  </animated.div>
-      <animated.h1  className="box"  style={spring1}> Pluvio </animated.h1>
+      <animated.div className="splash"  style={spring}> <img src= {splash} width = "70"/>  </animated.div>
+      <animated.h1  className="splash"  style={spring1}> Pluvio </animated.h1>
      
     </div>
     );
