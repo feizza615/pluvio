@@ -25,7 +25,7 @@ export const RowContainer = styled.div`
 `;
 
 export const Image = styled.div` 
-  width: 300px;
+  width: 150px;
   height: 200px;
   background: red;
   border-radius: 15px;
@@ -42,7 +42,7 @@ const MovieCard = ({
   description,
 }) => {
   return (
-    <Card style={{width: "800px"}}>
+    <Card style={{width: "auto"}}>
       <RowContainer>
         <Image />
         <div className="container">

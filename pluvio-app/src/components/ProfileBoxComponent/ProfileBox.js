@@ -12,14 +12,14 @@ export default function ProfileBox({userdata}) {
             <div className="top">
                 <img src={Picture} alt="profile" />
                     <div className="texts">
-                        <p style={{ fontSize: "25px", }}>@{userdata ? userdata.username : "username"}</p>
-                        <p style={{ color: "gray", fontSize: "17px", }}>Edit Profile</p>
+                        <p style={{ fontSize: "18px", }}>@{userdata ? userdata.username : "username"}</p>
+                        <p style={{ color: "gray", fontSize: "14px", }}>Edit Profile</p>
                     </div>
             </div>
             <div className="bottom">
-                <p>Following {userdata ? userdata.following : "0"}</p>
-                <p>Follower {userdata ? userdata.followers : "0"}</p>
-                <p>Review {userdata ? userdata.reviews : "0"}</p>
+                <div><p>Following</p> <p>{userdata ? userdata.following : "0"}</p></div>
+                <div><p>Follower</p> <p>{userdata ? userdata.followers : "0"}</p></div>
+                <div><p>Review</p> <p>{userdata ? userdata.reviews : "0"}</p></div>
             </div>
       </Card>
     );
