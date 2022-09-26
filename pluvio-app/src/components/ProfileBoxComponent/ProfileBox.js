@@ -8,9 +8,9 @@ export default function ProfileBox({userdata}) {
 
  
     return (
-        <Card style={{width: "auto", position: "sticky", top: "10vh"}}>
+        <Card style={{width: "auto", position: "sticky", top: "10vh"}} id="test">
             <div className="top">
-                <img src={Picture} alt="profile" />
+                <img src={Picture} alt="profile" style={{background:"blue",borderRadius:"50%",padding: "0px 10px"}}/>
                     <div className="texts">
                         <p style={{ fontSize: "18px", }}>@{userdata ? userdata.username : "username"}</p>
                         <p style={{ color: "gray", fontSize: "14px", }}>Edit Profile</p>

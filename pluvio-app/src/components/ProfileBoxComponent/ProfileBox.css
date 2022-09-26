@@ -31,3 +31,10 @@
   gap: 5px;
 }
 
+@media screen and (max-width: 768px) {
+  #test{
+      display: none;
+      height: 0;
+      padding: 0;
+  }
+};

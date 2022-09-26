@@ -91,7 +91,7 @@ export default function MatchPage() {
 
   return (
     <>
-      <div>
+      <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
         <form onSubmit={handleSubmit}>
           <input type="search" onChange={event => setMovie(event.target.value)}/>
           <ButtonComponent type="submit" style={{height: "30px", width: "100px", borderRadius: "25px 25px", fontSize: "15px"}}> SEARCH </ButtonComponent>
