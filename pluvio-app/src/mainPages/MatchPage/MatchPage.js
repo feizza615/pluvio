@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {config} from "../../config"
 import MovieCard from "../../components/MovieCard";
 import { Chip, Pagination, Rating } from '@mui/material';
-
+import Watchlist from "../../components/Watchlist";
 const baseURL = "https://api.themoviedb.org/3/movie/top_rated?api_key="+config.DB_KEY;
 
 const Movies = ({data, page}) => {
@@ -43,6 +43,7 @@ const Movies = ({data, page}) => {
       <div style={{display:"flex",flexDirection:"column", gap:"20px"}}>
         {isLoaded && details ? details.map((movie,x) =>
             <MovieCard
+              watchlist = {<Watchlist/>}
               key={movie.title}
               id={movie.id}
               title={movie.title}
@@ -52,6 +53,7 @@ const Movies = ({data, page}) => {
               score={<Rating name="read-only" precision={0.5} value={movie.vote_average/2} readOnly />}
               genre={movie.genres.map((gen,g)=> <Chip key={g} sx={{background:"#180F53",color:"white",margin:"5px",fontFamily:"Poppins"}} label={gen.name} />)}
               duration={timeConvert(movie.runtime)}
+              
             />
         ) : <h1>Loading...</h1>}
       </div>

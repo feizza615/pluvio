@@ -4,6 +4,9 @@ import ButtonComponent from "./LoginComponent/ButtonComponent";
 
 const style ={
     fontSize: "15px",
+    position: "absolute",
+    right: "0",
+    top: "0"
 }
 
 const Watchlist = (props) => {

@@ -39,6 +39,7 @@ const MovieCard = ({
   duration,
   description,
   image,
+  watchlist,
   id
 }) => {
   return (
@@ -52,6 +53,7 @@ const MovieCard = ({
         <Container>
           <h4>{duration ? duration : "20 min"}</h4> 
           <h4>{release ? release : "tomorrow"}</h4> 
+          <h4>{watchlist}</h4>
         </Container>
       </div>
       </RowContainer>
