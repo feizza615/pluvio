@@ -44,19 +44,19 @@ const MovieCard = ({
   return (
     <Card style={{width: "auto"}}>
       <RowContainer>
-      {image ? <img src={"https://image.tmdb.org/t/p/w500"+image} alt="" style={{height:"20vh",borderRadius:"5px"}}/> :<Skeleton  sx={{ bgcolor: 'blue', borderRadius: "15px" }} variant="rounded" width={150} height={200}/>}
+      {image ? <img src={"https://image.tmdb.org/t/p/w500"+image} alt="" style={{height:"20vh",borderRadius:"5px"}}/> :<Skeleton  sx={{ bgcolor: '#333', borderRadius: "15px" }} variant="rounded" width={150} height={200}/>}
       <div className="container">
         <h2 style={{margin: "0px", textAlign: "left"}}>{title ? title : "One Piece"}</h2>
         {score}<br />
         {genre}
         <Container>
-          <h4>{duration ? duration : "20 min"}</h4> 
-          <h4>{release ? release : "tomorrow"}</h4> 
+          <h4>{duration ? duration : "Unknown Runtime"}</h4> 
+          <h4>{release ? release : "Unknown Release Data"}</h4> 
         </Container>
       </div>
       </RowContainer>
       <p style={{textAlign: "left", fontSize: "16px", padding: "20px",
-      }}>{description ? description : "One Piece"}</p>
+      }}>{description ? description : ""}</p>
     </Card>
   )
 }

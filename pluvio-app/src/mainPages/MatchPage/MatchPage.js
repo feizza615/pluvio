@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import {config} from "../../config"
 import MovieCard from "../../components/MovieCard";
 import { Chip, Pagination, Rating } from '@mui/material';
+import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 
-const baseURL = "https://api.themoviedb.org/3/movie/top_rated?api_key="+config.DB_KEY;
+const baseURL = "https://api.themoviedb.org/3/search/movie?api_key="+config.DB_KEY;
 
 const Movies = ({data, page}) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,7 +44,7 @@ const Movies = ({data, page}) => {
       <div style={{display:"flex",flexDirection:"column", gap:"20px"}}>
         {isLoaded && details ? details.map((movie,x) =>
             <MovieCard
-              key={movie.title}
+              key={x}
               id={movie.id}
               title={movie.title}
               description={movie.overview}
@@ -63,17 +64,19 @@ export default function MatchPage() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1)
-  const [test, setTest] = useState(true)
+  const [totalPages, setTotalPages] = useState(1)
+  const [movie, setMovie] = useState("spiderman")
 
   React.useEffect(() => {
     axios
-      .get(baseURL+"&language=en-US&page="+page)
+      .get(baseURL+"&language=en-US&query="+movie+"&page="+page+"&include_adult=false")
       .then((response) => {
         setPost(JSON.parse(JSON.stringify(response.data)));
         console.log("reloading.."+page)
+        setTotalPages(post.total_pages)
         setLoading(false);
     });
-  }, [page]);
+  }, [page, movie]);
 
   const handleChange = (e, v) => {
     e.preventDefault()
@@ -81,12 +84,21 @@ export default function MatchPage() {
     setPage(v);
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(movie)
+  }
+
   return (
     <>
       <div>
-        <Pagination sx={{"button":{color:"white"},"& button.Mui-selected":{background: "#180F53"}}} page={page} onChange={handleChange} count={100} />
+        <form onSubmit={handleSubmit}>
+          <input type="search" onChange={event => setMovie(event.target.value)}/>
+          <ButtonComponent type="submit" style={{height: "30px", width: "100px", borderRadius: "25px 25px", fontSize: "15px"}}> SEARCH </ButtonComponent>
+        </form>
+        <Pagination sx={{"button":{color:"white"},"& button.Mui-selected":{background: "#180F53"}}} page={page} onChange={handleChange} count={totalPages} />
         {loading ? <h1>Loading...</h1> : <Movies data={post} page={page}/>}
-        <Pagination sx={{"button":{color:"white"},"& button.Mui-selected":{background: "#180F53"}}} page={page} onChange={handleChange} count={100} />
+        <Pagination sx={{"button":{color:"white"},"& button.Mui-selected":{background: "#180F53"}}} page={page} onChange={handleChange} count={totalPages} />
       </div>
       
     </>
