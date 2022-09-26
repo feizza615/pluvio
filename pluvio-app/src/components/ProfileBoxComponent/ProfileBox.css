@@ -23,7 +23,14 @@
   display: flex;
   gap: 25px;
   justify-content: space-between;
+  font-size: 12px;
 }
+
+.bottom * {
+  display: flex;
+  gap: 5px;
+}
+
 
 /*p{
 

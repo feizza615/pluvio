@@ -8,6 +8,7 @@ export const Title = styled.h1`
   padding: 0;
   font-family: "Poppins";
   font-weight: bolder;
+  font-size: 28px;
 `;
 
 // test 
@@ -15,7 +16,7 @@ export const Title = styled.h1`
 const IntroBox = () => {
   return (
     <>
-      <Card>
+      <Card style={{position: "relative"}}>
         <Title>Find your perfect movie</Title>
         <p style={{fontWeight: 900}}>
           We’re constantly updating your recommendations based on your responses
@@ -24,7 +25,7 @@ const IntroBox = () => {
         </p>
         <ButtonComponent>Match Me</ButtonComponent>
         <img src={balls} alt="" 
-        style={{position: "absolute", bottom: "-5vh", right: "20px"}}
+        style={{position: "absolute", bottom: "-20%", right: "5%"}}
 />
       </Card>
     </>

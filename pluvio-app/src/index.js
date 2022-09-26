@@ -41,7 +41,7 @@ export const HomeContainer = styled.div`
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  
     <Provider store={store}>
       <PersistGate persistor={persistor}>
     <BrowserRouter>
@@ -65,5 +65,5 @@ root.render(
     </PersistGate>
     </Provider>
 
-  </React.StrictMode>
+  
 );
