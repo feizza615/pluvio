@@ -35,6 +35,8 @@ export default function Splash(){
 //     to: { opacity: "100%", left: "0%"},
 //     ref: subRef
 //   });
+
+
  
     useChain([logoRef, pluvioRef, /*subRef*/], [1, 2]);
  
