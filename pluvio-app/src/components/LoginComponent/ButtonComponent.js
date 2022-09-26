@@ -12,7 +12,6 @@ const ButtonComponent = styled.button`
     font-size: 20px;
     font-weight: bold;
     text-transform: uppercase;
-    margin-right: 20px; 
 
   &:hover {
     background: #25159d;
