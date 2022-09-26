@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
+import Splash from './mainPages/WelcomePage/SplashScreen';
 import styled from 'styled-components';
 import "@fontsource/poppins";
 import HomePage from './mainPages/HomePage/HomePage';
@@ -41,7 +41,7 @@ export const HomeContainer = styled.div`
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  
     <Provider store={store}>
       <PersistGate persistor={persistor}>
     <BrowserRouter>
@@ -49,17 +49,21 @@ root.render(
       <HomeContainer>
       <NavigationBar />
         <Routes>
-          <Route index element = {<WelcomePage/>}/>
+          {/* <Route index element = {<WelcomePage/>}/> */}
           <Route path='/home/' element = {<HomePage/>}/>
-          <Route path="/" element = {<WelcomePage/>}/>
+          <Route path="/welcome" element = {<WelcomePage/>}/>
           <Route path="/friends/" element = {<FriendsPage/>}/>
           <Route path="/profile/" element = {<ProfilePage/>}/>
           <Route path="/match/" element = {<MatchPage/>}/>
         </Routes>
       </HomeContainer>
+      <Routes>
+      <Route index element = {<Splash/>}/>
+      {/* <Route path="/splash/" element = {<Splash/>}/> */}
+      </Routes>
     </BrowserRouter>
     </PersistGate>
     </Provider>
 
-  </React.StrictMode>
+  
 );
