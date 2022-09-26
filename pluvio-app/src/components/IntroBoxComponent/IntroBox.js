@@ -25,7 +25,7 @@ const IntroBox = () => {
         </p>
         <ButtonComponent>Match Me</ButtonComponent>
         <img src={balls} alt="" 
-        style={{position: "absolute", bottom: "-20%", right: "5%"}}
+        style={{position: "absolute", bottom: "-50px", right: "5%"}}
 />
       </Card>
     </>

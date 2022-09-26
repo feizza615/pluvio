@@ -42,9 +42,9 @@ console.log(user)
                 <Link to={"/"} style ={{textDecoration: 'none'}}>
                     <AppLogo >pluvio</AppLogo>
                 </Link>
-                <Avatar sx={{bgcolor: "#180F53"}}>M</Avatar>
+                {/* <Greeting isLoggedIn={user} /> */}
+                <Avatar sx={{bgcolor: "#180F53"}}>{user? user.name[0] : ""}</Avatar>
             </Toolbar>
-            <Greeting isLoggedIn={user} />
             
         </AppBar>
     </>

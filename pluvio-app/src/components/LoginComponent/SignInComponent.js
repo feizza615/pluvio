@@ -6,6 +6,8 @@ import styled from "styled-components";
 import ButtonComponent from "./ButtonComponent";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { loginFunc } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const InputField = styled.input`
   width: 100%;
@@ -47,11 +49,12 @@ export default function LoginComponent() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
 
   const dispatch = useDispatch();
+  let navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
@@ -65,7 +68,7 @@ export default function LoginComponent() {
       method: "post",
       url: "http://localhost:5000/users/login",
       data: {
-        email,
+        name,
         password,
       },
     };
@@ -75,10 +78,16 @@ export default function LoginComponent() {
       .then((result) => 
       {
         console.log(result);
-
-
         console.log("SUCCESS");
-        alert("PASS");
+
+        dispatch(loginFunc({
+          name: name,
+          loggedIn: true
+        }));
+
+        let path = "/home/"; 
+        navigate(path);
+
       })
       .catch((error) => {
         error = new Error();
@@ -88,7 +97,7 @@ export default function LoginComponent() {
 
   return (
     <div>
-      <ButtonComponent onClick={handleOpen}> Sign In </ButtonComponent>
+      <ButtonComponent onClick={handleOpen} style={{marginRight: "20px"}}> Sign In </ButtonComponent>
       <Modal
         open={open}
         onClose={handleClose}
@@ -117,11 +126,11 @@ export default function LoginComponent() {
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
           >
-            Email
+            Username
           </Typography>
           <InputField
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <Typography
             id="modal-modal-description"
