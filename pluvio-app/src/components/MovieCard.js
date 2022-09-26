@@ -1,18 +1,18 @@
 import React from 'react'
 import Card from './Card'
 import styled from "styled-components";
+import { Skeleton } from '@mui/material';
 
 //Review Button not implemented
 
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 5px;
 
   h4 {
-    width: 50%;
     box-sizing: border-box;
     text-align: left;
-    margin: 5px 0;
   }
 `;
 
@@ -34,30 +34,29 @@ export const Image = styled.div`
 const MovieCard = ({
   title,
   release,
-  platform,
   score,
-  rating,
   genre,
   duration,
   description,
+  image,
+  id
 }) => {
   return (
     <Card style={{width: "auto"}}>
       <RowContainer>
-        <Image />
-        <div className="container">
-          <h2 style={{marginBottom: "5px", textAlign: "left" }}>{title}</h2>
-          <Container>
-            <h4>Release: {release} </h4> 
-            <h4>Rating: {rating} </h4> 
-            <h4>Platform: {platform} </h4> 
-            <h4>Genre: {genre} </h4> 
-            <h4>Score: {score} </h4> 
-            <h4>Duration: {duration} </h4> 
-          </Container>
-        </div>
+      {image ? <img src={"https://image.tmdb.org/t/p/w500"+image} alt="" style={{height:"20vh",borderRadius:"5px"}}/> :<Skeleton  sx={{ bgcolor: 'blue', borderRadius: "15px" }} variant="rounded" width={150} height={200}/>}
+      <div className="container">
+        <h2 style={{margin: "0px", textAlign: "left"}}>{title ? title : "One Piece"}</h2>
+        {score}<br />
+        {genre}
+        <Container>
+          <h4>{duration ? duration : "20 min"}</h4> 
+          <h4>{release ? release : "tomorrow"}</h4> 
+        </Container>
+      </div>
       </RowContainer>
-      <p style={{textAlign: "left", fontSize: "20px", padding: "20px"}}>{description}</p>
+      <p style={{textAlign: "left", fontSize: "16px", padding: "20px",
+      }}>{description ? description : "One Piece"}</p>
     </Card>
   )
 }
