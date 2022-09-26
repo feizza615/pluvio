@@ -12,7 +12,7 @@ export default function Splash(){
     useEffect(() => {        
       setTimeout(() => {
        <AnimatePresence>{navigate('/welcome') }</AnimatePresence>
-      }, 6500)
+      }, 4000)
     }, [])
  
     const logoRef = useSpringRef();
