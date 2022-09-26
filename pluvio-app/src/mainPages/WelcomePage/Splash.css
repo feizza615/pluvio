@@ -1,0 +1,23 @@
+#test{
+    color: wheat;
+}
+ 
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    display: grid;
+  }
+ 
+  .logo {
+    position: relative;
+    width: 10;
+    height: 50;
+    background-color: transparent;
+  }
+ 
+  .splash {
+    font-size: 70px;
+    position: relative;
+    margin: 10px;
+    background-color: transparent;
+  }

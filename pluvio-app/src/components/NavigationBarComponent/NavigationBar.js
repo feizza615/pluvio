@@ -36,10 +36,12 @@ const NavigationBar = () => {
     <LogoutIcon/>
   ];
 
-  const linkArray = ["/home/","/profile/","/friends/","/match/","/"]
+  const linkArray = ["/home/","/profile/","/friends/","/match/","/", "/welcome/"]
 
-  if (window.location.pathname === "/") 
-    return (<div></div>);
+  if (window.location.pathname === "/welcome") 
+    return <div></div>;
+  else if  (window.location.pathname === "/")
+    return <div></div>;
 
   return (
     <div id="navContainer">
