@@ -24,6 +24,9 @@ function Greeting(props) {
     return <h3 style={{marginRight:"50px"}}>Welcome {isLoggedIn.name}!</h3>
     }
   }
+
+var random = Math.floor(Math.random()*16777215).toString(16);
+
 console.log(user)
   return (
     <>
@@ -43,7 +46,7 @@ console.log(user)
                     <AppLogo >pluvio</AppLogo>
                 </Link>
                 {/* <Greeting isLoggedIn={user} /> */}
-                <Avatar sx={{bgcolor: "#180F53"}}>{user? user.name[0] : ""}</Avatar>
+                <Avatar sx={{bgcolor: '#'+random, }}>{user? user.name[0] : ""}</Avatar>
             </Toolbar>
             
         </AppBar>
