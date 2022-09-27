@@ -42,8 +42,9 @@ const Movies = ({data, page}) => {
     <>
       <div style={{display:"flex",flexDirection:"column", gap:"20px"}}>
         {isLoaded && details ? details.map((movie,x) =>
+        <Watchlist>
             <MovieCard
-              watchlist = {<Watchlist/>}
+              // watchlist = {<Watchlist/>}
               key={movie.title}
               id={movie.id}
               title={movie.title}
@@ -54,7 +55,7 @@ const Movies = ({data, page}) => {
               genre={movie.genres.map((gen,g)=> <Chip key={g} sx={{background:"#180F53",color:"white",margin:"5px",fontFamily:"Poppins"}} label={gen.name} />)}
               duration={timeConvert(movie.runtime)}
               
-            />
+            /></Watchlist>
         ) : <h1>Loading...</h1>}
       </div>
     </>

@@ -4,22 +4,33 @@ import ButtonComponent from "./LoginComponent/ButtonComponent";
 
 const style ={
     fontSize: "15px",
-    position: "absolute",
-    right: "0",
-    top: "0"
+    float: "right",
+    marginTop: "10px"
+}
+const test ={
+    display: "flex",
 }
 
 const Watchlist = (props) => {
-    const [buttonText, setButtonText] = useState('Add to watch list');
-    const handleClick = (e) => {
+    const [buttonText, setButtonText] = useState('Add to watchlist');
+    const handleClick = (e, prop) => {
         e.preventDefault();
-        setButtonText("Added!");
+        console.log(props.children.key)
+        if(buttonText === "Add to watchlist"){
+            setButtonText("Remove from watchlist");
+            alert(props.children.key + " has been added")
+        } else {
+            alert(props.children.key + " has been removed");
+            setButtonText("Add to watchlist");
+        }
+        
     }
 
     return (
         <>
-            <div>
+            <div >
                 <ButtonComponent style = {style} onClick={(e) => handleClick(e)}> {buttonText} </ButtonComponent>
+                {props.children}
             </div>
         </>
     )
