@@ -1,6 +1,8 @@
 import React from 'react'
 import Card from './Card'
 import styled from "styled-components";
+import { Skeleton } from '@mui/material';
+import ReviewForm from './ReviewFormComponent/ReviewForm';
 import { Chip, Rating, Skeleton } from '@mui/material';
 
 //Review Button not implemented
@@ -75,6 +77,8 @@ const MovieCard = ({
       </RowContainer>
       <p style={{textAlign: "left", fontSize: "16px", padding: "20px",
       }}>{description ? description : ""}</p>
+      <br/>
+      <div style={{float: "right", transform: "scale(0.8)",}}><ReviewForm/></div>
     </Card>
   )
 }
