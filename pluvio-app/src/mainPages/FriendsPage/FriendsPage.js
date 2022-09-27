@@ -31,6 +31,17 @@ export default class FriendsPage extends Component {
         duration={data.duration}
         description={data.description}
       />
+      <br/>
+      <MovieCard
+        title={data.title}
+        release={data.release}
+        platform={data.platform}
+        score={data.score}
+        rating={data.rating}
+        genre={data.genre}
+        duration={data.duration}
+        description={data.description}
+      />
     </div>
     )
   }

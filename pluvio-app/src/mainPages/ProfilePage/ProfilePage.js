@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Card from "../../components/Card";
 import ProfileBox from '../../components/ProfileBoxComponent/ProfileBox';
 import ReviewBox from '../../components/ReviewBoxComponent/ReviewBox';
+import ReviewForm from '../../components/ReviewFormComponent/ReviewForm';
+
 
 
 
@@ -16,6 +18,8 @@ export default class ProfilePage extends Component {
         <ReviewBox/>
         <br/>
         <ReviewBox/>
+        <br/>
+        <ReviewForm/>
       </div>
     )
   }
