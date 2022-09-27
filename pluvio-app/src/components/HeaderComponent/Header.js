@@ -46,7 +46,7 @@ console.log(user)
                     <AppLogo >pluvio</AppLogo>
                 </Link>
                 {/* <Greeting isLoggedIn={user} /> */}
-                <Avatar sx={{bgcolor: '#'+random, }}>{user? user.name[0] : ""}</Avatar>
+                <Avatar sx={{bgcolor: '#'+random, fontFamily:"Poppins",fontWeight:800}}>{user? user.name[0] : ""}</Avatar>
             </Toolbar>
             
         </AppBar>
