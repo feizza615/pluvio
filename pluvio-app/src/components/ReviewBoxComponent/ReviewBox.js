@@ -5,14 +5,18 @@ import Card from "../Card";
 import ButtonComponent from "../LoginComponent/ButtonComponent";
 import MoviePicture from "./MoviePic.png";
 import Picture from "./ProfilePic.png";
+import { Avatar } from "@mui/material";
 
 export default function ReviewBox({reviewdata}) {
+
+    var random = Math.floor(Math.random()*16777215).toString(16);
+
     return (
         <Card>
             <div className="view">
                 <div>
-                    <div style={{display: "flex", alignItems: "center"}}>
-                        <img src={Picture} alt="profile" />
+                    <div style={{display: "flex", alignItems: "center",gap:"20px"}}>
+                        <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+random,fontSize:"36px"}}>T</Avatar>
                         <div style={{}}>
                             <p className = "topLine" style={{ fontSize: "25px", margin: 0}}>@{reviewdata ? reviewdata.username : "username"}</p>
                             <RatingArea/>

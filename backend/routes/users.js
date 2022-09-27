@@ -19,12 +19,12 @@ router.post('/register',(req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    let {email, password } = req.body;
-    if (!email || !password) {
+    let {name, password } = req.body;
+    if (!name || !password) {
         return res.redirect('/users/login');
     }
 
-    User.findOne({email}, (err, user) => {
+    User.findOne({name}, (err, user) => {
         if (err) return next(err);
 
         if (!user) {

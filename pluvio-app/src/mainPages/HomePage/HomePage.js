@@ -10,6 +10,8 @@ import ProfileBox from "../../components/ProfileBoxComponent/ProfileBox";
 import Spoiler from "../../components/SpoilerComponent/Spoiler";
 import ReviewBox from '../../components/ReviewBoxComponent/ReviewBox';
 import IntroBox from "../../components/IntroBoxComponent/IntroBox"
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
 
 export const Text = styled.p`
   color: white;
@@ -25,8 +27,15 @@ const userdata = {
   reviews: 21
 }
 
-export default class HomePage extends Component {
-  render() {
+const HomePage = () => {
+    
+    const user = useSelector(selectUser);
+
+    if (user) {
+      console.log("here")
+      userdata.username = user.name;
+    }
+
     return (
       <>
         <div style={{display: "flex", flexDirection: "column", gap: "40px"}}>
@@ -43,5 +52,6 @@ export default class HomePage extends Component {
         <ProfileBox userdata={userdata} />
       </>
     );
-  }
 }
+
+export default HomePage;

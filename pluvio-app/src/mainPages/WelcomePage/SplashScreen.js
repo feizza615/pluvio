@@ -12,7 +12,7 @@ export default function Splash(){
     useEffect(() => {        
       setTimeout(() => {
        <AnimatePresence>{navigate('/welcome') }</AnimatePresence>
-      }, 6500)
+      }, 3500)
     }, [])
  
     const logoRef = useSpringRef();
@@ -35,6 +35,8 @@ export default function Splash(){
 //     to: { opacity: "100%", left: "0%"},
 //     ref: subRef
 //   });
+
+
  
     useChain([logoRef, pluvioRef, /*subRef*/], [1, 2]);
  
@@ -42,8 +44,8 @@ export default function Splash(){
     <div className = "App">
      
      
-      <animated.div className="splash"  style={spring}> <img src= {splash} width = "70"/>  </animated.div>
-      <animated.h1  className="splash"  style={spring1}> Pluvio </animated.h1>
+      <animated.div className="splash"  style={spring}> <img src= {splash} alt="" width = "200"/>  </animated.div>
+      <animated.h1  className="splash"  style={spring1}> pluvio </animated.h1>
      
     </div>
     );
