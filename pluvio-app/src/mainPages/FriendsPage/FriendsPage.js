@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MovieCard from '../../components/MovieCard';
 import Card from '../../components/Card';
 import "styled-components";
+import Watchlist from "../../components/Watchlist";
 
 //Testing Sample Data for MovieCard
 const data = {

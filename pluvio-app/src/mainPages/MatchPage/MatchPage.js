@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {config} from "../../config"
 import MovieCard from "../../components/MovieCard";
 import { Chip, Pagination, Rating } from '@mui/material';
+import Watchlist from "../../components/Watchlist";
 import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 import styled from 'styled-components'
 
@@ -52,11 +53,13 @@ const Movies = ({data, page}) => {
 
 
   return(
-    <>
+    <>    
       <div style={{display:"flex",flexDirection:"column", gap:"20px"}}>
         {isLoaded && details ? details.map((movie,x) =>
-            <MovieCard
-              key={x}
+        <Watchlist>
+            <MovieCard 
+              // watchlist = {<Watchlist/>}
+              key={movie.title}
               id={movie.id}
               title={movie.title}
               description={movie.overview}
@@ -65,7 +68,7 @@ const Movies = ({data, page}) => {
               score={movie.vote_average}
               genre={movie.genres}
               duration={movie.runtime}
-            />
+            /></Watchlist>
         ) : <h1>Loading...</h1>}
       </div>
     </>

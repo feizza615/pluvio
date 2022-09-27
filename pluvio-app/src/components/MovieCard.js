@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from './Card'
 import styled from "styled-components";
+import ReviewForm from './ReviewFormComponent/ReviewForm';
 import { Chip, Rating, Skeleton } from '@mui/material';
 
 //Review Button not implemented
@@ -35,6 +36,7 @@ const MovieCard = ({
   duration,
   description,
   image,
+  watchlist,
   id
 }) => {
 
@@ -68,6 +70,7 @@ const MovieCard = ({
         <Rating name="read-only" precision={0.5} value={score/2} readOnly /><br />
         {genre.map((gen,g)=> <Chip key={g} sx={{background:"#180F53",color:"white",margin:"5px",fontFamily:"Poppins"}} label={gen.name} />)}
         <Container>
+          <h4>{watchlist}</h4>
           <h4>{duration ? timeConvert(duration) : ""}</h4> 
           <h4>{release ? release : ""}</h4> 
         </Container>
@@ -75,6 +78,8 @@ const MovieCard = ({
       </RowContainer>
       <p style={{textAlign: "left", fontSize: "16px", padding: "20px",
       }}>{description ? description : ""}</p>
+      <br/>
+      <div style={{float: "right", transform: "scale(0.8)",}}><ReviewForm/></div>
     </Card>
   )
 }
