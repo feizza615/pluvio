@@ -1,36 +1,47 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import ButtonComponent from "./LoginComponent/ButtonComponent";
 
-const style ={
+const style = {
     fontSize: "15px",
-    float: "right",
-    marginTop: "10px"
-}
-const test ={
-    display: "flex",
+    float: "left",
+    marginTop: "10px",
+    marginBottom: "20px",
+    marginLeft: "10px"
 }
 
 const Watchlist = (props) => {
     const [buttonText, setButtonText] = useState('Add to watchlist');
-    const handleClick = (e, prop) => {
+    const handleClick = (e) => {
         e.preventDefault();
-        console.log(props.children.key)
-        if(buttonText === "Add to watchlist"){
-            setButtonText("Remove from watchlist");
-            alert(props.children.key + " has been added")
-        } else {
-            alert(props.children.key + " has been removed");
-            setButtonText("Add to watchlist");
-        }
         
+
+        if (buttonText === "Add to watchlist") {
+            setButtonText("Added!");
+            setTimeout(() => {
+                setButtonText("Remove from watchlist");
+            }, 2000)
+            console.log("movie id: " + props.children.props.id)
+            console.log("title: " + props.children.key)
+            console.log("description: " + props.children.props.description)
+            // alert(props.children.key + " has been added")
+        } else {
+            // setButtonText("Removed!");
+            setTimeout(() => {
+                setButtonText("Add to watchlist");
+            }, 2000)
+            setButtonText("Add to watchlist");
+
+            // alert(props.children.key + " has been removed");
+        }
     }
 
     return (
         <>
             <div >
-                <ButtonComponent style = {style} onClick={(e) => handleClick(e)}> {buttonText} </ButtonComponent>
                 {props.children}
+                <ButtonComponent style={style} onClick={(e) => handleClick(e)}> {buttonText} </ButtonComponent>
+                
             </div>
         </>
     )

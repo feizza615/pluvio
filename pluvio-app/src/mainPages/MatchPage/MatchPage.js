@@ -39,11 +39,11 @@ const Movies = ({data, page}) => {
     }
 
   return(
-    <>
+    <>    
       <div style={{display:"flex",flexDirection:"column", gap:"20px"}}>
         {isLoaded && details ? details.map((movie,x) =>
         <Watchlist>
-            <MovieCard
+            <MovieCard 
               // watchlist = {<Watchlist/>}
               key={movie.title}
               id={movie.id}
@@ -56,6 +56,7 @@ const Movies = ({data, page}) => {
               duration={timeConvert(movie.runtime)}
               
             /></Watchlist>
+            
         ) : <h1>Loading...</h1>}
       </div>
     </>
