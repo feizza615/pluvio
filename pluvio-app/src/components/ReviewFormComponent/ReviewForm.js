@@ -73,7 +73,7 @@ export default function ReviewForm({titledata}) {
             </p>
             <FormGroup>
                 <div className="SpoilerArea">
-                    <FormControlLabel control={<Checkbox defaultChecked />} label=<p style={{fontWeight: "bold", fontSize: "20px", color: "#8B0000"}}>Spoiler</p>/>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label=<p style={{fontWeight: "bold", fontSize: "20px", color: "white"}}>Spoiler</p>/>
                 </div>
             </FormGroup>
             <br/>
