@@ -4,8 +4,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
-  background-image: url(rain.png);
-  background-position: bottom 20px right;
+  background-image: url(rain.png), url(drops.png);
+  background-position: bottom 20px right, top 10vh left;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }

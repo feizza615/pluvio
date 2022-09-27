@@ -4,8 +4,28 @@ import {config} from "../../config"
 import MovieCard from "../../components/MovieCard";
 import { Chip, Pagination, Rating } from '@mui/material';
 import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
+import styled from 'styled-components'
 
 const baseURL = "https://api.themoviedb.org/3/search/movie?api_key="+config.DB_KEY;
+
+export const InputField = styled.input`
+  width: 250px;
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  font-size: 1em;
+  font-family: "Poppins";
+  box-sizing: border-box;
+  transition: box-shadow 500ms ease, transform 500ms ease;
+
+  &:focus {
+    box-shadow: 5px 5px 0px 2px #4930ff;
+    transform: translateY(-5px);
+  }
+`;
 
 const Movies = ({data, page}) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,14 +50,6 @@ const Movies = ({data, page}) => {
       setIsLoaded(true))
   },[page])
 
-  function timeConvert(n) {
-    var num = n;
-    var hours = (num / 60);
-    var rhours = Math.floor(hours);
-    var minutes = (hours - rhours) * 60;
-    var rminutes = Math.round(minutes);
-    return rhours + " hr " + rminutes + " min";
-    }
 
   return(
     <>
@@ -50,9 +62,9 @@ const Movies = ({data, page}) => {
               description={movie.overview}
               image={movie.poster_path}
               release={movie.release_date}
-              score={<Rating name="read-only" precision={0.5} value={movie.vote_average/2} readOnly />}
-              genre={movie.genres.map((gen,g)=> <Chip key={g} sx={{background:"#180F53",color:"white",margin:"5px",fontFamily:"Poppins"}} label={gen.name} />)}
-              duration={timeConvert(movie.runtime)}
+              score={movie.vote_average}
+              genre={movie.genres}
+              duration={movie.runtime}
             />
         ) : <h1>Loading...</h1>}
       </div>
@@ -91,9 +103,9 @@ export default function MatchPage() {
 
   return (
     <>
-      <div>
+      <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
         <form onSubmit={handleSubmit}>
-          <input type="search" onChange={event => setMovie(event.target.value)}/>
+          <InputField type="search" onChange={event => setMovie(event.target.value)}/>
           <ButtonComponent type="submit" style={{height: "30px", width: "100px", borderRadius: "25px 25px", fontSize: "15px"}}> SEARCH </ButtonComponent>
         </form>
         <Pagination sx={{"button":{color:"white"},"& button.Mui-selected":{background: "#180F53"}}} page={page} onChange={handleChange} count={totalPages} />

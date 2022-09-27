@@ -1,6 +1,7 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
-import { Toolbar, Typography } from '@mui/material';
+import { Avatar, Badge, IconButton, Toolbar, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import styled from '@emotion/styled';
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -23,6 +24,9 @@ function Greeting(props) {
     return <h3 style={{marginRight:"50px"}}>Welcome {isLoggedIn.name}!</h3>
     }
   }
+
+var random = Math.floor(Math.random()*16777215).toString(16);
+
 console.log(user)
   return (
     <>
@@ -37,15 +41,13 @@ console.log(user)
                 position: "sticky",
             }}
         >
-            <div style={{display: "flex", justifyContent:"space-between"}}>
-            <Toolbar>
-            <Link to={"/"} style ={{textDecoration: 'none'}}>
-                <AppLogo >pluvio</AppLogo>
-            </Link>
-            
+            <Toolbar sx={{justifyContent: "space-between", alignItems: "center"}}>
+                <Link to={"/"} style ={{textDecoration: 'none'}}>
+                    <AppLogo >pluvio</AppLogo>
+                </Link>
+                {/* <Greeting isLoggedIn={user} /> */}
+                <Avatar sx={{bgcolor: '#'+random, }}>{user? user.name[0] : ""}</Avatar>
             </Toolbar>
-            <Greeting isLoggedIn={user} />
-            </div>
             
         </AppBar>
     </>

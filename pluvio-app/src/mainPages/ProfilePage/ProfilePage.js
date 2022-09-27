@@ -1,19 +1,30 @@
 import React, { Component } from 'react'
+import { useSelector } from 'react-redux';
 import Card from "../../components/Card";
 import ProfileBox from '../../components/ProfileBoxComponent/ProfileBox';
 import ReviewBox from '../../components/ReviewBoxComponent/ReviewBox';
 import ReviewForm from '../../components/ReviewFormComponent/ReviewForm';
 
+import { selectUser } from '../../features/userSlice';
 
 
 
-export default class ProfilePage extends Component {
-  render() {
-    return (
+const ProfilePage = () => {
+  
+  const user = useSelector(selectUser);
+
+  const userdata = {
+    username: user.name,
+    following: 20,
+    followers: 1,
+    reviews: 21
+  }
+  
+  return (
       <div>
         <Card>Profile Page</Card>
         <br/>
-        <ProfileBox/>
+        <ProfileBox userdata={userdata}/>
         <br/>
         <ReviewBox/>
         <br/>
@@ -22,5 +33,7 @@ export default class ProfilePage extends Component {
         <ReviewForm/>
       </div>
     )
-  }
+  
 }
+
+export default ProfilePage;
