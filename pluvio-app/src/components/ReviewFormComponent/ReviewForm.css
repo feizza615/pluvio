@@ -1,0 +1,27 @@
+.RatingSection
+{
+    display: flex;
+    gap: 10px;
+}
+
+.SpoilerArea
+{
+    height: 5px;
+    width: 25px;
+    padding-bottom: 1em;
+    padding-left: .3em;
+    margin-top: -25px;
+}
+
+.ReviewTop
+{
+    display: flex;
+}
+
+.circle
+{
+    background-color: #4930FF;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}

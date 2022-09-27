@@ -47,7 +47,7 @@ root.render(
     <BrowserRouter>
       <Header />
       <HomeContainer>
-      <NavigationBar />
+        <NavigationBar />
         <Routes>
           {/* <Route index element = {<WelcomePage/>}/> */}
           <Route path='/home/' element = {<HomePage/>}/>
