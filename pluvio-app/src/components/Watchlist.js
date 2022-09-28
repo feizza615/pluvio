@@ -42,7 +42,7 @@ const Watchlist = (props) => {
             <div >
                 {props.children}
                 <ButtonComponent style={style} onClick={(e) => handleClick(e)}> {buttonText} </ButtonComponent>
-                <ReviewForm/>
+                <ReviewForm id={props.children.props.id} title={props.children.key} image={props.children.props.image}/>
                 
             </div>
         </>
