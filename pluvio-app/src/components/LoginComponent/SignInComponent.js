@@ -6,6 +6,8 @@ import styled from "styled-components";
 import ButtonComponent from "./ButtonComponent";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginFunc } from "../../features/userSlice";
 
 export const InputField = styled.input`
   width: 100%;
@@ -47,25 +49,27 @@ export default function LoginComponent() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
 
   const dispatch = useDispatch();
 
+  let navigate = useNavigate(); 
+
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
     e.preventDefault();
-    // dispatch(login({
-    //   email: email,
-    //   password:password,
-    //   loggedIn: login
-    // }))
+    dispatch(loginFunc({
+      name: name,
+      password:password,
+      loggedIn: login
+    }))
     const configuration = {
       method: "post",
-      url: "http://localhost:5000/users/login",
+      url: "http://localhost:5001/users/login",
       data: {
-        email,
+        name,
         password,
       },
     };
@@ -75,10 +79,10 @@ export default function LoginComponent() {
       .then((result) => 
       {
         console.log(result);
-
-
         console.log("SUCCESS");
-        alert("PASS");
+        let path = "/home/"; 
+        navigate(path);
+        setLogin(true);
       })
       .catch((error) => {
         error = new Error();
@@ -117,11 +121,11 @@ export default function LoginComponent() {
             id="modal-modal-description"
             sx={{ mt: 3, fontFamily: "Poppins" }}
           >
-            Email
+            Username
           </Typography>
           <InputField
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <Typography
             id="modal-modal-description"

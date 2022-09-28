@@ -74,12 +74,12 @@ export default function SignUpComponent() {
       name: name,
       email: email,
       password:password,
-      loggedIn: true
+      loggedIn: login
     }));
 
     const configuration = {
       method: "post",
-      url: "http://localhost:5000/users/register",
+      url: "http://localhost:5001/users/register",
       data: {
         name,
         email,
