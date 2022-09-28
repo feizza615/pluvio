@@ -8,6 +8,11 @@ export default function RatingSelection() {
       <Box
       >
         <Rating
+          sx={{
+            "label .MuiRating-icon": {
+              color: "#faaf00"
+            }
+          }}
           name="simple-controlled"
           value={value}
           onChange={(event, newValue) => {

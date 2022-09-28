@@ -49,7 +49,7 @@ export default function ReviewForm({titledata}) {
     const handleClose = () => setOpen(false);
  
     return (
-        <div>
+        <div style={{float:"right"}}>
         <Button onClick={handleOpen}>
           <img style={{position: "absolute"}} src={Picture} alt="profile" /><div className="circle"></div>
         </Button>
@@ -61,7 +61,7 @@ export default function ReviewForm({titledata}) {
         >
           <Box sx={style}>
             <div className="ReviewTop">
-                <img src={MoviePic} alt="picture" />
+                <img src={MoviePic} alt="" />
                 <h1 style = {{textAlign: "center"}}>{titledata ? titledata.username : "Avengers: Endgame"}</h1>
             </div>
             <h2>Write Your Review</h2>

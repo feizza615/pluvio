@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import ButtonComponent from "./LoginComponent/ButtonComponent";
+import ReviewForm from './ReviewFormComponent/ReviewForm';
 
 const style = {
     fontSize: "15px",
@@ -41,6 +42,7 @@ const Watchlist = (props) => {
             <div >
                 {props.children}
                 <ButtonComponent style={style} onClick={(e) => handleClick(e)}> {buttonText} </ButtonComponent>
+                <ReviewForm/>
                 
             </div>
         </>
