@@ -35,21 +35,22 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "fit-content",
+    width: "min(600px, 90%)",
     bgcolor: "#0B0725",
     border: "2px solid #000",
-    boxShadow: 24,
-    p: 4
+    boxSizing: "border-box",
+    boxShadow: 15,
+    p: 5,
   };
 
 
-export default function ReviewForm({titledata}) {
+export default function ReviewForm({title, image, id}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
  
     return (
-        <div>
+        <div style={{float:"right"}}>
         <Button onClick={handleOpen}>
           <img style={{position: "absolute"}} src={Picture} alt="profile" /><div className="circle"></div>
         </Button>
@@ -61,8 +62,8 @@ export default function ReviewForm({titledata}) {
         >
           <Box sx={style}>
             <div className="ReviewTop">
-                <img src={MoviePic} alt="picture" />
-                <h1 style = {{textAlign: "center"}}>{titledata ? titledata.username : "Avengers: Endgame"}</h1>
+                <img style={{height:"20vh",borderRadius:"5px"}} src={image ? "https://image.tmdb.org/t/p/w500"+image : MoviePic} alt="" />
+                <h2 style = {{marginLeft: "10px"}}>{title ? title : "Avengers: Endgame"}</h2>
             </div>
             <h2>Write Your Review</h2>
             <div className="RatingSection" id="modal-modal-title">
