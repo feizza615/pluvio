@@ -5,7 +5,17 @@ import thumbnail from "./thumbnail.png";
 import SignInComponent from "../../components/LoginComponent/SignInComponent";
 import SignUpComponent from "../../components/LoginComponent/SignUpComponent";
 import {motion} from 'framer-motion';
+import { Navigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
+
+
   const WelcomePage = () => {
+    const user = useSelector(selectUser);
+    if (user) {
+        return <Navigate to="/home" replace />;
+    }
+
     return (
       <motion.div
         className = "welcome"

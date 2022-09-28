@@ -13,10 +13,12 @@ import WelcomePage from './mainPages/WelcomePage/WelcomePage';
 import Header from './components/HeaderComponent/Header';
 import { Provider } from 'react-redux';
 import store from "./app/store"
-
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import NavigationBar from './components/NavigationBarComponent/NavigationBar';
+import Protected from './Protected';
 //...
 let persistor = persistStore(store);
 
@@ -39,10 +41,11 @@ export const HomeContainer = styled.div`
   }
 `;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  
-    <Provider store={store}>
+const App = () => {
+
+  return(
+    <>
+      <Provider store={store}>
       <PersistGate persistor={persistor}>
     <BrowserRouter>
       <Header />
@@ -50,11 +53,11 @@ root.render(
         <NavigationBar />
         <Routes>
           {/* <Route index element = {<WelcomePage/>}/> */}
-          <Route path='/home/' element = {<HomePage/>}/>
+          <Route path='/home/' element = {<Protected><HomePage/></Protected>}/>
           <Route path="/welcome" element = {<WelcomePage/>}/>
-          <Route path="/friends/" element = {<FriendsPage/>}/>
-          <Route path="/profile/" element = {<ProfilePage/>}/>
-          <Route path="/match/" element = {<MatchPage/>}/>
+          <Route path="/friends/" element = {<Protected><FriendsPage/></Protected>}/>
+          <Route path="/profile/" element = {<Protected><ProfilePage/></Protected>}/>
+          <Route path="/match/" element = {<Protected><MatchPage/></Protected>}/>
         </Routes>
       </HomeContainer>
       <Routes>
@@ -64,6 +67,13 @@ root.render(
     </BrowserRouter>
     </PersistGate>
     </Provider>
+    </>
+  )
+}
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   
+    <App />
 );
+
