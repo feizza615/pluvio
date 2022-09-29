@@ -4,6 +4,9 @@ import { animated, useSpring, useSpringRef, useChain } from 'react-spring';
 import { useNavigate, Navigate } from 'react-router-dom'
 import {AnimatePresence} from "framer-motion";
 import "./Splash.css";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
+
  
  
 export default function Splash(){
@@ -39,6 +42,11 @@ export default function Splash(){
 
  
     useChain([logoRef, pluvioRef, /*subRef*/], [1, 2]);
+
+    const user = useSelector(selectUser);
+    if (user) {
+        return <Navigate to="/home" replace />;
+    }
  
     return (
     <div className = "App">

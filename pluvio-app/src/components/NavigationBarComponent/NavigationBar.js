@@ -16,6 +16,8 @@ import { Fab, Typography } from "@mui/material";
 import WelcomePage from "../../mainPages/WelcomePage/WelcomePage";
 import { loginFunc } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
 
 const NavigationBar = () => {
   const [flip, setFlip] = useState(false)
@@ -46,10 +48,11 @@ const NavigationBar = () => {
 
   const linkArray = ["/home/","/profile/","/friends/","/match/","/", "/welcome/"]
 
-  if (window.location.pathname === "/welcome") 
-    return <div></div>;
-  else if  (window.location.pathname === "/")
-    return <div></div>;
+  const user = useSelector(selectUser);
+
+  if (!user) {
+    return <div></div>
+  }
 
   return (
     <>
