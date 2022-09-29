@@ -1,9 +1,8 @@
 import {Box, Rating } from '@mui/material';
 import React from 'react';
 
-export default function RatingSelection() {
+export default function RatingSelection(props) {
     const [value, setValue] = React.useState(0);
-  
     return (
       <Box
       >
@@ -17,6 +16,8 @@ export default function RatingSelection() {
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
+            console.log(newValue);
+            props.onratingchange(newValue);
           }}
         />
       </Box>
