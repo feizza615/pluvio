@@ -30,7 +30,15 @@ router.post('/login', (req, res, next) => {
         if (!user) {
             return res.redirect('/users/login');
         } else {
-            res.send('Login successful');
+            user.checkPassword(password, (e,result) => {
+                if (e) return next(err);
+
+                if (!result) {
+                    return res.redirect('/users/login')
+                } else {
+                    res.send(user)
+                }
+            })
         }
     })
 })

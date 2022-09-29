@@ -63,7 +63,7 @@ const MovieCard = ({
 
   return (
     <>
-      <Card style={{width: "auto"}}>
+      <Card style={{width: "auto", height: "fit-content"}}>
         <RowContainer>
         {image ? <img src={"https://image.tmdb.org/t/p/w500"+image} alt="" style={{height:"20vh",borderRadius:"5px"}}/> :<Skeleton  sx={{ bgcolor: '#333', borderRadius: "15px" }} variant="rounded" width={150} height={200}/>}
         <div className="container">
@@ -77,9 +77,8 @@ const MovieCard = ({
           </Container>
         </div>
         </RowContainer>
-        <p style={{textAlign: "left", fontSize: "16px", padding: "20px",
+        <p style={{textAlign: "left", fontSize: "16px",
         }}>{description ? description : ""}</p>
-        <br/>
       </Card>
     </>
   )
