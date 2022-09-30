@@ -86,8 +86,9 @@ export default function ReviewForm({title, image, id}) {
         .catch((error) => {
           error = new Error();
         });
-    };
   
+    
+  };
  
     return (
         <div style={{float:"right"}}>
@@ -124,4 +125,4 @@ export default function ReviewForm({title, image, id}) {
         </Modal>
       </div>
     );
-  }
+    }
