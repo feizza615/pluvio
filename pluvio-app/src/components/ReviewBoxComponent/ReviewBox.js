@@ -19,7 +19,7 @@ export default function ReviewBox({reviewdata}) {
                         <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+random,fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>u</Avatar>
                         <div style={{}}>
                             <p className = "topLine" style={{ fontSize: "25px", margin: 0}}>@{reviewdata ? reviewdata.name : "username"}</p>
-                            <RatingArea ratingdata={reviewdata.score}/>
+                            {/* <RatingArea ratingdata={reviewdata.score}/> */}
                         </div>
                     </div>
                     <p className = "bottomLine">{reviewdata ? reviewdata.description : "I really enjoyed this movie, I believe many others should try this out if they like this genre. I really enjoyed this movie, I believe many others should try this out if they like this genre. I really enjoyed this movie, I believe many others should try this out if they like this genre."} </p>
