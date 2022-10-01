@@ -4,16 +4,18 @@ let Review = require('../models/Review');
 let User = require('../models/User')
 
 router.post('/add',(req, res, next) => {
-    const user = req.body.user;
+    const name = req.body.name;
     const description = req.body.description;
     const score = req.body.score;
     const movie = req.body.movie;
+    const spoiler = req.body.spoiler;
 
     const newReview = new Review({
-        user,
+        name,
         description,
         score,
         movie,
+        spoiler
     })
 
     newReview.save()
@@ -22,6 +24,21 @@ router.post('/add',(req, res, next) => {
         })
         .catch(err => res.status(400).json('Error: ' + err))
 });
+
+router.get('/user/:id',(req,res) =>{
+    var id = req.params.id;
+    console.log("I have received the ID: " + id);
+
+    Review.find({ name: id }, function(err, something) {
+        if (err)
+            res.send(err);
+
+        res.json(something);
+        console.log(something);
+    });
+
+
+})
 
 
 module.exports = router;

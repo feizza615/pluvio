@@ -2,10 +2,12 @@ let mongoose = require('mongoose');
 const {User} = require('./User').schema;
 
 const review = new mongoose.Schema({
-    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    //user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    name: String, 
     description: String,
     score: Number,
-    movie: mongoose.Schema.Types.Mixed,
+    movie: String,
+    spoiler: Boolean
 })
 
 let Review = mongoose.model('Review',review);
