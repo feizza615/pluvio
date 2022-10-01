@@ -45,12 +45,8 @@ const ProfilePage = () => {
   },[]);
 
   return (
-    <div>
-      <Card>Profile Page</Card>
-      <br />
+    <div style={{display: "flex", flexDirection: "column", gap: "40px"}}>
       <ProfileBox userdata={userdata} />
-      
-      <h1></h1>
       {isLoaded && details ? details.map((review,index) =>
         <ReviewBox reviewdata={review}/>
       ): <h1>Loading...</h1>}

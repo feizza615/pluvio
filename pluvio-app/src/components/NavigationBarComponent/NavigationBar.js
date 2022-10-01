@@ -9,6 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import GroupIcon from "@mui/icons-material/Group";
+import MovieIcon from '@mui/icons-material/Movie';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import "./NavigationBar.css";
 import { NavLink } from "react-router-dom";
@@ -43,10 +44,11 @@ const NavigationBar = () => {
     <AccountBoxIcon />,
     <GroupIcon />,
     <TheaterComedyIcon />,
-    <LogoutIcon/>
+    <MovieIcon/>,
+    <LogoutIcon/>,
   ];
 
-  const linkArray = ["/home/","/profile/","/friends/","/match/","/", "/welcome/"]
+  const linkArray = ["/home/","/profile/","/friends/","/match/","/movies", "/welcome/"]
 
   const user = useSelector(selectUser);
 
@@ -67,7 +69,7 @@ const NavigationBar = () => {
               padding: 1
             }} 
           >Menu</Typography>
-          {["Home", "Profile", "Friends", "Match","Logout"].map((text, index) => (
+          {["Home", "Profile", "Friends", "Match","Movies","Logout"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <NavLink to={linkArray[index]} 
                 onClick={onClickHandler(text)}

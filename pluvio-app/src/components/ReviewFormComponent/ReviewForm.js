@@ -61,7 +61,7 @@ export default function ReviewForm({title, image, id}) {
       setMovie(id);
       // prevent the form from refreshing the whole page
       e.preventDefault();
-      console.log(name+" "+description+" "+ " "+score+" "+"  "+movie+" "+spoiler);
+      console.log(name, description, score, movie, spoiler, image);
 
       const configuration = {
         method: "post",
@@ -71,7 +71,8 @@ export default function ReviewForm({title, image, id}) {
           description,
           score,
           movie,
-          spoiler
+          spoiler,
+          image
         },
       };
       // make a popup alert showing the "submitted" text
@@ -80,7 +81,7 @@ export default function ReviewForm({title, image, id}) {
         .then((result) => 
         {
           console.log(result);
-          console.log("SUCCESS");
+          console.log(`${name} and ${movie}`);
   
         })
         .catch((error) => {

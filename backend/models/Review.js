@@ -7,7 +7,8 @@ const review = new mongoose.Schema({
     description: String,
     score: Number,
     movie: String,
-    spoiler: Boolean
+    spoiler: Boolean,
+    image: String,
 })
 
 let Review = mongoose.model('Review',review);
