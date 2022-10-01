@@ -3,7 +3,7 @@ import React from 'react';
 import "./ReviewBox.css"
 
 export default function RatingArea({ratingdata}) {
-    const [value] = React.useState(ratingdata ? ratingdata.star : 5);
+    const [value] = React.useState(ratingdata ? ratingdata : 5);
  
     return (
             <Box

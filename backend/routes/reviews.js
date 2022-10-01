@@ -9,13 +9,15 @@ router.post('/add',(req, res, next) => {
     const score = req.body.score;
     const movie = req.body.movie;
     const spoiler = req.body.spoiler;
+    const image = req.body.image;
 
     const newReview = new Review({
         name,
         description,
         score,
         movie,
-        spoiler
+        spoiler,
+        image
     })
 
     newReview.save()
