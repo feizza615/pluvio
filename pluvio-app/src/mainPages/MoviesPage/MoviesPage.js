@@ -56,7 +56,7 @@ const Movies = ({data, page}) => {
     <>    
       <div style={{display:"flex",flexDirection:"column", gap:"20px"}}>
         {isLoaded && details ? details.map((movie,x) =>
-        <Watchlist>
+  
             <MovieCard 
               // watchlist = {<Watchlist/>}
               key={movie.title}
@@ -68,7 +68,8 @@ const Movies = ({data, page}) => {
               score={movie.vote_average}
               genre={movie.genres}
               duration={movie.runtime}
-            /></Watchlist>
+              add={true}
+            />
         ) : <h1>Loading...</h1>}
       </div>
     </>

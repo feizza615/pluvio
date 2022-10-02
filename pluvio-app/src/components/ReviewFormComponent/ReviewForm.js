@@ -59,6 +59,8 @@ export default function ReviewForm({title, image, id}) {
     const handleSubmit = (e) => {
       setName(user.name);
       setMovie(id);
+      console.log(name);
+      console.log(id);
       // prevent the form from refreshing the whole page
       e.preventDefault();
       console.log(name, description, score, movie, spoiler, image);
