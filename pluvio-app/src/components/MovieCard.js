@@ -133,7 +133,6 @@ const MovieCard = ({
             </Container>
           </div>
         </RowContainer>
-        <div>
           <p style={{ textAlign: "left", fontSize: "16px" }}>
             {description ? description : ""}
           </p>
@@ -144,9 +143,9 @@ const MovieCard = ({
             image={image}
             description={description}
           />
-          <LikeDislike react={react ? react: false}/>
-        </div>
+   
       </Card>
+      <LikeDislike react={react ? react: false}/>
     </>
   );
 };

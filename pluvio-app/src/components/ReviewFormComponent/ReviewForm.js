@@ -1,4 +1,3 @@
-import Picture from "./ReviewButtonPic.png"
 import {Box, Modal, Button, FormGroup, FormControlLabel, Checkbox} from '@mui/material';
 import React, { useState } from "react";
 import ButtonComponent from "../LoginComponent/ButtonComponent";
@@ -9,7 +8,7 @@ import MoviePic from "./MoviePic.png";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
-
+import CreateIcon from '@mui/icons-material/Create';
 export const TextField = styled.textarea`
   width: 100%;
   height: 200px;
@@ -96,8 +95,7 @@ export default function ReviewForm({title, image, id}) {
     return (
         <div style={{float:"right"}}>
         <Button onClick={handleOpen}>
-          <img style={{position: "absolute"}} src={Picture} alt="profile" /><div className="circle"></div>
-
+          <div className="circle"><CreateIcon sx={{ fontSize: 55 ,paddingTop:1}}/></div>
         </Button>
         <Modal
           open={open}

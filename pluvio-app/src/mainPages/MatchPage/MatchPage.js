@@ -8,7 +8,7 @@ const data = {
   genre: [{ name: "Genre" }],
   duration: "120",
   description:
-    "Despicable Me 3 is a 2017 American computer-animated comedy film produced by Illumination and distributed by Universal Pictures. It is the sequal to Despicable Me 2, the third main installment, and the fourth installment overall in the Despicable Me.",
+    "DespicableDespicable Me 3 is a 2017 American computer-animated comedy film produced by Illumination and distributed by Universal Pictures. It is the sequal to Despicable Me 2, the third main installment, and the fourth installment overall in the Despicable Me.",
 };
 
 const MatchPage = () => {
@@ -21,7 +21,7 @@ const MatchPage = () => {
         genre={data.genre}
         duration={data.duration}
         description={data.description}
-        add={false}
+        add={true}
         react={true}
       />
       <div>
