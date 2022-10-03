@@ -19,6 +19,7 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import NavigationBar from './components/NavigationBarComponent/NavigationBar';
 import Protected from './Protected';
+import MoviesPage from './mainPages/MoviesPage/MoviesPage';
 //...
 let persistor = persistStore(store);
 
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/friends/" element = {<Protected><FriendsPage/></Protected>}/>
           <Route path="/profile/" element = {<Protected><ProfilePage/></Protected>}/>
           <Route path="/match/" element = {<Protected><MatchPage/></Protected>}/>
+          <Route path="/movies/" element = {<Protected><MoviesPage/></Protected>}/>
         </Routes>
       </HomeContainer>
       <Routes>

@@ -7,7 +7,6 @@ const style = {
     fontSize: "15px",
     float: "left",
     marginTop: "10px",
-    marginBottom: "20px",
     marginLeft: "10px"
 }
 
@@ -22,9 +21,9 @@ const Watchlist = (props) => {
             setTimeout(() => {
                 setButtonText("Remove from watchlist");
             }, 2000)
-            console.log("movie id: " + props.children.props.id)
-            console.log("title: " + props.children.key)
-            console.log("description: " + props.children.props.description)
+            console.log("movie id: " + props.id)
+            console.log("title: " + props.key)
+            console.log("description: " + props.description)
             // alert(props.children.key + " has been added")
         } else {
             // setButtonText("Removed!");
@@ -40,9 +39,8 @@ const Watchlist = (props) => {
     return (
         <>
             <div >
-                {props.children}
                 <ButtonComponent style={style} onClick={(e) => handleClick(e)}> {buttonText} </ButtonComponent>
-                <ReviewForm id={props.children.props.id} title={props.children.key} image={props.children.props.image}/>
+                <ReviewForm id={props.id} title={props.title} image={props.image}/>
             </div>
         </>
     )
