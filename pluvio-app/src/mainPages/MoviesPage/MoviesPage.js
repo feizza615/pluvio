@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {config} from "../../config"
 import MovieCard from "../../components/MovieCard";
 import { Chip, Pagination, Rating } from '@mui/material';
-import Watchlist from "../../components/Watchlist";
+import Watchlist from "../../components/WatchlistComponent/WatchList";
 import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 import styled from 'styled-components'
 

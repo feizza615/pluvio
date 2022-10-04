@@ -1,9 +1,10 @@
 import React from "react";
 import Card from "./Card";
+import "../components/WatchlistComponent/watchlist.css"
 import styled from "styled-components";
 import ReviewForm from "./ReviewFormComponent/ReviewForm";
 import { Chip, Rating, Skeleton } from "@mui/material";
-import Watchlist from "./Watchlist";
+import Watchlist from "../components/WatchlistComponent/WatchList"
 import ReactionButtons from "./ReccomendationComponents/ReactionButtons";
 
 //Review Button not implemented
@@ -77,11 +78,11 @@ const MovieCard = ({
     }
   }
 
-  function LikeDislike(props){
+  function LikeDislike(props) {
     const react = props.react;
-    if(react){
-      return(
-        <ReactionButtons/>
+    if (react) {
+      return (
+        <ReactionButtons />
       )
     }
   }
@@ -133,21 +134,36 @@ const MovieCard = ({
             </Container>
           </div>
         </RowContainer>
-          <p style={{ textAlign: "left", fontSize: "16px" }}>
-            {description ? description : ""}
-          </p>
-          <AddReviewWatch
-            addVal={add ? add : false}
-            id={id}
-            title={title}
-            image={image}
-            description={description}
-          />
-   
+        <p style={{ textAlign: "left", fontSize: "16px" }}>
+          {description ? description : ""}
+        </p>
+        <AddReviewWatch
+          addVal={add ? add : false}
+          id={id}
+          title={title}
+          image={image}
+          description={description}
+        />
+
       </Card>
-      <LikeDislike react={react ? react: false}/>
+      <LikeDislike react={react ? react : false} />
     </>
   );
 };
 
-export default MovieCard;
+
+
+export const WatchListCard = ({
+  title,
+}) => {
+
+  return (
+    <>
+      <li>
+        <img src={title} style={{ height: "20vh", borderRadius: "5px", marginLeft: "5px" }} />
+      </li>
+    </>
+  );
+};
+
+export default MovieCard

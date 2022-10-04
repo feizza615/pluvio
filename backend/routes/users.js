@@ -43,29 +43,42 @@ router.post('/login', (req, res, next) => {
     })
 })
 
+
 router.post('/watchlist', (req, res, next) => {
     const name = req.body.name;
     const movie = req.body.movie;
 
-
-    User.findOneAndUpdate({ name: name }, { $push: { watchlist: movie } }, (err, user) => {
+    User.findOneAndUpdate({ name: name }, { $addToSet: { watchlist: movie } }, (err, user) => {
         if (err) return next(err);
 
         if (!name) {
             console.log("Cant find user");
         } else {
-            console.log("Added movie " + movie + " to " + name + "'s watchlist");
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Added");
         }
     })
+}
+)
 
 
+router.get('/watchlistid/:id', (req, res, next) => {
+    var id = req.params.id;
+
+    User.find({ name: id }, function(err, info) {
+        if (err)
+            res.send(err);
+
+        res.json(info);
+        console.log(info);
+    });
 
 
-
-
-
-})
+}
+)
 
 
 
 module.exports = router;
+
+

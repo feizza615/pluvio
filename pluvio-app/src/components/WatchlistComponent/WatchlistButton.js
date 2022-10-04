@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
-import ButtonComponent from "./LoginComponent/ButtonComponent";
-import ReviewForm from './ReviewFormComponent/ReviewForm';
+import ButtonComponent from "../LoginComponent/ButtonComponent";
+import ReviewForm from '../ReviewFormComponent/ReviewForm';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../features/userSlice';
+import { selectUser } from '../../features/userSlice';
 import axios from "axios";
  
 const style = {
@@ -23,10 +23,7 @@ const Watchlist = (props) => {
         const name = user.name;
         const movie = props.id;
         console.log("Adding movie " + movie + " to " + name + "'s movie list...");
-           setButtonText("Added!");
-           setTimeout(() => {
-               setButtonText("Remove from watchlist");
-           }, 2000)     
+           setButtonText("Added");
          
            const configuration = {
             method: "post",
@@ -48,15 +45,8 @@ const Watchlist = (props) => {
              });
  
  
-           // alert(props.children.key + " has been added")
-       } else {
-           // setButtonText("Removed!");
-           setTimeout(() => {
-               setButtonText("Add to watchlist");
-           }, 2000)
-           setButtonText("Add to watchlist");
- 
-           // alert(props.children.key + " has been removed");
+       } else {         
+           setButtonText("Add to watchlist"); 
        }
    }
  
