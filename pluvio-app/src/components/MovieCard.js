@@ -4,7 +4,7 @@ import "../components/WatchlistComponent/watchlist.css"
 import styled from "styled-components";
 import ReviewForm from "./ReviewFormComponent/ReviewForm";
 import { Chip, Rating, Skeleton } from "@mui/material";
-import Watchlist from "../components/WatchlistComponent/WatchList"
+import Watchlist from "../components/WatchlistComponent/WatchlistButton"
 import ReactionButtons from "./ReccomendationComponents/ReactionButtons";
 
 //Review Button not implemented

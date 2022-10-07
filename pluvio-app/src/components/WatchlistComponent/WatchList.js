@@ -17,7 +17,6 @@ const Watchlist = ({ watchlistdata }, { data }) => {
 
     useEffect(() => {
         let det = []
-        let detImage = []
         async function test() {
             setIsLoaded(false)
             for (var i = 0; i < sizeOfList; i++) {
