@@ -36,8 +36,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80%",
-  height: "fit-content",
+  width: "60%",
+  height: "60%",
   color: "white",
   borderRadius: "15px",
   bgcolor: "#0B0725",
@@ -156,7 +156,9 @@ const MovieCard = ({
             </Container>
           </div>
         </RowContainer>
-        <p style={{ textAlign: "left", fontSize: "16px" }}>
+        <br/>
+        <p style={{ textAlign: "left", fontSize: "16px",  overflow: "hidden",display: "-webkit-box",  WebkitLineClamp: 3,
+  WebkitBoxOrient: "vertical" }}>
           {description ? description : ""}
         </p>
         <AddReviewWatch

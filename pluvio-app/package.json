@@ -19,6 +19,7 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-scroll-box": "^0.3.5",
     "react-simple-tabs-component": "^2.1.1",
     "react-spring": "^9.5.4",
     "react-tabs": "^5.1.0",

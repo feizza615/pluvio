@@ -9,6 +9,9 @@ import styled from "styled-components";
 import Card from "../Card";
 import Watchlist from "../WatchlistComponent/WatchlistButton";
 import ReactionButtons from "../ReccomendationComponents/ReactionButtons";
+import axios from "axios";
+import ReviewBox from "../ReviewBoxComponent/ReviewBox";
+
 
 export const Container = styled.div`
   * {
@@ -129,14 +132,38 @@ const TabOne = (props) => {
     </>
   );
 };
-const TabTwo = () => {
+const TabTwo = (props) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [details, setDetails] = useState(null);
+  let det = [];
+
+  const configuration = {
+    method: "get",
+    url: "http://localhost:5001/reviews/movie/" + props.id,
+  };
+
+
+  React.useEffect(() => {
+    axios(configuration)
+      .then((result) => {
+        det.push(JSON.parse(JSON.stringify(result.data)));
+        det = det[0]
+        setIsLoaded(true);
+        setDetails(det);
+      })
+      .catch((error) => {
+        error = new Error();
+        setIsLoaded(false);
+      });
+    }, []);
+
   return (
     <>
-      <h3>Reviews</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis
-        sint illum iusto nostrum cumque qui voluptas tenetur inventore ut quis?
-      </p>
+
+       {isLoaded && details ? details.map((review, index) =>
+        <ReviewBox reviewdata={review} />
+      ) : <h1></h1>}
+
     </>
   );
 };
@@ -190,7 +217,7 @@ const MovieViewComponent = ({
           />
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+          <TabTwo id={id}/>
         </TabPanel>
       </Tabs>
     </div>
