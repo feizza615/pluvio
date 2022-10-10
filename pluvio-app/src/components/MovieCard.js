@@ -36,7 +36,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "min(400px, 90%)",
+  width: "80%",
   height: "fit-content",
   color: "white",
   borderRadius: "15px",

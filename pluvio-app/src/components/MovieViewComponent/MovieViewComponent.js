@@ -113,6 +113,7 @@ const TabOne = (props) => {
             </Container>
           </div>
         </RowContainer>
+        <br/>
         <p style={{ textAlign: "left", fontSize: "16px" }}>
           {props.description ? props.description : ""}
         </p>
@@ -184,8 +185,8 @@ const MovieViewComponent = ({
             image={image}
             watchlist={watchlist}
             id={id}
-            add={add}
-            react={react}
+            add={true}
+            react={false}
           />
         </TabPanel>
         <TabPanel>
