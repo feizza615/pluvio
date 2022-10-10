@@ -38,6 +38,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "60%",
   height: "60%",
+  minHeight:"70%",
   color: "white",
   borderRadius: "15px",
   bgcolor: "#0B0725",

@@ -11,7 +11,8 @@ import Watchlist from "../WatchlistComponent/WatchlistButton";
 import ReactionButtons from "../ReccomendationComponents/ReactionButtons";
 import axios from "axios";
 import ReviewBox from "../ReviewBoxComponent/ReviewBox";
-
+import { maxHeight } from "@mui/system";
+import "./MovieViewComponent.css";
 
 export const Container = styled.div`
   * {
@@ -33,6 +34,23 @@ export const Image = styled.div`
   background: red;
   border-radius: 15px;
 `;
+
+const divScroll = {
+  height: "calc(65vh - 70px)",
+  minHeight: "100%",
+  overflowY: 'scroll',
+  overflowX:'hide',
+  
+  '::-webkit-scrollbar':{
+          display:'none'
+      }
+
+
+
+};
+
+
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -46,7 +64,7 @@ const style = {
   boxSizing: "border-box",
   boxShadow: 15,
   p: 5,
-
+ 
   "@media (max-width: 640px)": {},
 };
 
@@ -82,7 +100,7 @@ const TabOne = (props) => {
   }
   return (
     <>
-      <Card style={{ width: "100%", height: "100%" }}>
+      <Card style={{ width: "100%", height: "fit-content" }}>
         <RowContainer>
           {props.image ? (
             <img
@@ -199,7 +217,7 @@ const MovieViewComponent = ({
           <Tab>Details</Tab>
           <Tab>Reviews</Tab>
         </TabList>
-
+        <div style={divScroll} className="scrollDiv">
         <TabPanel>
           <TabOne
             tabs={tabs}
@@ -219,6 +237,7 @@ const MovieViewComponent = ({
         <TabPanel>
           <TabTwo id={id}/>
         </TabPanel>
+        </div>
       </Tabs>
     </div>
   );
