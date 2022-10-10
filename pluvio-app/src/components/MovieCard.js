@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Card from "./Card";
 import "../components/WatchlistComponent/watchlist.css"
 import styled from "styled-components";
@@ -6,7 +6,9 @@ import ReviewForm from "./ReviewFormComponent/ReviewForm";
 import { Chip, Rating, Skeleton } from "@mui/material";
 import Watchlist from "../components/WatchlistComponent/WatchlistButton"
 import ReactionButtons from "./ReccomendationComponents/ReactionButtons";
-
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import MovieViewComponent from "./MovieViewComponent/MovieViewComponent";
 //Review Button not implemented
 
 export const Container = styled.div`
@@ -29,7 +31,23 @@ export const Image = styled.div`
   background: red;
   border-radius: 15px;
 `;
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "min(400px, 90%)",
+  height: "fit-content",
+  color: "white",
+  borderRadius: "15px",
+  bgcolor: "#0B0725",
+  boxSizing: "border-box",
+  boxShadow: 15,
+  p: 5,
 
+  "@media (max-width: 640px)": {
+  }
+};
 const MovieCard = ({
   title,
   release,
@@ -54,6 +72,10 @@ const MovieCard = ({
     var n = release.toLocaleDateString("en-US", options);
     release = n.replace(new RegExp(",", "g"), " ");
   }
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   function timeConvert(n) {
     var num = n;
@@ -88,7 +110,7 @@ const MovieCard = ({
   }
   return (
     <>
-      <Card style={{ width: "auto", height: "85%" }}>
+      <Card style={{ width: "auto", height: "100%" }} onClick={handleOpen} >
         <RowContainer>
           {image ? (
             <img
@@ -147,6 +169,34 @@ const MovieCard = ({
 
       </Card>
       <LikeDislike react={react ? react : false} />
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        sx={{
+          ".MuiBackdrop-root": {
+            backdropFilter: "blur(10px)",
+            width:1
+          },
+        }}
+      >
+        <Box sx={style}>
+          <MovieViewComponent
+          title={title}
+          release={release}
+          score={score}
+          genre={genre}
+          duration={duration}
+          description = {description}
+          image = {image}
+          watchlist = {watchlist}
+          id={id}
+          add={add}
+          react/>
+        </Box>
+      </Modal>
     </>
   );
 };
