@@ -111,8 +111,8 @@ const MovieCard = ({
   }
   return (
     <>
-      <Card style={{ width: "auto", height: "100%" }} onClick={handleOpen} >
-        <RowContainer>
+      <Card style={{ width: "auto", height: "100%" }} >
+        <RowContainer  >
           {image ? (
             <img
               src={"https://image.tmdb.org/t/p/w500" + image}
@@ -127,7 +127,7 @@ const MovieCard = ({
               height={200}
             />
           )}
-          <div className="container">
+          <div className="container" onClick={handleOpen} >
             <h2 style={{ margin: "0px", textAlign: "left" }}>
               {title ? title : "Unknown"}
             </h2>
@@ -159,7 +159,7 @@ const MovieCard = ({
         </RowContainer>
         <br/>
         <p style={{ textAlign: "left", fontSize: "16px",  overflow: "hidden",display: "-webkit-box",  WebkitLineClamp: 3,
-  WebkitBoxOrient: "vertical" }}>
+  WebkitBoxOrient: "vertical" }} onClick={handleOpen} >
           {description ? description : ""}
         </p>
         <AddReviewWatch

@@ -127,6 +127,18 @@ const TabOne = (props) => {
               readOnly
             />
             <br />
+            {props.genre.map((gen, g) => (
+              <Chip
+                key={g}
+                sx={{
+                  background: "#180F53",
+                  color: "white",
+                  margin: "5px",
+                  fontFamily: "Poppins",
+                }}
+                label={gen.name}
+              />
+            ))}
             <Container>
               <h4>{props.watchlist}</h4>
               <h4>{props.duration ? timeConvert(props.duration) : ""}</h4>
