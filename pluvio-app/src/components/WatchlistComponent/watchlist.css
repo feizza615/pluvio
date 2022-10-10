@@ -16,3 +16,12 @@ ul.contentsList li{
 div .scroll{
     width: 700px;
 }
+
+.contentsList::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+.contentsList::-webkit-scrollbar-thumb {
+    background-color: #180F53;
+    border-radius: 15px;
+}

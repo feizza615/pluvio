@@ -160,7 +160,7 @@ export const WatchListCard = ({
   return (
     <>
       <li>
-        <img src={title} style={{ height: "20vh", borderRadius: "5px", marginLeft: "5px" }} />
+        <img src={title} alt="" style={{ height: "20vh", borderRadius: "5px", marginLeft: "5px" }} />
       </li>
     </>
   );
