@@ -56,11 +56,9 @@ const ProfilePage = () => {
 
       axios(configurationwatchlist)
       .then((result2) => {
-        det2.push(JSON.parse(JSON.stringify(result2.data)));
-        det2 = det2[0]
+        setDetails2(JSON.parse(JSON.stringify(result2.data)));
         setIsLoaded2(true);
-        // console.log(det.length)
-        setDetails2(det2);
+        console.log("test")
       })
       .catch((error) => {
         error = new Error();
@@ -72,8 +70,8 @@ const ProfilePage = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
       <ProfileBox userdata={userdata} />
-      {isLoaded2 && details2 ? details2.map((watchlist, index) =>
-      <Watchlist watchlistdata={watchlist}/>) : <h1></h1>}
+      {isLoaded2 ? details2.map((watchlist, index) =>
+      <Watchlist key={index} watchlistdata={watchlist}/>) : <h1></h1>}
       {isLoaded && details ? details.map((review, index) =>
         <ReviewBox reviewdata={review} />
       ) : <h1>Loading...</h1>}
