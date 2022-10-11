@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import Card from "./Card";
+import "../components/WatchlistComponent/watchlist.css"
 import styled from "styled-components";
 import ReviewForm from "./ReviewFormComponent/ReviewForm";
 import { Chip, Rating, Skeleton } from "@mui/material";
-import Watchlist from "./Watchlist";
+import Watchlist from "../components/WatchlistComponent/WatchlistButton"
 import ReactionButtons from "./ReccomendationComponents/ReactionButtons";
-
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import MovieViewComponent from "./MovieViewComponent/MovieViewComponent";
 //Review Button not implemented
 
 export const Container = styled.div`
@@ -28,7 +31,24 @@ export const Image = styled.div`
   background: red;
   border-radius: 15px;
 `;
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "60%",
+  height: "60%",
+  minHeight:"70%",
+  color: "white",
+  borderRadius: "15px",
+  bgcolor: "#0B0725",
+  boxSizing: "border-box",
+  boxShadow: 15,
+  p: 5,
 
+  "@media (max-width: 640px)": {
+  }
+};
 const MovieCard = ({
   title,
   release,
@@ -54,6 +74,10 @@ const MovieCard = ({
     release = n.replace(new RegExp(",", "g"), " ");
   }
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   function timeConvert(n) {
     var num = n;
     var hours = num / 60;
@@ -77,18 +101,18 @@ const MovieCard = ({
     }
   }
 
-  function LikeDislike(props){
+  function LikeDislike(props) {
     const react = props.react;
-    if(react){
-      return(
-        <ReactionButtons/>
+    if (react) {
+      return (
+        <ReactionButtons />
       )
     }
   }
   return (
     <>
-      <Card style={{ width: "auto", height: "85%" }}>
-        <RowContainer>
+      <Card style={{ width: "auto", height: "100%" }} >
+        <RowContainer  >
           {image ? (
             <img
               src={"https://image.tmdb.org/t/p/w500" + image}
@@ -103,7 +127,7 @@ const MovieCard = ({
               height={200}
             />
           )}
-          <div className="container">
+          <div className="container" onClick={handleOpen} >
             <h2 style={{ margin: "0px", textAlign: "left" }}>
               {title ? title : "Unknown"}
             </h2>
@@ -133,21 +157,66 @@ const MovieCard = ({
             </Container>
           </div>
         </RowContainer>
-          <p style={{ textAlign: "left", fontSize: "16px" }}>
-            {description ? description : ""}
-          </p>
-          <AddReviewWatch
-            addVal={add ? add : false}
-            id={id}
-            title={title}
-            image={image}
-            description={description}
-          />
-   
+        <br/>
+        <p style={{ textAlign: "left", fontSize: "16px",  overflow: "hidden",display: "-webkit-box",  WebkitLineClamp: 3,
+  WebkitBoxOrient: "vertical" }} onClick={handleOpen} >
+          {description ? description : ""}
+        </p>
+        <AddReviewWatch
+          addVal={add ? add : false}
+          id={id}
+          title={title}
+          image={image}
+          description={description}
+        />
+
       </Card>
-      <LikeDislike react={react ? react: false}/>
+      <LikeDislike react={react ? react : false} />
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        sx={{
+          ".MuiBackdrop-root": {
+            backdropFilter: "blur(10px)",
+            width:1
+          },
+        }}
+      >
+        <Box sx={style}>
+          <MovieViewComponent
+          title={title}
+          release={release}
+          score={score}
+          genre={genre}
+          duration={duration}
+          description = {description}
+          image = {image}
+          watchlist = {watchlist}
+          id={id}
+          add={add}
+          react/>
+        </Box>
+      </Modal>
     </>
   );
 };
 
-export default MovieCard;
+
+
+export const WatchListCard = ({
+  title,
+}) => {
+
+  return (
+    <>
+      <li>
+        <img src={title} alt="" style={{ height: "20vh", borderRadius: "5px", marginLeft: "5px" }} />
+      </li>
+    </>
+  );
+};
+
+export default MovieCard

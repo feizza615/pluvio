@@ -1,0 +1,27 @@
+ul{
+    list-style: none;
+    margin: 4px, 4px;
+    padding: 4px;
+   
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap; 
+}
+
+ul.contentsList li{    
+    display: inline;
+    margin-left: 10px;
+}
+
+div .scroll{
+    width: 700px;
+}
+
+.contentsList::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+.contentsList::-webkit-scrollbar-thumb {
+    background-color: #180F53;
+    border-radius: 15px;
+}

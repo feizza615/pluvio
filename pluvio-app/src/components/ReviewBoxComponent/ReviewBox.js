@@ -28,7 +28,7 @@ export default function ReviewBox({reviewdata}) {
                 </div>
                 <div className="side">
                 {reviewdata && reviewdata.image ? <img src={"https://image.tmdb.org/t/p/w500"+reviewdata.image} alt="" style={{height:"150px",borderRadius:"5px"}}/> :<Skeleton  sx={{ bgcolor: '#333', borderRadius: "15px" }} variant="rounded" width={100} height={150}/>}
-                    <ButtonComponent style={{height: "30px", width: "100px", borderRadius: "25px 25px", fontSize: "15px"}}>View</ButtonComponent>
+                    {/* <ButtonComponent style={{height: "30px", width: "100px", borderRadius: "25px 25px", fontSize: "15px"}}>View</ButtonComponent> */}
                 </div>
             </div>
         </Card>
