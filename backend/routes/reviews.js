@@ -42,5 +42,20 @@ router.get('/user/:id',(req,res) =>{
 
 })
 
+router.get('/movie/:id',(req,res) =>{
+    var id = req.params.id;
+    console.log("I have received the movie ID: " + id);
+
+    Review.find({ movie: id }, function(err, something) {
+        if (err)
+            res.send(err);
+
+        res.json(something);
+        console.log(something);
+    });
+
+
+})
+
 
 module.exports = router;
