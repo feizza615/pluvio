@@ -1,7 +1,8 @@
 import React, { Component, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../../components/Card";
-import ProfileBox from "../../components/ProfileBoxComponent/ProfileBox";
+//import ProfileBox from "../../components/ProfileBoxComponent/ProfileBox";
+import ProfilePageBox from "../../components/ProfileBoxComponent/ProfilePageBox";
 import ReviewBox from "../../components/ReviewBoxComponent/ReviewBox";
 import ReviewForm from "../../components/ReviewFormComponent/ReviewForm";
 import axios from "axios";
@@ -71,7 +72,7 @@ const ProfilePage = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-      <ProfileBox userdata={userdata} />
+      <ProfilePageBox userdata={userdata} />
       {isLoaded2 && details2 ? details2.map((watchlist, index) =>
       <Watchlist watchlistdata={watchlist}/>) : <h1></h1>}
       {isLoaded && details ? details.map((review, index) =>
