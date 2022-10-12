@@ -17,6 +17,7 @@ import store from "./app/store"
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import NavigationBar from './components/NavigationBarComponent/NavigationBar';
+import PageNotFound from './mainPages/PageNotFound/PageNotFound';
 //...
 let persistor = persistStore(store);
 
@@ -55,13 +56,11 @@ root.render(
           <Route path="/friends/" element = {<FriendsPage/>}/>
           <Route path="/profile/" element = {<ProfilePage/>}/>
           <Route path="/match/" element = {<MatchPage/>}/>
+          <Route path ="*" element = {<PageNotFound/>}/>
+          <Route index element = {<Splash/>}/>
         </Routes>
       </HomeContainer>
-      <Routes>
-      <Route index element = {<Splash/>}/>
-      {/* <Route path="/splash/" element = {<Splash/>}/> */}
-      </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </PersistGate>
     </Provider>
 

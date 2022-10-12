@@ -3,6 +3,7 @@ import MovieCard from '../../components/MovieCard';
 import Card from '../../components/Card';
 import "styled-components";
 import Watchlist from "../../components/Watchlist";
+import Tag from '../../components/TagComponent/Tag';
 
 //Testing Sample Data for MovieCard
 const data = {

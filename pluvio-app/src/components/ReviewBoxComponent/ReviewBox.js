@@ -13,9 +13,11 @@ export default function ReviewBox({reviewdata}) {
 
     return (
         <Card>
+
             <div className="view">
                 <div>
                     <div style={{display: "flex", alignItems: "center",gap:"20px"}}>
+                    
                         <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+random,fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>u</Avatar>
                         <div style={{}}>
                             <p className = "topLine" style={{ fontSize: "25px", margin: 0}}>@{reviewdata ? reviewdata.username : "username"}</p>

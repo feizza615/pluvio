@@ -4,6 +4,7 @@ import Card from "../../components/Card";
 import ProfileBox from '../../components/ProfileBoxComponent/ProfileBox';
 import ReviewBox from '../../components/ReviewBoxComponent/ReviewBox';
 import ReviewForm from '../../components/ReviewFormComponent/ReviewForm';
+import Tag from '../../components/TagComponent/Tag'
 
 import { selectUser } from '../../features/userSlice';
 
@@ -31,6 +32,7 @@ const ProfilePage = () => {
         <ReviewBox/>
         <br/>
         <ReviewForm/>
+        <Tag text = "Helloooo"/>
       </div>
     )
   
