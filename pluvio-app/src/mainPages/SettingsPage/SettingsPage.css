@@ -1,0 +1,17 @@
+p{
+   font-size: 25px;
+}
+
+.changeUser
+{
+    display: flex;
+    gap: 20px;
+    width: auto;
+}
+
+.changeUser>*
+{
+    width: 100%;
+}
+
+
