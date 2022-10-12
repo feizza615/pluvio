@@ -19,6 +19,7 @@ import { selectUser } from './features/userSlice';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import NavigationBar from './components/NavigationBarComponent/NavigationBar';
+import PageNotFound from './mainPages/PageNotFound/PageNotFound';
 import Protected from './Protected';
 import MoviesPage from './mainPages/MoviesPage/MoviesPage';
 //...
@@ -62,13 +63,11 @@ const App = () => {
           <Route path="/match/" element = {<Protected><MatchPage/></Protected>}/>
           <Route path="/movies/" element = {<Protected><MoviesPage/></Protected>}/>
           <Route path="/settings/" element = {<Protected><SettingsPage/></Protected>}/>
+          <Route path ="*" element = {<PageNotFound/>}/>
+          <Route index element = {<Splash/>}/>
         </Routes>
       </HomeContainer>
-      <Routes>
-      <Route index element = {<Splash/>}/>
-      {/* <Route path="/splash/" element = {<Splash/>}/> */}
-      </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </PersistGate>
     </Provider>
     </>
