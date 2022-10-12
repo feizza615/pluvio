@@ -69,23 +69,6 @@ const ProfilePage = () => {
 
 
   return (
-<<<<<<< HEAD
-      <div>
-        <Card>Profile Page</Card>
-        <br/>
-        <ProfileBox userdata={userdata}/>
-        <br/>
-        <ReviewBox/>
-        <br/>
-        <ReviewBox/>
-        <br/>
-        <ReviewForm/>
-        <Tag text = "Helloooo"/>
-      </div>
-    )
-  
-}
-=======
     <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
       <ProfilePageBox userdata={userdata} />
       {isLoaded2 ? details2.map((watchlist, index) =>
@@ -98,6 +81,5 @@ const ProfilePage = () => {
     </div>
   );
 };
->>>>>>> 21be4853b5143e6db230d0aa294d2c1d5ec26342
 
 export default ProfilePage;
