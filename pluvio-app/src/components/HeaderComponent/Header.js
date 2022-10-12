@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
+import Dropbox from '../Dropbox';
 export const AppLogo = styled(Typography) ({
     fontSize: '30px',
     fontFamily: 'Poppins',
@@ -46,7 +47,7 @@ console.log(user)
                     <AppLogo >pluvio</AppLogo>
                 </Link>
                 {/* <Greeting isLoggedIn={user} /> */}
-                <Avatar sx={{bgcolor: '#'+random, fontFamily:"Poppins",fontWeight:800}}>{user? user.name[0] : ""}</Avatar>
+                <Dropbox></Dropbox>
             </Toolbar>
             
         </AppBar>

@@ -12,6 +12,7 @@ import ReviewBox from '../../components/ReviewBoxComponent/ReviewBox';
 import IntroBox from "../../components/IntroBoxComponent/IntroBox"
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
+import { useNavigate } from "react-router-dom";
 
 export const Text = styled.p`
   color: white;
@@ -30,6 +31,12 @@ const userdata = {
 const HomePage = () => {
     
     const user = useSelector(selectUser);
+    let navigate = useNavigate(); 
+
+    if (!user) {
+      let path = "/welcome/"; 
+      navigate(path);
+    }
 
     if (user) {
       console.log("here")

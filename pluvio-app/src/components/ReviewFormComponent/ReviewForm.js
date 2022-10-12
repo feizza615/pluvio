@@ -1,4 +1,3 @@
-import Picture from "./ReviewButtonPic.png"
 import {Box, Modal, Button, FormGroup, FormControlLabel, Checkbox} from '@mui/material';
 import React, { useState } from "react";
 import ButtonComponent from "../LoginComponent/ButtonComponent";
@@ -6,9 +5,10 @@ import styled from "styled-components";
 import "./ReviewForm.css";
 import RatingSelection from "./RatingSelection";
 import MoviePic from "./MoviePic.png";
-
-
-
+import axios from "axios";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
+import CreateIcon from '@mui/icons-material/Create';
 export const TextField = styled.textarea`
   width: 100%;
   height: 200px;
@@ -35,23 +35,67 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "fit-content",
+    width: "min(600px, 90%)",
     bgcolor: "#0B0725",
     border: "2px solid #000",
-    boxShadow: 24,
-    p: 4
+    boxSizing: "border-box",
+    boxShadow: 15,
+    p: 5,
   };
 
 
-export default function ReviewForm({titledata}) {
+export default function ReviewForm({title, image, id}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [score, setScore] = useState(0);
+    const [movie, setMovie] = useState("");
+    const [spoiler,setSpoiler] = useState(true);
+    const user = useSelector(selectUser);
+
+    const handleSubmit = (e) => {
+      setName(user.name);
+      setMovie(id);
+      console.log(name);
+      console.log(id);
+      // prevent the form from refreshing the whole page
+      e.preventDefault();
+      console.log(name, description, score, movie, spoiler, image);
+
+      const configuration = {
+        method: "post",
+        url: "http://localhost:5001/reviews/add",
+        data: {
+          name,
+          description,
+          score,
+          movie,
+          spoiler,
+          image
+        },
+      };
+      // make a popup alert showing the "submitted" text
+      axios(configuration)
+  
+        .then((result) => 
+        {
+          console.log(result);
+          console.log(`${name} and ${movie}`);
+  
+        })
+        .catch((error) => {
+          error = new Error();
+        });
+  
+    
+  };
  
     return (
         <div style={{float:"right"}}>
         <Button onClick={handleOpen}>
-          <img style={{position: "absolute"}} src={Picture} alt="profile" /><div className="circle"></div>
+          <div className="circle"><CreateIcon sx={{ fontSize: 55 ,paddingTop:1}}/></div>
         </Button>
         <Modal
           open={open}
@@ -61,25 +105,25 @@ export default function ReviewForm({titledata}) {
         >
           <Box sx={style}>
             <div className="ReviewTop">
-                <img src={MoviePic} alt="" />
-                <h1 style = {{textAlign: "center"}}>{titledata ? titledata.username : "Avengers: Endgame"}</h1>
+                <img style={{height:"20vh",borderRadius:"5px"}} src={image ? "https://image.tmdb.org/t/p/w500"+image : MoviePic} alt="" />
+                <h2 style = {{marginLeft: "10px"}}>{title ? title : "Avengers: Endgame"}</h2>
             </div>
             <h2>Write Your Review</h2>
             <div className="RatingSection" id="modal-modal-title">
-                Rating: <RatingSelection/> 
+                Rating: <RatingSelection rating = {score} onratingchange = {setScore} /> 
             </div>
             <p id="modal-modal-description" sx={{ mt: 2 }}>
-              <TextField style={{backgroundColor: "#06021C", color: "white"}}></TextField>
+              <TextField style={{backgroundColor: "#06021C", color: "white"}} onChange={(e) => setDescription(e.target.value)}></TextField>
             </p>
             <FormGroup>
                 <div className="SpoilerArea">
-                    <FormControlLabel control={<Checkbox defaultChecked />} label=<p style={{fontWeight: "bold", fontSize: "20px", color: "white"}}>Spoiler</p>/>
+                    <FormControlLabel control={<Checkbox defaultChecked  onChange={(e) => setSpoiler(!spoiler)}/>} label={<p style={{fontWeight: "bold", fontSize: "20px", color: "white"}}>Spoiler</p>}/>
                 </div>
             </FormGroup>
             <br/>
-            <ButtonComponent style={{height: "30px", width: "100px", borderRadius: "25px 25px", fontSize: "15px", float: "right"}}>Submit</ButtonComponent>
+            <ButtonComponent onClick={(e) => handleSubmit(e)} style={{height: "30px", width: "100px", borderRadius: "25px 25px", fontSize: "15px", float: "right"} } >Submit</ButtonComponent>
           </Box>
         </Modal>
       </div>
     );
-  }
+    }

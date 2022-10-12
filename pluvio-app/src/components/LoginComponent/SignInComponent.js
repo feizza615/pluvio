@@ -52,6 +52,7 @@ export default function LoginComponent() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
+  const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
   let navigate = useNavigate(); 
@@ -66,7 +67,7 @@ export default function LoginComponent() {
     // }))
     const configuration = {
       method: "post",
-      url: "http://localhost:5000/users/login",
+      url: "http://localhost:5001/users/login",
       data: {
         name,
         password,
@@ -91,7 +92,7 @@ export default function LoginComponent() {
       })
       .catch((error) => {
         error = new Error();
-        alert("FAIL");
+        setError(true)
       });
   };
 
@@ -110,6 +111,7 @@ export default function LoginComponent() {
         }}
       >
         <Box sx={style}>
+          {error ? <p style={{color: "orange", margin: 0}}>Error signing in, password or username is incorrect.</p> : null}
           <Typography
             id="modal-modal-title"
             variant="h6"
