@@ -10,6 +10,7 @@ import FriendsPage from './mainPages/FriendsPage/FriendsPage';
 import MatchPage from './mainPages/MatchPage/MatchPage';
 import ProfilePage from './mainPages/ProfilePage/ProfilePage';
 import WelcomePage from './mainPages/WelcomePage/WelcomePage';
+import SettingsPage from './mainPages/SettingsPage/SettingsPage';
 import Header from './components/HeaderComponent/Header';
 import { Provider } from 'react-redux';
 import store from "./app/store"
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/profile/" element = {<Protected><ProfilePage/></Protected>}/>
           <Route path="/match/" element = {<Protected><MatchPage/></Protected>}/>
           <Route path="/movies/" element = {<Protected><MoviesPage/></Protected>}/>
+          <Route path="/settings/" element = {<Protected><SettingsPage/></Protected>}/>
         </Routes>
       </HomeContainer>
       <Routes>
