@@ -53,7 +53,7 @@ export default function ReviewForm({title, image, id}) {
     const [description, setDescription] = useState("");
     const [score, setScore] = useState(0);
     const [movie, setMovie] = useState(id);
-    const [spoiler,setSpoiler] = useState(true);
+    const [spoiler,setSpoiler] = useState(false);
 
     const handleSubmit = (e) => {
       setName(user.name);
