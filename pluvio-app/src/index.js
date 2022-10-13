@@ -60,12 +60,9 @@ const App = () => {
           <Route path="/profile/" element = {<Protected><ProfilePage/></Protected>}/>
           <Route path="/match/" element = {<Protected><MatchPage/></Protected>}/>
           <Route path="/movies/" element = {<Protected><MoviesPage/></Protected>}/>
+          <Route index element = {<Splash/>}/>
         </Routes>
       </HomeContainer>
-      <Routes>
-      <Route index element = {<Splash/>}/>
-      {/* <Route path="/splash/" element = {<Splash/>}/> */}
-      </Routes>
     </BrowserRouter>
     </PersistGate>
     </Provider>

@@ -59,7 +59,7 @@ const Movies = ({ data, page }) => {
       }
     }
     test().then(setDetails(det), setIsLoaded(true));
-  }, [page]);
+  }, []);
 
 
   return (
