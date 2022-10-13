@@ -3,6 +3,7 @@
   flex-direction: row;
   display: flex;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
 .texts
@@ -31,6 +32,10 @@
   gap: 5px;
 }
 
+.bottom p {
+  margin: 0;
+}
+
 @media screen and (max-width: 768px) {
   #test{
       display: none;
@@ -38,3 +43,4 @@
       padding: 0;
   }
 };
+

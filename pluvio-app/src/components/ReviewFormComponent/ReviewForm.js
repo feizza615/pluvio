@@ -48,12 +48,12 @@ export default function ReviewForm({title, image, id}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [name, setName] = useState("");
+    const user = useSelector(selectUser);
+    const [name, setName] = useState(user.name);
     const [description, setDescription] = useState("");
     const [score, setScore] = useState(0);
-    const [movie, setMovie] = useState("");
+    const [movie, setMovie] = useState(id);
     const [spoiler,setSpoiler] = useState(true);
-    const user = useSelector(selectUser);
 
     const handleSubmit = (e) => {
       setName(user.name);
@@ -88,7 +88,8 @@ export default function ReviewForm({title, image, id}) {
         .catch((error) => {
           error = new Error();
         });
-  
+      
+        handleClose()
     
   };
  

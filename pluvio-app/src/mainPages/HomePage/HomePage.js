@@ -1,5 +1,5 @@
-import { Container } from "@mui/material";
-import React, { Component } from "react";
+import { Container, Skeleton } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/HeaderComponent/Header";
 import MovieCard from "../../components/MovieCard";
 import NavigationBar from "../../components/NavigationBarComponent/NavigationBar";
@@ -13,6 +13,7 @@ import IntroBox from "../../components/IntroBoxComponent/IntroBox"
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const Text = styled.p`
   color: white;
@@ -29,7 +30,8 @@ const userdata = {
 }
 
 const HomePage = () => {
-    
+    const [addedUsers, setAddedUsers] = useState([])
+    const [reviews, setReviews] = useState([])
     const user = useSelector(selectUser);
     let navigate = useNavigate(); 
 
@@ -43,6 +45,22 @@ const HomePage = () => {
       userdata.username = user.name;
     }
 
+    useEffect(()=> {
+        axios
+        .get(`http://localhost:5001/users/friendsid/${user.name}`)
+        .then( response => {
+            setAddedUsers(response.data);
+            console.log(response.data)
+          }
+        )
+
+        axios
+        .get('http://localhost:5001/reviews')
+        .then( response => {
+          setReviews(response.data);
+        })
+    },[])
+
     return (
       <>
         <div style={{display: "flex", flexDirection: "column", gap: "40px"}}>
@@ -50,11 +68,7 @@ const HomePage = () => {
           <h2>
             Recent Activity
           </h2>
-          <ReviewBox />
-          <Spoiler>
-            <ReviewBox />
-          </Spoiler>
-          <ReviewBox />
+          {reviews ? reviews.filter(review => review.name === user.name || addedUsers.includes(review.name)).reverse().map((review, key) => <ReviewBox reviewdata={review}/>) : <Skeleton />}
         </div>
         <ProfileBox userdata={userdata} />
       </>

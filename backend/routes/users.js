@@ -51,11 +51,28 @@ router.post('/watchlist', (req, res, next) => {
     User.findOneAndUpdate({ name: name }, { $addToSet: { watchlist: movie } }, (err, user) => {
         if (err) return next(err);
 
-        if (!name) {
+        if (!user) {
             console.log("Cant find user");
         } else {
             // Added movie " + movie + " to " + name + "'s watchlist"
             console.log("Added");
+        }
+    })
+}
+)
+
+router.post('/friends', (req, res, next) => {
+    const name = req.body.name;
+    const friend = req.body.friend;
+
+    User.findOneAndUpdate({ name: name }, { $addToSet: { friends: friend } }, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Added " + friend);
         }
     })
 }
@@ -76,6 +93,27 @@ router.get('/watchlistid/:id', (req, res, next) => {
 
 }
 )
+
+router.get('/friendsid/:id', (req, res, next) => {
+    var id = req.params.id;
+
+    User.find({ name: id }, function(err, info) {
+        if (err)
+            res.send(err);
+
+        res.json(info[0].friends);
+        console.log(info[0].friends);
+    });
+
+
+}
+)
+
+router.get('/', (req,res) => {
+    User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json('Error: ' + err))
+}) 
 
 
 
