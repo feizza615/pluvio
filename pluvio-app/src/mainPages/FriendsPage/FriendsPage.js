@@ -6,6 +6,7 @@ import { selectUser } from '../../features/userSlice';
 import axios from 'axios';
 import { Avatar, Skeleton } from '@mui/material';
 import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const FriendBox = ({user, isAdded}) => {
   const currentUser = useSelector(selectUser);
@@ -49,6 +50,7 @@ export const FriendBox = ({user, isAdded}) => {
 const FriendsPage = () => {
   const [users, setUsers] = useState([])
   const [addedUsers, setAddedUsers] = useState([])
+  const [loading, setLoading] = useState(true)
   
   const currentUser = useSelector(selectUser);
 
@@ -66,6 +68,7 @@ const FriendsPage = () => {
       .then( response => {
           setAddedUsers(response.data);
           console.log(response.data)
+          setLoading(false)
         }
       )
   },[])
@@ -73,7 +76,7 @@ const FriendsPage = () => {
   return (
     <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
       <h1>Following</h1>
-      {addedUsers ? addedUsers.map((added, x)=> 
+      {!loading && users && addedUsers ? addedUsers.map((added, x)=> 
       <Card>
         <div style={{display: "flex", justifyContent:"space-between",alignItems: "center"}}>
           <div style={{display: "flex",alignItems: "center",gap:"20px"}}>
@@ -82,10 +85,10 @@ const FriendsPage = () => {
           </div>
           <ButtonComponent>VIEW</ButtonComponent>
         </div>
-      </Card>) : <Skeleton />}
+      </Card>) : <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
       <h1>Other Users</h1>
-      {users ? users.filter(user => user.name !== currentUser.name && !addedUsers.includes(user.name)).map((user, x) => 
-      <FriendBox key={x} user={user}/>) : <Skeleton />}
+      {!loading && users && addedUsers ? users.filter(user => user.name !== currentUser.name && !addedUsers.includes(user.name)).map((user, x) => 
+      <FriendBox key={x} user={user}/>) : <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
     </div>
   )
 }

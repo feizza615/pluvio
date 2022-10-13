@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const Text = styled.p`
   color: white;
@@ -33,6 +34,7 @@ const userdata = {
 const HomePage = () => {
     const [addedUsers, setAddedUsers] = useState([])
     const [reviews, setReviews] = useState([])
+    const [loading, setLoading] = useState(true)
     const user = useSelector(selectUser);
     let navigate = useNavigate(); 
 
@@ -60,6 +62,7 @@ const HomePage = () => {
         .get('http://localhost:5001/reviews')
         .then( response => {
           setReviews(response.data);
+          setLoading(false)
         })
     },[])
 
@@ -70,7 +73,8 @@ const HomePage = () => {
           <h2>
             Recent Activity
           </h2>
-          {reviews ? reviews.filter(review => review.name === user.name || addedUsers.includes(review.name)).reverse().map((review, key) => <ReviewBox reviewdata={review}/>) : <Skeleton />}
+          {!loading && addedUsers && reviews ? reviews.filter(review => review.name === user.name || addedUsers.includes(review.name)).reverse().map((review, key) => <ReviewBox reviewdata={review}/>) : 
+          <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
         </div>
         <ProfileBox userdata={userdata} />
       </>
