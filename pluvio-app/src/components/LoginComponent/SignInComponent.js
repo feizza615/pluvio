@@ -51,7 +51,6 @@ export default function LoginComponent() {
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useState(false);
   const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
