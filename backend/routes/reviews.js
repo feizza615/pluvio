@@ -57,5 +57,14 @@ router.get('/movie/:id',(req,res) =>{
 
 })
 
+router.get('/', (req,res) => {
+    Review.find()
+    .then(reviews => {
+        res.json(reviews)
+        console.log(reviews)
+    })
+    .catch(err => res.status(400).json('Error: ' + err))
+}) 
+
 
 module.exports = router;

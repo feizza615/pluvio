@@ -51,6 +51,7 @@ export default function Dropbox() {
         
         <div>
           <Button 
+            sx={{textTransform:"none"}}
             ref={anchorRef}
             id="composition-button"
             aria-controls={open ? 'composition-menu' : undefined}
