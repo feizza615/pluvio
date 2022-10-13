@@ -53,7 +53,7 @@ export default function ReviewForm({title, image, id}) {
     const [description, setDescription] = useState("");
     const [score, setScore] = useState(0);
     const [movie, setMovie] = useState(id);
-    const [spoiler,setSpoiler] = useState(true);
+    const [spoiler,setSpoiler] = useState(false);
 
     const handleSubmit = (e) => {
       setName(user.name);
@@ -118,7 +118,7 @@ export default function ReviewForm({title, image, id}) {
             </p>
             <FormGroup>
                 <div className="SpoilerArea">
-                    <FormControlLabel control={<Checkbox defaultChecked  onChange={(e) => setSpoiler(!spoiler)}/>} label={<p style={{fontWeight: "bold", fontSize: "20px", color: "white"}}>Spoiler</p>}/>
+                    <FormControlLabel control={<Checkbox sx={{color:"white"}} onChange={(e) => setSpoiler(!spoiler)}/>} label={<p style={{margin:0, fontWeight: "bold", fontSize: "20px", color: "white"}}>Spoiler</p>}/>
                 </div>
             </FormGroup>
             <br/>

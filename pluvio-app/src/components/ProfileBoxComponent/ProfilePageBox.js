@@ -11,10 +11,10 @@ export default function ProfilePageBox({userdata}) {
     var random = Math.floor(Math.random()*16777215).toString(16);
 
     return (
-        <Card style={{width: "auto", position: "relative"}} id="test">
+        <Card style={{width: "auto", position: "relative"}}>
             <div className="top">
                 {/* <img src={Picture} alt="profile" style={{background:"blue",borderRadius:"50%",padding: "0px 10px"}}/> */}
-                    <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+random,fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{userdata? userdata.username[0] : ""}</Avatar>
+                    <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+userdata.color,fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{userdata? userdata.username[0] : ""}</Avatar>
                     <div className="texts">
                         <p style={{ fontSize: "18px", }}>@{userdata ? userdata.username : "username"}</p>
                         <p style={{ color: "gray", fontSize: "14px", }}>Edit Profile</p>

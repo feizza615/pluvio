@@ -51,7 +51,6 @@ export default function LoginComponent() {
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useState(false);
   const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
@@ -83,7 +82,8 @@ export default function LoginComponent() {
 
         dispatch(loginFunc({
           name: name,
-          loggedIn: true
+          loggedIn: true,
+          color: Math.floor(Math.random()*16777215).toString(16),
         }));
 
         let path = "/home/"; 

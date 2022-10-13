@@ -1,14 +1,13 @@
-ul{
+.contentsList{
     list-style: none;
-    margin: 4px, 4px;
-    padding: 4px;
-   
+    width: 100%;
+    padding: 0;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap; 
 }
 
-ul.contentsList li{    
+.contentsList li{    
     display: inline;
     margin-left: 10px;
 }

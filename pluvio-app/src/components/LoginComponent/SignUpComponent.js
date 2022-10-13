@@ -63,19 +63,15 @@ export default function SignUpComponent() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useState(false);
+  const [error, setError] = useState(false);
+
 
   let navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
     e.preventDefault();
-    dispatch(loginFunc({
-      name: name,
-      email: email,
-      password:password,
-      loggedIn: true
-    }));
+
 
     const configuration = {
       method: "post",
@@ -89,14 +85,21 @@ export default function SignUpComponent() {
     // make a popup alert showing the "submitted" text
     axios(configuration)
       .then((result) => {
-        setLogin(true);
+        dispatch(loginFunc({
+          name: name,
+          email: email,
+          password:password,
+          loggedIn: true
+        }));
+        alert("Submited");
+        let path = "/home/"; 
+        navigate(path);
       })
       .catch((error) => {
         error = new Error();
+        setError(true)
       });
-    alert("Submited");
-    let path = "/home/"; 
-    navigate(path);
+
     
   }
   return (
@@ -114,6 +117,7 @@ export default function SignUpComponent() {
         }}
       >
         <Box sx={style}>
+        {error ? <p style={{color: "orange", margin: 0}}>Please check that all fields are correct.</p> : null}
           <Typography
             id="modal-modal-title"
             variant="h6"

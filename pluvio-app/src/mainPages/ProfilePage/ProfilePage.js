@@ -8,6 +8,7 @@ import ReviewForm from "../../components/ReviewFormComponent/ReviewForm";
 import axios from "axios";
 import { selectUser } from "../../features/userSlice";
 import Watchlist from "../../components/WatchlistComponent/WatchList"
+import { Skeleton } from "@mui/material";
 
 
 
@@ -25,6 +26,7 @@ const ProfilePage = () => {
     following: 20,
     followers: 1,
     reviews: 21,
+    color: user.color,
   };
   const configuration = {
     method: "get",
@@ -72,10 +74,10 @@ const ProfilePage = () => {
     <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
       <ProfilePageBox userdata={userdata} />
       {isLoaded2 ? details2.map((watchlist, index) =>
-      <Watchlist key={index} watchlistdata={watchlist}/>) : <h1></h1>}
+      <Watchlist key={index} watchlistdata={watchlist}/>) : <Skeleton sx={{ bgcolor: '#333', borderRadius: '45px' }} variant="rounded" height="200px"/>}
       {isLoaded && details ? details.map((review, index) =>
         <ReviewBox reviewdata={review} />
-      ) : <h1>Loading...</h1>}
+      ) : <Skeleton sx={{ bgcolor: '#333', borderRadius: '45px' }} variant="rounded" height="300px"/>}
 
 
     </div>
