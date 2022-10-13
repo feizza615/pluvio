@@ -25,6 +25,7 @@ const ProfilePage = () => {
     following: 20,
     followers: 1,
     reviews: 21,
+    color: user.color,
   };
   const configuration = {
     method: "get",

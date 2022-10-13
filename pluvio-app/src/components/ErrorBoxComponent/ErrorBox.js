@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../Card";
 import ButtonComponent from "../LoginComponent/ButtonComponent";
@@ -36,8 +37,8 @@ const ErrorBox = () => {
           
           <Text>Page Not Found</Text>
         
-          
-          <ButtonComponent>Go Home</ButtonComponent>
+          <NavLink to="/home">
+          <ButtonComponent>Go Home</ButtonComponent></NavLink>
         </Box>
       </Card>
     </>

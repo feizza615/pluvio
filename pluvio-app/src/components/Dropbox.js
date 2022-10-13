@@ -59,7 +59,7 @@ export default function Dropbox() {
             aria-haspopup="true"
             onClick={handleToggle}
           >
-          <Avatar sx={{bgcolor: '#'+random, fontFamily:"Poppins",fontWeight:800,position: "absolute"}}>{user? user.name[0] : ""}</Avatar>
+          <Avatar sx={{bgcolor: '#'+(user ? user.color: random), fontFamily:"Poppins",fontWeight:800}}>{user? user.name[0] : ""}</Avatar>
           </Button>
           <Popper
             open={open}

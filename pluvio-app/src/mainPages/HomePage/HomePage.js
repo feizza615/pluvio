@@ -26,7 +26,8 @@ const userdata = {
   username: "tamim",
   following: 20,
   followers: 1,
-  reviews: 21
+  reviews: 21,
+  color: Math.floor(Math.random()*16777215).toString(16),
 }
 
 const HomePage = () => {
@@ -43,6 +44,7 @@ const HomePage = () => {
     if (user) {
       console.log("here")
       userdata.username = user.name;
+      userdata.color = user.color;
     }
 
     useEffect(()=> {
