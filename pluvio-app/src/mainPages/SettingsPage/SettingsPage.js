@@ -57,7 +57,8 @@ export default class SettingsPage extends Component {
       </Card>
         </div>
         <br/>
-        <Card>Change Password
+        <div className='passwordBottomArea'>
+        <Card style={{height: "250px"}}>Change Password
         <br/><br/>
         <InputField placeholder='Old Password'></InputField>
         <br/><br/>
@@ -68,6 +69,10 @@ export default class SettingsPage extends Component {
         <br/><br/>
         </div>
         </Card>
+        <Card style={{height: "250px"}}><p style = {{textAlign: "center", fontWeight: "bold", fontSize: "20px"}}>Options</p>
+
+        </Card>
+        </div>
     </div>
       </>
     )
