@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { selectUser, loginFunc } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
 import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 export const InputField = styled.input`
   width: 100%;
@@ -27,32 +29,87 @@ export const InputField = styled.input`
   }
 `;
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "min(400px, 90%)",
+  height: "fit-content",
+  color: "white",
+  borderRadius: "15px",
+  bgcolor: "#0B0725",
+  boxSizing: "border-box",
+  boxShadow: 15,
+  p: 5,
 
+  "@media (max-width: 640px)": {},
+};
 
 export default function SettingsPage() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+
+  //UserName
   const [oldName, setOldName] = useState("");
-  const [oldEmail, setOldEmail] = useState("");
-  const [oldPassword, setOldPassword] = useState("");
   const [newName, setName] = useState("");
-  const [newEmail, setEmail] = useState("");
+
+
+  //Password
+  const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setPassword] = useState("");
-  const [error, setError] = useState(false);
+
+
+  //Email
+  const [oldEmail, setOldEmail] = useState("");
+  const [newEmail, setEmail] = useState("");
+
+
+  const [errorPopup, setError] = useState(false);
+  const [errorPopup2, setError2] = useState(false);
   const [details2, setDetails2] = useState(null)
 
-  let nameChange, emailChange, passwordChange;
+  const handleClose = () => setOpen(false);
+  const handleClose2 = () => setOpen2(false);
 
-  function onChangeRefresh(){
-      dispatch(loginFunc(null))
+  const handleOpen = () => setOpen(true);
+  const handleOpen2 = () => setOpen2(true);
+
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+
+
+  const handleSubmit = (e, type) => {
+    // prevent the form from refreshing the whole page
+    e.preventDefault();
+    if (type === "name") {
+      let verified = verifyData(type);
+      if (oldName === verified) {
+      setError(false)
+
+        handleOpen(true)
+
+      }
+      else {
+        setError(true)
+        handleOpen(true)
+      }
+    }
+
+    if (type === "email") {
+      let verified = verifyData(type);
+      if (oldEmail === verified) {
+        console.log("test1")
+      setError2(false)
+      handleOpen2(true)
+      }
+      else {
+        setError2(true)
+        handleOpen2(true)
+      }
+    }
   }
 
-  function onChangeLogin(){
-    dispatch(loginFunc({
-      name: newName,
-      loggedIn: true,
-    }));
-  }
 
   function verifyData(type) {
     const configuration = {
@@ -74,11 +131,50 @@ export default function SettingsPage() {
         return details2[0].password;
       case "email":
         return details2[0].email;
-    }    
+    }
   }
 
 
-  function handleName(){
+
+  function onChangeRefresh() {
+    dispatch(loginFunc(null))
+  }
+
+  function onChangeLogin(type) {
+
+    if(type === "user"){
+      dispatch(loginFunc({
+      name: newName,
+      loggedIn: true,
+    }));
+    }
+
+    else if (type === "email"){
+      dispatch(loginFunc({
+        name: user.name,
+        loggedIn: true,
+      }));
+    }
+    
+  }
+
+
+
+
+/* 
+---------------------------User handling---------------------------
+*/
+  function runUser() {
+    console.log("Matched name")
+    handleName();
+
+    onChangeRefresh();
+    setTimeout(() => {
+      onChangeLogin("user");
+    }, 200)
+  }
+
+  function handleName() {
     const configurationName = {
       method: "post",
       url: "http://localhost:5001/users/modify/name",
@@ -96,8 +192,24 @@ export default function SettingsPage() {
         error = new Error();
       });
   }
+/* 
+---------------------------User handling---------------------------
+*/
 
-  function handleEmail(){
+/* 
+---------------------------Email handling---------------------------
+*/
+function runEmail() {
+  console.log("Matched name")
+  handleEmail();
+
+  onChangeRefresh();
+  setTimeout(() => {
+    onChangeLogin("email");
+  }, 200)
+}
+
+  function handleEmail() {
     const configurationEmail = {
       method: "post",
       url: "http://localhost:5001/users/modify/email",
@@ -116,46 +228,10 @@ export default function SettingsPage() {
       });
   }
 
-  const handleSubmit = (e, type) => {
-    // prevent the form from refreshing the whole page
-    e.preventDefault();
-console.log(type);
-    if (type === "name") {
-    let verified = verifyData("name");
-      if (oldName === verified) {
-        console.log("Matched name")
-        handleName();
-        alert("User successfully changed")
-        
-        onChangeRefresh();
-        setTimeout(() => {
-          onChangeLogin();          
-         }, 200)
-      }
-      else {
-        alert("Not a matching name")
-      }
-    }
 
-    if (type === "email") {
-      let verified = verifyData("email");
-        if (oldEmail === verified) {
-          console.log("Matched Email")
-          handleEmail();
-
-          alert("Email successfully changed")
-        
-        onChangeRefresh();
-        setTimeout(() => {
-          onChangeLogin();          
-         }, 200)
-        }
-        else {
-          alert("Not a matching email");
-        }
-      }
-  }
-
+/* 
+---------------------------Email handling---------------------------
+*/
 
   return (
     <>
@@ -174,6 +250,37 @@ console.log(type);
             <br /><br />
             <div style={{ float: "right" }}>
               <ButtonComponent onClick={(e) => handleSubmit(e, "email")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
+              <Modal
+                open={open2}
+                onClose={handleClose2}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{
+                  ".MuiBackdrop-root": {
+                    backdropFilter: "blur(10px)",
+                  },
+                }}
+              >
+                <Box sx={style}>
+                  {errorPopup2 ? <p style={{ color: "orange", margin: 0 }}>Email does not match</p> : <><Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontFamily: "Poppins",
+                    }}
+                  >
+                    Do you really want to change your email?
+                  </Typography><br></br>
+                    {/* onClick={(e) => handleSubmit(e, "name")} */}
+                    <ButtonComponent onClick={runEmail} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
+                    <ButtonComponent onClick={handleClose2} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
+                  </>}
+
+                </Box>
+              </Modal>
             </div>
           </Card>
           <Card>Change User
@@ -184,6 +291,39 @@ console.log(type);
             <br /><br />
             <div style={{ float: "right" }}>
               <ButtonComponent onClick={(e) => handleSubmit(e, "name")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{
+                  ".MuiBackdrop-root": {
+                    backdropFilter: "blur(10px)",
+                  },
+                }}
+              >
+                <Box sx={style}>
+                  {errorPopup ? <p style={{ color: "orange", margin: 0 }}>User does not match</p> : <><Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontFamily: "Poppins",
+                    }}
+                  >
+                    Do you really want to change your user?
+                  </Typography><br></br>
+                    {/* onClick={(e) => handleSubmit(e, "name")} */}
+                    <ButtonComponent onClick={runUser} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
+                    <ButtonComponent onClick={handleClose} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
+                  </>}
+
+                </Box>
+              </Modal>
+
+
             </div>
           </Card>
         </div>
