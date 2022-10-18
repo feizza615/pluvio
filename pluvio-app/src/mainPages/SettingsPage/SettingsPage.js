@@ -85,7 +85,7 @@ export default function SettingsPage() {
     if (type === "name") {
       let verified = verifyData(type);
       if (oldName === verified) {
-      setError(false)
+        setError(false)
 
         handleOpen(true)
 
@@ -100,8 +100,8 @@ export default function SettingsPage() {
       let verified = verifyData(type);
       if (oldEmail === verified) {
         console.log("test1")
-      setError2(false)
-      handleOpen2(true)
+        setError2(false)
+        handleOpen2(true)
       }
       else {
         setError2(true)
@@ -142,28 +142,28 @@ export default function SettingsPage() {
 
   function onChangeLogin(type) {
 
-    if(type === "user"){
+    if (type === "user") {
       dispatch(loginFunc({
-      name: newName,
-      loggedIn: true,
-    }));
+        name: newName,
+        loggedIn: true,
+      }));
     }
 
-    else if (type === "email"){
+    else if (type === "email") {
       dispatch(loginFunc({
         name: user.name,
         loggedIn: true,
       }));
     }
-    
+
   }
 
 
 
 
-/* 
----------------------------User handling---------------------------
-*/
+  /* 
+  ---------------------------User handling---------------------------
+  */
   function runUser() {
     console.log("Matched name")
     handleName();
@@ -192,22 +192,22 @@ export default function SettingsPage() {
         error = new Error();
       });
   }
-/* 
----------------------------User handling---------------------------
-*/
+  /* 
+  ---------------------------User handling---------------------------
+  */
 
-/* 
----------------------------Email handling---------------------------
-*/
-function runEmail() {
-  console.log("Matched name")
-  handleEmail();
+  /* 
+  ---------------------------Email handling---------------------------
+  */
+  function runEmail() {
+    console.log("Matched name")
+    handleEmail();
 
-  onChangeRefresh();
-  setTimeout(() => {
-    onChangeLogin("email");
-  }, 200)
-}
+    onChangeRefresh();
+    setTimeout(() => {
+      onChangeLogin("email");
+    }, 200)
+  }
 
   function handleEmail() {
     const configurationEmail = {
@@ -229,9 +229,9 @@ function runEmail() {
   }
 
 
-/* 
----------------------------Email handling---------------------------
-*/
+  /* 
+  ---------------------------Email handling---------------------------
+  */
 
   return (
     <>
