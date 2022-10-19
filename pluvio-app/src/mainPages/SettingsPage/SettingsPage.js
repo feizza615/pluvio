@@ -3,6 +3,7 @@ import Card from '../../components/Card';
 import styled from "styled-components";
 import "./SettingsPage.css"
 import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
+import { Switch } from '@mui/material';
 
 export const InputField = styled.input`
   width: 100%;
@@ -70,7 +71,30 @@ export default class SettingsPage extends Component {
         </div>
         </Card>
         <Card style={{height: "250px"}}><p style = {{textAlign: "center", fontWeight: "bold", fontSize: "20px"}}>Options</p>
-
+        <div style = {{display: "flex",}}>
+            <p style = {{fontSize: "20px", }}>Light Mode</p>
+            <div style = {{marginTop: "-0.25em"}}>
+                <Switch/>
+            </div>
+        </div>
+        <div style = {{display: "flex",}}>
+            <p style = {{fontSize: "20px", }}>Test</p>
+            <div style = {{marginTop: "-0.25em"}}>
+                <Switch/>
+            </div>
+        </div>
+        <div style = {{display: "flex",}}>
+            <p style = {{fontSize: "20px", }}>Test</p>
+            <div style = {{marginTop: "-0.25em"}}>
+                <Switch/>
+            </div>
+        </div>
+        <div style = {{display: "flex",}}>
+            <p style = {{fontSize: "20px", }}>Test</p>
+            <div style = {{marginTop: "-0.25em"}}>
+                <Switch/>
+            </div>
+        </div>
         </Card>
         </div>
     </div>
