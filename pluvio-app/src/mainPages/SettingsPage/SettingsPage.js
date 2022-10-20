@@ -49,34 +49,37 @@ const style = {
 export default function SettingsPage() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const [details2, setDetails2] = useState(null)
 
-  //UserName
+
+  /* ------------- User ------------- */
   const [oldName, setOldName] = useState("");
   const [newName, setName] = useState("");
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [errorPopup, setError] = useState(false);
+  /* ------------- User ------------- */
 
-  //Password
+
+  /* ------------- Password (WIP) ------------- */
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setPassword] = useState("");
+  /* ------------- Password (WIP) ------------- */
 
 
-  //Email
+  /* ------------- Email ------------- */
   const [oldEmail, setOldEmail] = useState("");
   const [newEmail, setEmail] = useState("");
 
-
-  const [errorPopup, setError] = useState(false);
-  const [errorPopup2, setError2] = useState(false);
-  const [details2, setDetails2] = useState(null)
-
-  const handleClose = () => setOpen(false);
-  const handleClose2 = () => setOpen2(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleOpen2 = () => setOpen2(true);
-
-  const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
+  const [errorPopup2, setError2] = useState(false);
+  /* ------------- Email ------------- */
+
+
 
 
   const handleSubmit = (e, type) => {
@@ -85,13 +88,11 @@ export default function SettingsPage() {
     if (type === "name") {
       let verified = verifyData(type);
       if (oldName === verified) {
-        setError(false)
-
+        setError(false)   //No error popup since old name matches
         handleOpen(true)
-
       }
       else {
-        setError(true)
+        setError(true)   //error popup since old name doesn't match
         handleOpen(true)
       }
     }
@@ -99,18 +100,18 @@ export default function SettingsPage() {
     if (type === "email") {
       let verified = verifyData(type);
       if (oldEmail === verified) {
-        console.log("test1")
-        setError2(false)
+        setError2(false)   //No error popup since old email matches
         handleOpen2(true)
       }
       else {
-        setError2(true)
+        setError2(true)   //error popup since old email doesn't match
         handleOpen2(true)
       }
     }
   }
 
 
+  /* Verify the user; return proper data */
   function verifyData(type) {
     const configuration = {
       method: "get",
@@ -135,35 +136,30 @@ export default function SettingsPage() {
   }
 
 
-
+  /*-------- Refresh Profile --------*/
   function onChangeRefresh() {
     dispatch(loginFunc(null))
   }
 
   function onChangeLogin(type) {
-
     if (type === "user") {
       dispatch(loginFunc({
         name: newName,
         loggedIn: true,
       }));
     }
-
     else if (type === "email") {
       dispatch(loginFunc({
         name: user.name,
         loggedIn: true,
       }));
     }
-
   }
+  /*-------- Refresh Profile --------*/
 
 
 
-
-  /* 
-  ---------------------------User handling---------------------------
-  */
+  /*---------------------------User handling---------------------------*/
   function runUser() {
     console.log("Matched name")
     handleName();
@@ -192,13 +188,11 @@ export default function SettingsPage() {
         error = new Error();
       });
   }
-  /* 
-  ---------------------------User handling---------------------------
-  */
+  /*---------------------------User handling---------------------------*/
 
-  /* 
-  ---------------------------Email handling---------------------------
-  */
+
+
+  /*---------------------------Email handling---------------------------*/
   function runEmail() {
     console.log("Matched name")
     handleEmail();
@@ -227,11 +221,8 @@ export default function SettingsPage() {
         error = new Error();
       });
   }
+  /*---------------------------Email handling---------------------------*/
 
-
-  /* 
-  ---------------------------Email handling---------------------------
-  */
 
   return (
     <>
