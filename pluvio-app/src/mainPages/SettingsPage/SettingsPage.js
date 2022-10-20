@@ -18,7 +18,7 @@ export const InputField = styled.input`
 
   &:focus {
     box-shadow: 5px 5px 0px 2px #4930ff;
-    transform: translateY(5px);
+    transform: translateY(-5px);
   }
 `;
 

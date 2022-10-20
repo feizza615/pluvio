@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { config } from "../../config";
 import MovieCard from "../../components/MovieCard";
-import { Chip, Pagination, Rating } from "@mui/material";
+import { Chip, CircularProgress, LinearProgress, Pagination, Rating } from "@mui/material";
 import Watchlist from "../../components/WatchlistComponent/WatchList";
 import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 import styled from "styled-components";
@@ -33,9 +33,6 @@ export const InputField = styled.input`
 const Movies = ({ data, page }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [details, setDetails] = useState(null);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   
 
   let results = data.results;
@@ -43,10 +40,10 @@ const Movies = ({ data, page }) => {
   useEffect(() => {
     console.log("...");
     let det = [];
+    setIsLoaded(false);
     async function test() {
-      setIsLoaded(false);
       for (var i = 0; i < results.length; i++) {
-        axios
+        await axios
           .get(
             "https://api.themoviedb.org/3/movie/" +
               results[i].id +
@@ -57,9 +54,13 @@ const Movies = ({ data, page }) => {
             det.push(JSON.parse(JSON.stringify(response.data)));
           });
       }
+      setDetails(det)
     }
-    test().then(setDetails(det), setIsLoaded(true));
-  }, [page]);
+    test().then(
+      console.log(data.movie),
+      setIsLoaded(true)
+    );
+  }, [data]);
 
 
   return (
@@ -68,9 +69,9 @@ const Movies = ({ data, page }) => {
         {isLoaded && details ? (
           details.map((movie, x) => (
           <>
-              <div onClick={handleOpen} >
+              <div>
               <MovieCard
-                key={movie.title}
+                key={x}
                 id={movie.id}
                 title={movie.title}
                 description={movie.overview}
@@ -88,7 +89,7 @@ const Movies = ({ data, page }) => {
       
           ))
         ) : (
-          <h1>Loading...</h1>
+          <LinearProgress /> 
         )
         
         
@@ -106,8 +107,11 @@ export default function MoviesPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [movie, setMovie] = useState("spiderman");
+  const [submit, setSubmit] = useState(true);
 
   React.useEffect(() => {
+    setLoading(true);
+    console.log(movie, page)
     axios
       .get(
         baseURL +
@@ -119,11 +123,11 @@ export default function MoviesPage() {
       )
       .then((response) => {
         setPost(JSON.parse(JSON.stringify(response.data)));
-        console.log("reloading.." + page);
-        setTotalPages(post.total_pages);
         setLoading(false);
-      });
-  }, [page, movie]);
+        console.log(post);
+
+      })
+  }, [page,movie]);
 
   const handleChange = (e, v) => {
     e.preventDefault();
@@ -133,7 +137,9 @@ export default function MoviesPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(movie);
+    setSubmit(!submit);
+    setPage(1);
+    console.log(page,movie);
   };
 
   return (
@@ -164,9 +170,9 @@ export default function MoviesPage() {
           }}
           page={page}
           onChange={handleChange}
-          count={totalPages}
+          count={loading ? totalPages : post.total_pages}
         />
-        {loading ? <h1>Loading...</h1> : <Movies data={post} page={page} />}
+        {loading ? <LinearProgress />  : <Movies data={post} page={page} />}
         <Pagination
           sx={{
             button: { color: "white" },
@@ -174,7 +180,7 @@ export default function MoviesPage() {
           }}
           page={page}
           onChange={handleChange}
-          count={totalPages}
+          count={loading ? totalPages : post.total_pages}
         />
       </div>
     </>
