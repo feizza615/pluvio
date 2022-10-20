@@ -25,6 +25,7 @@ export const InputField = styled.input`
 
 
 
+
 export default class SettingsPage extends Component {
   render() {
     return (
