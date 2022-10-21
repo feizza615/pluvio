@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { Switch } from '@mui/material';
 
 export const InputField = styled.input`
   width: 100%;
@@ -25,7 +26,7 @@ export const InputField = styled.input`
 
   &:focus {
     box-shadow: 5px 5px 0px 2px #4930ff;
-    transform: translateY(5px);
+    transform: translateY(-5px);
   }
 `;
 
@@ -45,6 +46,7 @@ const style = {
 
   "@media (max-width: 640px)": {},
 };
+
 
 export default function SettingsPage() {
   const dispatch = useDispatch();
@@ -231,6 +233,7 @@ export default function SettingsPage() {
         <br />
         <Card>Profile Box</Card>
         <br />
+
         <div className='changeUser'>
           <Card>Change Email
             <br /><br />
@@ -318,20 +321,47 @@ export default function SettingsPage() {
             </div>
           </Card>
         </div>
-        <br />
-        <Card>Change Password
-          <br /><br />
-          <InputField placeholder='Old Password'></InputField>
-          <br /><br />
-          <InputField placeholder='New Password' onChange={(e) => setPassword(e.target.value)} ></InputField>
-          <br /><br />
-          <div style={{ float: "right" }}>
-            <ButtonComponent style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
-            <br /><br />
-          </div>
+        <br/>
+        <div className='passwordBottomArea'>
+        <Card style={{height: "250px"}}>Change Password
+        <br/><br/>
+        <InputField placeholder='Old Password'></InputField>
+        <br/><br/>
+        <InputField placeholder='New Password' onChange={(e) => setPassword(e.target.value)} ></InputField>
+        <br/><br/>
+        <div style={{float: "right"}}>
+        <ButtonComponent style = {{width: "115px" , height: "40px", fontSize: "17px"}}>Confirm</ButtonComponent>
+        <br/><br/>
+        </div>
         </Card>
-      </div>
-    </>
-  )
-
-}
+        <Card style={{height: "250px"}}><p style = {{textAlign: "center", fontWeight: "bold", fontSize: "20px"}}>Options</p>
+        <div style = {{display: "flex",}}>
+            <p style = {{fontSize: "20px", }}>Light Mode</p>
+            <div style = {{marginTop: "-0.25em"}}>
+                <Switch/>
+            </div>
+        </div>
+        <div style = {{display: "flex",}}>
+            <p style = {{fontSize: "20px", }}>Test</p>
+            <div style = {{marginTop: "-0.25em"}}>
+                <Switch/>
+            </div>
+        </div>
+        <div style = {{display: "flex",}}>
+            <p style = {{fontSize: "20px", }}>Test</p>
+            <div style = {{marginTop: "-0.25em"}}>
+                <Switch/>
+            </div>
+        </div>
+        <div style = {{display: "flex",}}>
+            <p style = {{fontSize: "20px", }}>Test</p>
+            <div style = {{marginTop: "-0.25em"}}>
+                <Switch/>
+            </div>
+        </div>
+        </Card>
+        </div>
+    </div>
+      </>
+    )
+  }

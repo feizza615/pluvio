@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Avatar, Button, ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuList, Stack } from "@mui/material";
 import { useSelector } from 'react-redux';
 import { selectUser } from "../features/userSlice";
+import { NavLink } from "react-router-dom";
 
 
 export default function Dropbox() {
@@ -85,9 +86,9 @@ export default function Dropbox() {
                       aria-labelledby="composition-button"
                       onKeyDown={handleListKeyDown}
                     >
-                      <MenuItem sx ={{fontSize: "20px", color: "white",}} onClick={handleClose}>Profile</MenuItem>
-                      <MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}> Setting</MenuItem>
-                      <MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}>Logout</MenuItem>
+                      <NavLink style={{textDecoration: "None"}} to="/profile"><MenuItem sx ={{fontSize: "20px", color: "white",}} onClick={handleClose}>Profile</MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/settings"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}> Setting</MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/welcome"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}>Logout</MenuItem></NavLink>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>

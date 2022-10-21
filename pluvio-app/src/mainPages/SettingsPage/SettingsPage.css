@@ -10,4 +10,15 @@
     width: 100%;
 }
 
+.passwordBottomArea
+{
+    display: flex;
+    gap: 20px;
+    width: auto;
+}
+
+.passwordBottomArea>*
+{
+    width: 100%;
+}
 
