@@ -36,7 +36,7 @@ router.get('/user/:id',(req,res) =>{
             res.send(err);
 
         res.json(something);
-        console.log(something);
+        // console.log(something);
     });
 
 
@@ -51,7 +51,7 @@ router.get('/movie/:id',(req,res) =>{
             res.send(err);
 
         res.json(something);
-        console.log(something);
+        // console.log(something);
     });
 
 
@@ -61,10 +61,27 @@ router.get('/', (req,res) => {
     Review.find()
     .then(reviews => {
         res.json(reviews)
-        console.log(reviews)
+        // console.log(reviews)
     })
     .catch(err => res.status(400).json('Error: ' + err))
 }) 
 
+router.post('/modify/name', (req,res) => {
+    const newName = req.body.newName;
+    const oldName = req.body.oldName;
+    console.log("Attempting to change " + oldName + " to " + newName)
+    Review.updateOne({ name: oldName }, {$set: { name: newName}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Updated review name");
+        }
+    })
+
+  
+}) 
 
 module.exports = router;

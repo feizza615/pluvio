@@ -19,12 +19,14 @@ import { loginFunc } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
+import { useNavigate, Navigate } from 'react-router-dom'
 
 const NavigationBar = () => {
   const [flip, setFlip] = useState(false)
   const [style, setStyle] = useState("")
   const [click, setIsClicked] = useState(false)
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleClick = () => {
     setFlip(!flip);
@@ -35,6 +37,9 @@ const NavigationBar = () => {
       console.log(value)
       if(value==="Logout"){
         dispatch(loginFunc(null))
+        
+         window.location.reload(false);         
+
       }
       setIsClicked(!click)
   }

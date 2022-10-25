@@ -129,6 +129,17 @@ router.post('/modify/name', (req,res) => {
             console.log("Updated name");
         }
     })
+
+    User.updateMany({ friends: oldName }, {$set: { friends: newName}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Updated name");
+        }
+    })
 }) 
 
 router.post('/modify/email', (req,res) => {

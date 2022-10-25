@@ -1,5 +1,5 @@
 import {Box, Modal, Button, FormGroup, FormControlLabel, Checkbox} from '@mui/material';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonComponent from "../LoginComponent/ButtonComponent";
 import styled from "styled-components";
 import "./ReviewForm.css";
@@ -43,6 +43,11 @@ const style = {
     p: 5,
   };
 
+  let socket;
+  let users;
+function callSocket(sockets){
+  socket = sockets;
+}
 
 export default function ReviewForm({title, image, id}) {
     const [open, setOpen] = React.useState(false);
@@ -54,7 +59,13 @@ export default function ReviewForm({title, image, id}) {
     const [score, setScore] = useState(0);
     const [movie, setMovie] = useState(id);
     const [spoiler,setSpoiler] = useState(false);
-
+    const [followers, setFollowers] = useState(null)
+    const [addedUsers, setAddedUsers] = useState([])
+    let size;
+    let type = 1;
+    // useEffect(()=> {
+      
+  // },[])
     const handleSubmit = (e) => {
       setName(user.name);
       setMovie(id);
@@ -63,6 +74,12 @@ export default function ReviewForm({title, image, id}) {
       // prevent the form from refreshing the whole page
       e.preventDefault();
       console.log(name, description, score, movie, spoiler, image);
+
+   
+      const configurationfollowers = {
+        method: "get",
+        url: "http://localhost:5001/users/followers/"+user.name,       
+      };
 
       const configuration = {
         method: "post",
@@ -77,6 +94,29 @@ export default function ReviewForm({title, image, id}) {
         },
       };
       // make a popup alert showing the "submitted" text
+      axios(configurationfollowers)
+      .then((response) => {
+        console.log("Reviews2: " + response.data.length)
+        for(let i = 0; i < response.data.length; i++){
+          // console.log("Setting follower: " + response.data[i].name)
+          // det.push(response.data[i].name)
+          console.log("Sending to " + response.data[i].name)
+          socket.emit("sendNotification", {
+            senderName: name,
+            receiverName: response.data[i].name,
+            type: 2,
+          })
+        }
+        // for(let i = 0; i < det.length; i++){
+          // console.log("Sending to " + det[i])
+        // socket.emit("sendNotification", {
+        //   senderName: name,
+        //   receiverName: det[i], 
+        // })
+      // }
+        }
+      )
+        
       axios(configuration)
   
         .then((result) => 
@@ -88,7 +128,7 @@ export default function ReviewForm({title, image, id}) {
         .catch((error) => {
           error = new Error();
         });
-      
+     
         handleClose()
     
   };
@@ -128,3 +168,8 @@ export default function ReviewForm({title, image, id}) {
       </div>
     );
     }
+
+  export const ReviewNotify=({socket})=> {
+    callSocket(socket);
+    return (<></>)
+  }

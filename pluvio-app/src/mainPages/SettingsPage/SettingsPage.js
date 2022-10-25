@@ -169,6 +169,7 @@ export default function SettingsPage() {
     onChangeRefresh();
     setTimeout(() => {
       onChangeLogin("user");
+      window.location.reload(false);
     }, 200)
   }
 
@@ -181,7 +182,24 @@ export default function SettingsPage() {
         oldName,
       },
     };
+      const configurationReviewName = {
+        method: "post",
+        url: "http://localhost:5001/reviews/modify/name",
+        data: {
+          newName,
+          oldName,
+        },
+    };
     axios(configurationName)
+      .then((result) => {
+        console.log(result);
+        console.log(user)
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+      
+      axios(configurationReviewName)
       .then((result) => {
         console.log(result);
         console.log(user)
