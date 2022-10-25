@@ -4,6 +4,7 @@ import styled from "styled-components";
 import "./SettingsPage.css"
 import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
 import { Switch } from '@mui/material';
+import ProfilePageBox from '../../components/ProfileBoxComponent/ProfilePageBox';
 
 export const InputField = styled.input`
   width: 100%;
