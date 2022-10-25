@@ -103,7 +103,7 @@ router.get('/watchlistid/:id', (req, res, next) => {
             res.send(err);
 
         res.json(info);
-        console.log(info);
+        // console.log(info);
     });
 
 
@@ -118,7 +118,7 @@ router.get('/friendsid/:id', (req, res, next) => {
             res.send(err);
 
         res.json(info[0].friends);
-        console.log(info[0].friends);
+        // console.log(info[0].friends);
     });
 
 
@@ -146,8 +146,53 @@ router.get('/', (req,res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 }) 
 
+router.post('/modify/name', (req,res) => {
+    const newName = req.body.newName;
+    const oldName = req.body.oldName;
+    console.log(newName)
+    User.updateOne({ name: oldName }, {$set: { name: newName}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Updated name");
+        }
+    })
+}) 
+
+router.post('/modify/email', (req,res) => {
+    const newEmail = req.body.newEmail;
+    const oldEmail = req.body.oldEmail;
+    console.log(newEmail)
+    User.updateOne({ email: oldEmail }, {$set: { email: newEmail}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Updated Email");
+        }
+    })
+}) 
 
 
+router.get('/verify/:id', (req, res, next) => {
+    var id = req.params.id;
+
+    User.find({ name: id }, function(err, info) {
+        if (err)
+            res.send(err);
+
+        res.json(info);
+        // console.log(info);
+    });
+
+
+}
+)
 module.exports = router;
 
 
