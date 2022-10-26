@@ -8,7 +8,6 @@ import axios from "axios";
  
 const style = {
    fontSize: "15px",
-   float: "left",
    marginTop: "10px",
    marginLeft: "10px"
 }
@@ -52,7 +51,7 @@ const Watchlist = (props) => {
  
    return (
        <>
-           <div >
+           <div style={{display:"flex",justifyContent:"space-between"}}>
                <ButtonComponent style={style} onClick={(e) => handleClick(e)}> {buttonText} </ButtonComponent>
                <ReviewForm id={props.id} title={props.title} image={props.image}/>
            </div>
