@@ -78,6 +78,22 @@ router.post('/friends', (req, res, next) => {
 }
 )
 
+router.post('/about', (req, res, next) => {
+    const name = req.body.name;
+    const about = req.body.about;
+
+    User.findOneAndUpdate({ name: name }, { $addToSet: { about: about } }, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            
+            console.log("Added");
+        }
+    })
+}
+)
 
 router.get('/watchlistid/:id', (req, res, next) => {
     var id = req.params.id;
@@ -103,6 +119,21 @@ router.get('/friendsid/:id', (req, res, next) => {
 
         res.json(info[0].friends);
         // console.log(info[0].friends);
+    });
+
+
+}
+)
+
+router.get('/aboutid/:id', (req, res, next) => {
+    var id = req.params.id;
+
+    User.find({ name: id }, function(err, info) {
+        if (err)
+            res.send(err);
+
+        res.json(info[0].about);
+        console.log(info[0].about);
     });
 
 

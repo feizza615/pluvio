@@ -11,6 +11,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Switch } from '@mui/material';
+import ProfilePageBox from '../../components/ProfileBoxComponent/ProfilePageBox';
 
 export const InputField = styled.input`
   width: 100%;
@@ -225,13 +226,21 @@ export default function SettingsPage() {
   }
   /*---------------------------Email handling---------------------------*/
 
+  //for pulling about me
+  const userdata = {
+    username: user.name,
+    following: 20,
+    followers: 1,
+    reviews: 21,
+    color: user.color,
+  };
 
   return (
     <>
       <div>
         <p>Settings</p>
         <br />
-        <Card>Profile Box</Card>
+        <ProfilePageBox userdata={userdata}/> 
         <br />
 
         <div className='changeUser'>
