@@ -111,7 +111,7 @@ const MovieCard = ({
   }
   return (
     <>
-      <Card style={{ width: "auto", height: "100%" }} >
+      <Card style={{ width: "auto"}} >
         <RowContainer  >
           {image ? (
             <img
