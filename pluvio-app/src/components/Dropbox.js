@@ -4,14 +4,22 @@ import { Avatar, Button, ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuL
 import { useSelector } from 'react-redux';
 import { selectUser } from "../features/userSlice";
 import { NavLink } from "react-router-dom";
+import { loginFunc } from "../features/userSlice";
+import { useDispatch } from "react-redux";
 
 
 export default function Dropbox() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const user = useSelector(selectUser);
+    const dispatch = useDispatch();
 
-  
+    const onClickHandler = (event) =>
+    {
+      dispatch(loginFunc(null));
+      setOpen(false);
+    };
+
     const handleToggle = () => {
       setOpen((prevOpen) => !prevOpen);
     };
@@ -45,6 +53,7 @@ export default function Dropbox() {
 
     var random = Math.floor(Math.random()*16777215).toString(16);
 
+    
 
   
     return (
@@ -88,7 +97,7 @@ export default function Dropbox() {
                     >
                       <NavLink style={{textDecoration: "None"}} to="/profile"><MenuItem sx ={{fontSize: "20px", color: "white",}} onClick={handleClose}>Profile</MenuItem></NavLink>
                       <NavLink style={{textDecoration: "None"}} to="/settings"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}> Setting</MenuItem></NavLink>
-                      <NavLink style={{textDecoration: "None"}} to="/welcome"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}>Logout</MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/welcome"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={onClickHandler}>Logout</MenuItem></NavLink>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
