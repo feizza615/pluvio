@@ -5,6 +5,7 @@ import Card from "../Card.js"
 import balls from "../IntroBoxComponent/balls.png";
 import { Avatar } from "@mui/material";
 import axios from 'axios';
+import Tag from '../TagComponent/Tag'
 
 export default function ProfilePageBox({userdata}) {
  
@@ -39,8 +40,9 @@ export default function ProfilePageBox({userdata}) {
                         <div><p>Review</p> <p>{userdata ? userdata.reviews : "0"}</p></div>
                 </div>
             </div> 
+            <Tag text = "About Me"/>
             <p> {/*Connect this w/user in database so it can be pulled in settings profilepage too*/}
-                About Me: {about}
+                {about}
             </p>
       </Card>
     );

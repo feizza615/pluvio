@@ -226,13 +226,21 @@ export default function SettingsPage() {
   }
   /*---------------------------Email handling---------------------------*/
 
+  //for pulling about me
+  const userdata = {
+    username: user.name,
+    following: 20,
+    followers: 1,
+    reviews: 21,
+    color: user.color,
+  };
 
   return (
     <>
       <div>
         <p>Settings</p>
         <br />
-        <Card>Profile Box</Card>
+        <ProfilePageBox userdata={userdata}/> 
         <br />
 
         <div className='changeUser'>
