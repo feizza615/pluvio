@@ -94,7 +94,7 @@ export default function ReviewForm({title, image, id}) {
   };
  
     return (
-        <div style={{float:"right"}}>
+        <div>
         <Button onClick={handleOpen}>
           <div className="circle"><CreateIcon sx={{ fontSize: 55 ,paddingTop:1}}/></div>
         </Button>
