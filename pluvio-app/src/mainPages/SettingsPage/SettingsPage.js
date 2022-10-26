@@ -323,7 +323,7 @@ export default function SettingsPage() {
         </div>
         <br/>
         <div className='passwordBottomArea'>
-        <Card style={{height: "250px"}}>Change Password
+        <Card style={{height: "fit-content"}}>Change Password
         <br/><br/>
         <InputField placeholder='Old Password'></InputField>
         <br/><br/>
@@ -331,34 +331,17 @@ export default function SettingsPage() {
         <br/><br/>
         <div style={{float: "right"}}>
         <ButtonComponent style = {{width: "115px" , height: "40px", fontSize: "17px"}}>Confirm</ButtonComponent>
-        <br/><br/>
         </div>
         </Card>
-        <Card style={{height: "250px"}}><p style = {{textAlign: "center", fontWeight: "bold", fontSize: "20px"}}>Options</p>
+        <Card style={{height: "fit-content"}}>Options
+        <br/><br/>
         <div style = {{display: "flex",}}>
             <p style = {{fontSize: "20px", }}>Light Mode</p>
             <div style = {{marginTop: "-0.25em"}}>
                 <Switch/>
             </div>
         </div>
-        <div style = {{display: "flex",}}>
-            <p style = {{fontSize: "20px", }}>Test</p>
-            <div style = {{marginTop: "-0.25em"}}>
-                <Switch/>
-            </div>
-        </div>
-        <div style = {{display: "flex",}}>
-            <p style = {{fontSize: "20px", }}>Test</p>
-            <div style = {{marginTop: "-0.25em"}}>
-                <Switch/>
-            </div>
-        </div>
-        <div style = {{display: "flex",}}>
-            <p style = {{fontSize: "20px", }}>Test</p>
-            <div style = {{marginTop: "-0.25em"}}>
-                <Switch/>
-            </div>
-        </div>
+
         </Card>
         </div>
     </div>
