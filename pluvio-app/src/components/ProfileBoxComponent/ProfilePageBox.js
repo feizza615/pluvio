@@ -1,14 +1,28 @@
+import React, { useEffect, useState } from 'react'
 import Picture from "./ProfilePic.png";
-import "./ProfilePageBox.css"
+import "./ProfileBox.css"
 import Card from "../Card.js"
-import React from 'react';
 import balls from "../IntroBoxComponent/balls.png";
 import { Avatar } from "@mui/material";
-
+import axios from 'axios';
 
 export default function ProfilePageBox({userdata}) {
  
-    var random = Math.floor(Math.random()*16777215).toString(16);
+    const [about, setAbout] = useState("")
+
+    useEffect(()=> {
+    
+          axios
+          .get(`http://localhost:5001/users/aboutid/${userdata.username}`)
+          .then( response => {
+              console.log(response)
+              //setLoading(false)
+              setAbout(response.data);
+            }
+          )
+      },[])
+
+      var random = Math.floor(Math.random()*16777215).toString(16);
 
     return (
         <Card style={{width: "auto", position: "relative"}}>
@@ -26,7 +40,7 @@ export default function ProfilePageBox({userdata}) {
                 </div>
             </div> 
             <p> {/*Connect this w/user in database so it can be pulled in settings profilepage too*/}
-                About Me: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                About Me: {about}
             </p>
       </Card>
     );

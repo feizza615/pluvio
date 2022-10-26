@@ -11,6 +11,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Switch } from '@mui/material';
+import ProfilePageBox from '../../components/ProfileBoxComponent/ProfilePageBox';
 
 export const InputField = styled.input`
   width: 100%;
