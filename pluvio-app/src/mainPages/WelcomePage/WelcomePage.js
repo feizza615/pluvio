@@ -28,10 +28,10 @@ import { selectUser } from '../../features/userSlice';
             <div id="textContainer">
               <h1>DON'T KNOW WHAT TO WATCH?</h1>              
               <p id="text">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                Find like-minded individuals with short reviews
+                for movies they watched. Not enough? Then try out
+                our recommendation feature to find a movie for you on the go!
+                Start your journey with Pluvio Today!
               </p>
               <div id="centered">
                 <SignInComponent />
