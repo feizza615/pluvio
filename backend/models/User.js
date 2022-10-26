@@ -9,6 +9,7 @@ const userSchema = new Schema({
     password: {type:String,require:true,minLength:5},
     watchlist: [Number],
     friends: [String],
+    about: String,
 });
 
 userSchema.pre('save', function (next) {

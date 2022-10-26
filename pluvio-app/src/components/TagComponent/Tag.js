@@ -8,13 +8,14 @@ export const Label = styled.div`
   text-align: center;
   box-align: center;
   color: #ffffff;
-  padding: 15px;
+  padding: 5px 10px;
   border-radius: 15px;
   font-family: "Poppins";
   font-weight: bold;
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-bottom: 10px;
 `;
 
 export const Title = styled.h1`
@@ -22,12 +23,18 @@ export const Title = styled.h1`
   padding: 0;
   font-family: "Poppins";
   font-weight: bolder;
+  font-size: 16px;
 `;
 
 const Tag = ({text}) => {
   return (
     <>
-      <Label>{text}</Label>
+      <Label>
+        <Title>
+          {text}
+        </Title>
+      </Label>
+      
     </>
   );
 };

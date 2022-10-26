@@ -23,8 +23,9 @@
 {
   display: flex;
   gap: 25px;
-  justify-content: space-between;
+  justify-content: space-around;
   font-size: 12px;
+  width: 100%;
 }
 
 .bottom * {
