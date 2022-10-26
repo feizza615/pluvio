@@ -240,7 +240,8 @@ export default function SettingsPage() {
       <div>
         <p>Settings</p>
         <br />
-        <ProfilePageBox userdata={userdata}/> 
+        <ProfilePageBox userdata={userdata}
+        /> 
         <br />
 
         <div className='changeUser'>
