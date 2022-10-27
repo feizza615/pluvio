@@ -55,6 +55,32 @@ export default function ProfilePageBox({userdata}) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const name = userdata.username;
+    
+    const handleSubmit = (e) => {
+      // prevent the form from refreshing the whole page
+      e.preventDefault();
+      console.log(name, about);
+      handleAbout();
+      handleClose();
+    }
+    
+    function handleAbout() {
+      const configurationAbout = {
+        method: "post",
+        url: "http://localhost:5001/users/about",
+        data: {
+          name,
+          about
+        }
+      };
+      axios(configurationAbout)
+      .then((result) => {
+        console.log(result);
+        console.log(about)
+      })
+    };
+
     useEffect(()=> {
     
           axios
@@ -110,10 +136,10 @@ export default function ProfilePageBox({userdata}) {
                         </p>
                     </div>
             </div>
-            <TextField placeholder='Edit About Me'></TextField>
+            <TextField onChange={(e) => setAbout(e.target.value)} placeholder='Edit About Me'>{about}</TextField>
             <br/><br/>
             <div style={{float: "right"}}>
-            <ButtonComponent style = {{width: "115px" , height: "40px", fontSize: "17px"}}>Confirm</ButtonComponent>
+            <ButtonComponent onClick = {handleSubmit} style = {{width: "115px" , height: "40px", fontSize: "17px"}}>Confirm</ButtonComponent>
             </div>
             </Box>
 
