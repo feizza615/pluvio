@@ -130,7 +130,18 @@ router.post('/modify/name', (req,res) => {
         }
     })
 
-    User.updateMany({ friends: oldName }, {$set: { friends: newName}}, (err, user) => {
+    User.updateMany({ friends: oldName }, {$push: { friends: newName}}, {$pull: {friends: oldName}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Updated name");
+        }
+    })
+
+    User.updateMany({ friends: oldName }, {$pull: {friends: oldName}}, (err, user) => {
         if (err) return next(err);
 
         if (!user) {
