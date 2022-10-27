@@ -97,29 +97,26 @@ export default function ProfilePageBox({userdata}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         >
-            <Box sx = {style}>
-            <div className='top'>
+        <Box sx = {style}>
+          <div className='top'>
             <div style ={{display: "grid", gap: "5px"}}>
-            <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+userdata.color,fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{userdata? userdata.username[0] : ""}</Avatar> 
-            <Button sx = {{backgroundColor: "#4930FF", fontSize: "15px", p: 0, m:0, textTransform: "none", color: "white", width: "75px" , height: "fit-content", fontFamily: "Poppins"}}>Change</Button>   
+              <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+userdata.color,fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{userdata? userdata.username[0] : ""}</Avatar> 
+              <Button sx = {{backgroundColor: "#4930FF", fontSize: "15px", p: 0, m:0, textTransform: "none", color: "white", width: "75px" , height: "fit-content", fontFamily: "Poppins"}}>Change</Button>   
             </div>                        
-                    <div className="texts">
-                        <p style={{ fontSize: "25px"}}>@{userdata ? userdata.username : "username"}</p>
-                        <p> {/*Connect this w/user in database so it can be pulled in settings profilepage too*/}
-                            {about}
-                        </p>
-                    </div>
+            <div className="texts">
+                <p style={{ fontSize: "25px"}}>@{userdata ? userdata.username : "username"}</p>
+                <p> {/*Connect this w/user in database so it can be pulled in settings profilepage too*/}
+                    {about}
+                </p>
             </div>
-            <TextField placeholder='Edit About Me'></TextField>
-            <br/><br/>
-            <div style={{float: "right"}}>
+          </div>
+          <TextField placeholder='Edit About Me'></TextField>
+          <br/><br/>
+          <div style={{float: "right"}}>
             <ButtonComponent style = {{width: "115px" , height: "40px", fontSize: "17px"}}>Confirm</ButtonComponent>
-            </div>
-            </Box>
-
-
-
-    </Modal>
-                    </>
+          </div>
+        </Box>
+      </Modal>
+    </>
     );
   }
