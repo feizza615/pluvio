@@ -1,18 +1,29 @@
 import RatingArea from "./RatingArea";
 import "./ReviewBox.css"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from "../Card";
 import ButtonComponent from "../LoginComponent/ButtonComponent";
 import MoviePicture from "./MoviePic.png";
 import Picture from "./ProfilePic.png";
 import { Avatar, Skeleton } from "@mui/material";
 import Spoiler from "../SpoilerComponent/Spoiler";
+import axios from "axios";
 
 export default function ReviewBox({reviewdata}) {
+    const [color, setColor] = useState("")
 
     var random = Math.floor(Math.random()*16777215).toString(16);
 
     console.log(reviewdata)
+
+    useEffect(()=> {
+        axios
+          .get(`http://localhost:5001/users/color/${reviewdata.name}`)
+          .then( response => {
+                setColor(response.data);
+            }
+          )
+    },[])
 
     return (
         <>
@@ -22,7 +33,7 @@ export default function ReviewBox({reviewdata}) {
                 <div>
                     <div style={{display: "flex", alignItems: "center",gap:"20px"}}>
                     
-                        <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+random,fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{reviewdata ? reviewdata.name[0]: "u"}</Avatar>
+                        <Avatar sx={{width: "75px", height: "75px", bgcolor: (color ? color : "#"+random),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{reviewdata ? reviewdata.name[0]: "u"}</Avatar>
                         <div style={{}}>
                             <p className = "topLine" style={{ fontSize: "25px", margin: 0}}>@{reviewdata ? reviewdata.name : "username"}</p>
                             <RatingArea ratingdata={reviewdata ? reviewdata.score : 5}/>
@@ -41,7 +52,7 @@ export default function ReviewBox({reviewdata}) {
     <div>
         <div style={{display: "flex", alignItems: "center",gap:"20px"}}>
         
-            <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+random,fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{reviewdata ? reviewdata.name[0]: "u"}</Avatar>
+            <Avatar sx={{width: "75px", height: "75px", bgcolor: (color ? color : "#"+random),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{reviewdata ? reviewdata.name[0]: "u"}</Avatar>
             <div style={{}}>
                 <p className = "topLine" style={{ fontSize: "25px", margin: 0}}>@{reviewdata ? reviewdata.name : "username"}</p>
                 <RatingArea ratingdata={reviewdata ? reviewdata.score : 5}/>

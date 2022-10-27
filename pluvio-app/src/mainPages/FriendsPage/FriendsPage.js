@@ -39,7 +39,7 @@ export const FriendBox = ({user, isAdded}) => {
   return (<Card>
     <div style={{display: "flex", justifyContent:"space-between",alignItems: "center"}}>
       <div style={{display: "flex",alignItems: "center",gap:"20px"}}>
-        <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+Math.floor(Math.random()*16777215).toString(16),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{user.name[0]}</Avatar>
+        <Avatar sx={{width: "75px", height: "75px", bgcolor: (user.color ? user.color : "#"+Math.floor(Math.random()*16777215).toString(16)),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{user.name[0]}</Avatar>
         <p style={{ fontSize: "25px", margin: 0}}>@{user.name}</p>
       </div>
       {isAdded? <></>: <ButtonComponent onClick={(e) => handleClick(e,user.name)}>FOLLOW</ButtonComponent>}
@@ -76,12 +76,12 @@ const FriendsPage = () => {
   return (
     <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
       <h1>Following</h1>
-      {!loading && users && addedUsers ? addedUsers.map((added, x)=> 
+      {!loading && users && addedUsers ? users.filter(user => user.name !== currentUser.name && addedUsers.includes(user.name)).map((added, x)=> 
       <Card>
         <div style={{display: "flex", justifyContent:"space-between",alignItems: "center"}}>
           <div style={{display: "flex",alignItems: "center",gap:"20px"}}>
-            <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+Math.floor(Math.random()*16777215).toString(16),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{added[0]}</Avatar>
-            <p style={{ fontSize: "25px", margin: 0}}>@{added}</p>
+            <Avatar sx={{width: "75px", height: "75px", bgcolor: (added.color ? added.color : "#"+Math.floor(Math.random()*16777215).toString(16)),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{added.name[0]}</Avatar>
+            <p style={{ fontSize: "25px", margin: 0}}>@{added.name}</p>
           </div>
           <ButtonComponent>VIEW</ButtonComponent>
         </div>
