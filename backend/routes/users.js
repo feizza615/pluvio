@@ -173,6 +173,22 @@ router.get('/verify/:id', (req, res, next) => {
 
 }
 )
+
+router.get('/followers/:id', (req, res, next) => {
+    var id = req.params.id;
+
+    User.find({ friends: id }, function(err, info) {
+        if (err)
+            res.send(err);
+            // for(let i = 0; i < info.length; i++){
+        res.json(info);
+            // }
+        
+    });
+
+
+}
+)
 module.exports = router;
 
 

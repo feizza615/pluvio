@@ -70,7 +70,7 @@ router.post('/modify/name', (req,res) => {
     const newName = req.body.newName;
     const oldName = req.body.oldName;
     console.log("Attempting to change " + oldName + " to " + newName)
-    Review.updateOne({ name: oldName }, {$set: { name: newName}}, (err, user) => {
+    Review.updateMany({ name: oldName }, {$set: { name: newName}}, (err, user) => {
         if (err) return next(err);
 
         if (!user) {
