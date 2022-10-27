@@ -82,7 +82,7 @@ router.post('/about', (req, res, next) => {
     const name = req.body.name;
     const about = req.body.about;
 
-    User.findOneAndUpdate({ name: name }, { $addToSet: { about: about } }, (err, user) => {
+    User.findOneAndUpdate({ name: name }, { $set: { about: about } }, (err, user) => {
         if (err) return next(err);
 
         if (!user) {
