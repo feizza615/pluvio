@@ -11,6 +11,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Switch } from '@mui/material';
+import ProfilePageBox from '../../components/ProfileBoxComponent/ProfilePageBox';
 
 export const InputField = styled.input`
   width: 100%;
@@ -314,13 +315,22 @@ export default function SettingsPage() {
 
 /*---------------------------Password handling---------------------------*/
 
+  //for pulling about me
+  const userdata = {
+    username: user.name,
+    following: 20,
+    followers: 1,
+    reviews: 21,
+    color: user.color,
+  };
 
   return (
     <>
       <div>
         <p>Settings</p>
         <br />
-        <Card>Profile Box</Card>
+        <ProfilePageBox userdata={userdata}
+        /> 
         <br />
 
         <div className='changeUser'>
@@ -412,7 +422,7 @@ export default function SettingsPage() {
         </div>
         <br/>
         <div className='passwordBottomArea'>
-        <Card style={{height: "250px"}}>Change Password
+        <Card style={{height: "fit-content"}}>Change Password
         <br/><br/>
         <InputField placeholder='Old Password' onChange={(e) => setOldPassword(e.target.value)} ></InputField>
         <br/><br/>
@@ -460,31 +470,15 @@ export default function SettingsPage() {
 
         </div>
         </Card>
-        <Card style={{height: "250px"}}><p style = {{textAlign: "center", fontWeight: "bold", fontSize: "20px"}}>Options</p>
+        <Card style={{height: "fit-content"}}>Options
+        <br/><br/>
         <div style = {{display: "flex",}}>
             <p style = {{fontSize: "20px", }}>Light Mode</p>
             <div style = {{marginTop: "-0.25em"}}>
                 <Switch/>
             </div>
         </div>
-        <div style = {{display: "flex",}}>
-            <p style = {{fontSize: "20px", }}>Test</p>
-            <div style = {{marginTop: "-0.25em"}}>
-                <Switch/>
-            </div>
-        </div>
-        <div style = {{display: "flex",}}>
-            <p style = {{fontSize: "20px", }}>Test</p>
-            <div style = {{marginTop: "-0.25em"}}>
-                <Switch/>
-            </div>
-        </div>
-        <div style = {{display: "flex",}}>
-            <p style = {{fontSize: "20px", }}>Test</p>
-            <div style = {{marginTop: "-0.25em"}}>
-                <Switch/>
-            </div>
-        </div>
+
         </Card>
         </div>
     </div>

@@ -4,14 +4,25 @@ import { Avatar, Button, ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuL
 import { useSelector } from 'react-redux';
 import { selectUser } from "../features/userSlice";
 import { NavLink } from "react-router-dom";
+import { loginFunc } from "../features/userSlice";
+import { useDispatch } from "react-redux";
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 export default function Dropbox() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const user = useSelector(selectUser);
+    const dispatch = useDispatch();
 
-  
+    const onClickHandler = (event) =>
+    {
+      dispatch(loginFunc(null));
+      setOpen(false);
+    };
+
     const handleToggle = () => {
       setOpen((prevOpen) => !prevOpen);
     };
@@ -45,6 +56,7 @@ export default function Dropbox() {
 
     var random = Math.floor(Math.random()*16777215).toString(16);
 
+    
 
   
     return (
@@ -86,9 +98,9 @@ export default function Dropbox() {
                       aria-labelledby="composition-button"
                       onKeyDown={handleListKeyDown}
                     >
-                      <NavLink style={{textDecoration: "None"}} to="/profile"><MenuItem sx ={{fontSize: "20px", color: "white",}} onClick={handleClose}>Profile</MenuItem></NavLink>
-                      <NavLink style={{textDecoration: "None"}} to="/settings"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}> Setting</MenuItem></NavLink>
-                      <NavLink style={{textDecoration: "None"}} to="/welcome"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}>Logout</MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/profile"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={handleClose}><PersonIcon/> Profile </MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/settings"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={handleClose}> <SettingsIcon/> Setting</MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/welcome"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={onClickHandler}><LogoutIcon/> Logout</MenuItem></NavLink>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
