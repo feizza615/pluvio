@@ -21,6 +21,7 @@ export default function Dropbox() {
     {
       dispatch(loginFunc(null));
       setOpen(false);
+      window.location.reload(false);         
     };
 
     const handleToggle = () => {

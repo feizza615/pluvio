@@ -36,7 +36,6 @@ const NavigationBar = () => {
   const onClickHandler = value => () => {
       console.log(value)
       setIsClicked(!click)
-      window.location.reload(false);         
 
   }
 
