@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let User = require('../models/User');
+let bcrypt = require('bcrypt');
 
 function isEmail(email) {
     var emailFormat = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -200,6 +201,44 @@ router.get('/followers/:id', (req, res, next) => {
 
 }
 )
+
+router.get('/passwordCheck/:id/:pw', (req, res, next) => {
+    const usersName = req.params.id;
+    const pw = req.params.pw;
+    let hashed;
+    User.find({name: usersName}, function(err, info) {
+        if (err)
+        res.send(err);
+
+        // res.json(info);
+        // console.log(info[0].password)
+        hashed = info[0].password
+        bcrypt.compare(pw, hashed, (err, result) => {
+                res.send(result)
+            })
+    })
+
+    // console.log("testing")
+    
+})
+
+router.post('/changePassword', (req, res, next) => {
+    const usersName = req.body.usersName;
+    const newPassword = req.body.newPassword
+
+    bcrypt.hash(newPassword, 10, (err, hashed) => {
+        if (err) return (err);
+        User.updateOne({name: usersName}, {$set: { password: hashed}}, function(err, info) {
+            if (err)
+            res.send(err);
+
+            res.json(info);
+        })
+    });
+
+
+})
+
 module.exports = router;
 
 
