@@ -52,7 +52,7 @@ export default function SettingsPage() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [details2, setDetails2] = useState(null)
-
+  const usersName = user.name;
 
   /* ------------- User ------------- */
   const [oldName, setOldName] = useState("");
@@ -68,6 +68,11 @@ export default function SettingsPage() {
   /* ------------- Password (WIP) ------------- */
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setPassword] = useState("");
+  const [hasedPw, setHashed] = useState(false)
+  const [open3, setOpen3] = useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
+  const [errorPopup3, setError3] = useState(false);
   /* ------------- Password (WIP) ------------- */
 
 
@@ -110,6 +115,35 @@ export default function SettingsPage() {
         handleOpen2(true)
       }
     }
+
+    if (type === "password") {
+      if(oldPassword === ""){
+        setError3(true)   //error popup since old email doesn't match
+        handleOpen3(true)
+      }
+      else {
+          const configurationPassword = {
+            method: "get",
+            url: "http://localhost:5001/users/passwordCheck/" + user.name + "/"+ oldPassword,
+          };
+
+          axios(configurationPassword)
+            .then((result) => {            
+              if(result.data === true){
+                console.log(result)
+                setError3(false)   //No error popup since old email matches
+                handleOpen3(true)
+              } else {
+                console.log(result.data)
+                setError3(true)   //error popup since old email doesn't match
+                handleOpen3(true)
+              }
+            })
+            .catch((error) => {
+              error = new Error();
+            });
+      }
+    }
   }
 
 
@@ -130,8 +164,12 @@ export default function SettingsPage() {
     switch (type) {
       case "name":
         return details2[0].name;
-      case "password":
+
+
+      case "password":        
         return details2[0].password;
+
+
       case "email":
         return details2[0].email;
     }
@@ -243,6 +281,39 @@ export default function SettingsPage() {
   }
   /*---------------------------Email handling---------------------------*/
 
+  
+/*---------------------------Password handling---------------------------*/
+  function runPassword() {
+    console.log("Matched password")
+    handlePassword();
+
+    onChangeRefresh();
+    setTimeout(() => {
+      onChangeLogin("email");
+    }, 200)
+  }
+
+  function handlePassword() {
+    const configurationPassword = {
+      method: "post",
+      url: "http://localhost:5001/users/changePassword",
+      data: {
+        usersName,
+        newPassword,
+      },
+    };
+    axios(configurationPassword)
+      .then((result) => {
+        console.log(result);
+        console.log(user)
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+  }
+
+/*---------------------------Password handling---------------------------*/
+
 
   return (
     <>
@@ -343,13 +414,50 @@ export default function SettingsPage() {
         <div className='passwordBottomArea'>
         <Card style={{height: "250px"}}>Change Password
         <br/><br/>
-        <InputField placeholder='Old Password'></InputField>
+        <InputField placeholder='Old Password' onChange={(e) => setOldPassword(e.target.value)} ></InputField>
         <br/><br/>
         <InputField placeholder='New Password' onChange={(e) => setPassword(e.target.value)} ></InputField>
         <br/><br/>
         <div style={{float: "right"}}>
-        <ButtonComponent style = {{width: "115px" , height: "40px", fontSize: "17px"}}>Confirm</ButtonComponent>
+        <ButtonComponent onClick={(e) => handleSubmit(e, "password")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
         <br/><br/>
+        <div style={{ float: "right" }}>
+              
+              <Modal
+                open={open3}
+                onClose={handleClose3}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{
+                  ".MuiBackdrop-root": {
+                    backdropFilter: "blur(10px)",
+                  },
+                }}
+              >
+                <Box sx={style}>
+                  {errorPopup3 ? <p style={{ color: "orange", margin: 0 }}>Password does not match</p> : <><Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontFamily: "Poppins",
+                    }}
+                  >
+                    Do you really want to change your password?
+                  </Typography><br></br>
+                    {/* onClick={(e) => handleSubmit(e, "name")} */}
+                    <ButtonComponent onClick={runPassword} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
+                    <ButtonComponent onClick={handleClose3} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
+                  </>}
+
+                </Box>
+              </Modal>
+
+
+            </div>
+
         </div>
         </Card>
         <Card style={{height: "250px"}}><p style = {{textAlign: "center", fontWeight: "bold", fontSize: "20px"}}>Options</p>
