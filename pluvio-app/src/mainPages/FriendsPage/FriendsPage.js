@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import Card from '../../components/Card';
 import "styled-components";
 import { useSelector } from 'react-redux';
@@ -7,15 +7,30 @@ import axios from 'axios';
 import { Avatar, Skeleton } from '@mui/material';
 import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
 import CircularProgress from '@mui/material/CircularProgress';
+import {io} from "socket.io-client"
 
-export const FriendBox = ({user, isAdded}) => {
+let socket;
+
+function callSocket(sockets){
+  socket = sockets;
+}
+
+export const FriendBox = ({user, isAdded, added}) => {
+  
   const currentUser = useSelector(selectUser);
+
+// console.log("Current User: " + currentUser.name)
 
   const handleClick = (e, friend) => {
     e.preventDefault();
-
     const name = currentUser.name;
 
+    socket.emit("sendNotification", {
+      senderName: name,
+      receiverName: friend, 
+      type: 1
+    })
+  
     const configuration = {
       method: "post",
       url:  "http://localhost:5001/users/friends",
@@ -27,13 +42,19 @@ export const FriendBox = ({user, isAdded}) => {
     axios(configuration)
     .then((result) =>
     {
-      console.log(result);
+      console.log("result");
+      
       alert(`Added ${friend}`)
+      
     })
     .catch((error) => {
       error = new Error();
     });
-    window.location.reload(false);
+ 
+      window.location.reload(false);
+    
+  // handleSocket(socket);
+
   }
 
   return (<Card>
@@ -51,15 +72,22 @@ const FriendsPage = () => {
   const [users, setUsers] = useState([])
   const [addedUsers, setAddedUsers] = useState([])
   const [loading, setLoading] = useState(true)
-  
   const currentUser = useSelector(selectUser);
+
+  const mappedUsers = addedUsers.map((data) => data);
+  let sizeOfUser = mappedUsers.length;
+  
+
+  console.log(" size: " + sizeOfUser)
 
   useEffect(()=> {
     axios
       .get('http://localhost:5001/users')
       .then( response => {
           setUsers(response.data);
-          console.log(response.data)
+          console.log("size of set: " +setAddedUsers.length)
+
+          // console.log(response.data)
         }
       )
 
@@ -67,13 +95,15 @@ const FriendsPage = () => {
       .get(`http://localhost:5001/users/friendsid/${currentUser.name}`)
       .then( response => {
           setAddedUsers(response.data);
+          console.log("size: " +setAddedUsers.length)
           console.log(response.data)
           setLoading(false)
         }
       )
   },[])
 
-  return (
+  if(sizeOfUser === 1){}
+  return ( 
     <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
       <h1>Following</h1>
       {!loading && users && addedUsers ? addedUsers.map((added, x)=> 
@@ -88,9 +118,13 @@ const FriendsPage = () => {
       </Card>) : <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
       <h1>Other Users</h1>
       {!loading && users && addedUsers ? users.filter(user => user.name !== currentUser.name && !addedUsers.includes(user.name)).map((user, x) => 
-      <FriendBox key={x} user={user}/>) : <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
+      <FriendBox key={x} user={user} added={mappedUsers[sizeOfUser]} socket={socket}/>) : <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
     </div>
   )
 }
-
 export default FriendsPage;
+
+export const Tester=({socket})=>{
+  callSocket(socket);
+  return (<></>)
+}
