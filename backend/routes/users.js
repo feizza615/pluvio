@@ -270,6 +270,22 @@ router.post('/changePassword', (req, res, next) => {
 
 })
 
+router.post('/unfollow/:id', (req, res, next) => {
+    const user = req.params.id;
+    const unfollow = req.body.user;
+
+    User.updateOne({ name: user }, {$pull: { friends: unfollow}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Removed " + unfollow);
+        }
+    })
+})
+
 module.exports = router;
 
 

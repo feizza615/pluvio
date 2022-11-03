@@ -4,10 +4,11 @@ import "styled-components";
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import axios from 'axios';
-import { Avatar, Skeleton, Grid } from '@mui/material';
+import { Avatar, Skeleton, Grid, Button } from '@mui/material';
 import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
 import CircularProgress from '@mui/material/CircularProgress';
 import {io} from "socket.io-client"
+import { current } from '@reduxjs/toolkit';
 
 let socket;
 
@@ -20,6 +21,8 @@ export const FriendBox = ({user, isAdded, added}) => {
   const currentUser = useSelector(selectUser);
 
 // console.log("Current User: " + currentUser.name)
+
+
 
   const handleClick = (e, friend) => {
     e.preventDefault();
@@ -85,6 +88,30 @@ const FriendsPage = () => {
 
   console.log(" size: " + sizeOfUser)
 
+
+  const handleUnfollow = (user) => {
+    const configuration = {
+      method: "post",
+      url:  "http://localhost:5001/users/unfollow/" + currentUser.name,
+      data: {
+        user
+        },             
+       };
+
+
+       axios(configuration)
+       .then((result) =>
+       {
+         console.log("result");
+       })
+       .catch((error) => {
+         error = new Error();
+       });
+
+      window.location.reload(false);
+
+  }
+
   useEffect(()=> {
     axios
       .get('http://localhost:5001/users')
@@ -142,6 +169,7 @@ const FriendsPage = () => {
       {!followerLoading && users && addedUsers ? addedUsers.map((added, x)=> 
       <div style={{display: "flex", justifyContent:"space-between",alignItems: "center"}}>
       <div style={{display: "flex",alignItems: "center",gap:"20px"}}>
+        <Button sx={{margin:"-30px"}} onClick={(e) => handleUnfollow(added)} >X</Button>
             <Avatar sx={{marginTop:"15px", width: "60px", height: "60px", bgcolor: '#'+Math.floor(Math.random()*16777215).toString(16),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{added[0]}</Avatar>
             <p style={{ fontSize: "20px", marginRight:"15px"}}>@{added}</p>
           </div>
