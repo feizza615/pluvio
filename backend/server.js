@@ -93,4 +93,4 @@ socket.on("sendNotification", ({senderName, receiverName, type})=> {
   })
 });
 
-io.listen(5000);
+io.listen(5002);
