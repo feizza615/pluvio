@@ -88,8 +88,7 @@ router.post('/about', (req, res, next) => {
 
         if (!user) {
             console.log("Cant find user");
-        } else {
-            
+        } else {            
             console.log("Added");
         }
     })
