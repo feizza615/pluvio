@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let User = require('../models/User');
+let bcrypt = require('bcrypt');
 
 function isEmail(email) {
     var emailFormat = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -193,6 +194,28 @@ router.post('/modify/name', (req,res) => {
             console.log("Updated name");
         }
     })
+
+    User.updateMany({ friends: oldName }, {$push: { friends: newName}}, {$pull: {friends: oldName}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Updated name");
+        }
+    })
+
+    User.updateMany({ friends: oldName }, {$pull: {friends: oldName}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Updated name");
+        }
+    })
 }) 
 
 router.post('/modify/email', (req,res) => {
@@ -226,6 +249,60 @@ router.get('/verify/:id', (req, res, next) => {
 
 }
 )
+
+router.get('/followers/:id', (req, res, next) => {
+    var id = req.params.id;
+
+    User.find({ friends: id }, function(err, info) {
+        if (err)
+            res.send(err);
+            // for(let i = 0; i < info.length; i++){
+        res.json(info);
+            // }
+        
+    });
+
+
+}
+)
+
+router.get('/passwordCheck/:id/:pw', (req, res, next) => {
+    const usersName = req.params.id;
+    const pw = req.params.pw;
+    let hashed;
+    User.find({name: usersName}, function(err, info) {
+        if (err)
+        res.send(err);
+
+        // res.json(info);
+        // console.log(info[0].password)
+        hashed = info[0].password
+        bcrypt.compare(pw, hashed, (err, result) => {
+                res.send(result)
+            })
+    })
+
+    // console.log("testing")
+    
+})
+
+router.post('/changePassword', (req, res, next) => {
+    const usersName = req.body.usersName;
+    const newPassword = req.body.newPassword
+
+    bcrypt.hash(newPassword, 10, (err, hashed) => {
+        if (err) return (err);
+        User.updateOne({name: usersName}, {$set: { password: hashed}}, function(err, info) {
+            if (err)
+            res.send(err);
+
+            res.json(info);
+        })
+    });
+
+
+})
+
 module.exports = router;
 
 
