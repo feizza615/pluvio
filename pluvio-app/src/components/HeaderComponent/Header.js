@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import Dropbox from '../Dropbox';
+import logo from '../../pluvioFullLogo.png'
+
 export const AppLogo = styled(Typography) ({
     fontSize: '30px',
     fontFamily: 'Poppins',
@@ -44,7 +46,7 @@ var random = Math.floor(Math.random()*16777215).toString(16);
         >
             <Toolbar sx={{justifyContent: "space-between", alignItems: "center"}}>
                 <Link to={"/"} style ={{textDecoration: 'none'}}>
-                    <AppLogo >pluvio</AppLogo>
+                    <img src={logo} style={{height: "50px"}}></img>
                 </Link>
                 {/* <Greeting isLoggedIn={user} /> */}
                 <Dropbox></Dropbox>
