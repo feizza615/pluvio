@@ -23,6 +23,7 @@
     "react-scroll-box": "^0.3.5",
     "react-simple-tabs-component": "^2.1.1",
     "react-spring": "^9.5.5",
+    "react-stack-cards": "^1.0.8",
     "react-tabs": "^5.1.0",
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
