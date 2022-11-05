@@ -1,8 +1,8 @@
-import React, { Component, useState } from 'react'
-import Card from '../../components/Card';
+import React, { Component, useState } from "react";
+import Card from "../../components/Card";
 import styled from "styled-components";
-import "./SettingsPage.css"
-import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
+import "./SettingsPage.css";
+import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectUser, loginFunc } from "../../features/userSlice";
@@ -10,8 +10,8 @@ import { useDispatch } from "react-redux";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Switch } from '@mui/material';
-import ProfilePageBox from '../../components/ProfileBoxComponent/ProfilePageBox';
+import { Switch } from "@mui/material";
+import ProfilePageBox from "../../components/ProfileBoxComponent/ProfilePageBox";
 
 export const InputField = styled.input`
   width: 100%;
@@ -48,7 +48,6 @@ const style = {
   "@media (max-width: 640px)": {},
 };
 
-
 export default function SettingsPage() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -65,7 +64,6 @@ export default function SettingsPage() {
   const [errorPopup, setError] = useState(false);
   /* ------------- User ------------- */
 
-
   /* ------------- Password (WIP) ------------- */
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setPassword] = useState("");
@@ -75,7 +73,6 @@ export default function SettingsPage() {
   const handleClose3 = () => setOpen3(false);
   const [errorPopup3, setError3] = useState(false);
   /* ------------- Password (WIP) ------------- */
-
 
   /* ------------- Email ------------- */
   const [oldEmail, setOldEmail] = useState("");
@@ -87,33 +84,28 @@ export default function SettingsPage() {
   const [errorPopup2, setError2] = useState(false);
   /* ------------- Email ------------- */
 
-
-
-
   const handleSubmit = (e, type) => {
     // prevent the form from refreshing the whole page
     e.preventDefault();
     if (type === "name") {
       let verified = verifyData(type);
       if (oldName === verified) {
-        setError(false)   //No error popup since old name matches
-        handleOpen(true)
-      }
-      else {
-        setError(true)   //error popup since old name doesn't match
-        handleOpen(true)
+        setError(false); //No error popup since old name matches
+        handleOpen(true);
+      } else {
+        setError(true); //error popup since old name doesn't match
+        handleOpen(true);
       }
     }
 
     if (type === "email") {
       let verified = verifyData(type);
       if (oldEmail === verified) {
-        setError2(false)   //No error popup since old email matches
-        handleOpen2(true)
-      }
-      else {
-        setError2(true)   //error popup since old email doesn't match
-        handleOpen2(true)
+        setError2(false); //No error popup since old email matches
+        handleOpen2(true);
+      } else {
+        setError2(true); //error popup since old email doesn't match
+        handleOpen2(true);
       }
     }
 
@@ -176,33 +168,33 @@ export default function SettingsPage() {
     }
   }
 
-
   /*-------- Refresh Profile --------*/
   function onChangeRefresh() {
-    dispatch(loginFunc(null))
+    dispatch(loginFunc(null));
   }
 
   function onChangeLogin(type) {
     if (type === "user") {
-      dispatch(loginFunc({
-        name: newName,
-        loggedIn: true,
-      }));
-    }
-    else if (type === "email") {
-      dispatch(loginFunc({
-        name: user.name,
-        loggedIn: true,
-      }));
+      dispatch(
+        loginFunc({
+          name: newName,
+          loggedIn: true,
+        })
+      );
+    } else if (type === "email") {
+      dispatch(
+        loginFunc({
+          name: user.name,
+          loggedIn: true,
+        })
+      );
     }
   }
   /*-------- Refresh Profile --------*/
 
-
-
   /*---------------------------User handling---------------------------*/
   function runUser() {
-    console.log("Matched name")
+    console.log("Matched name");
     handleName();
 
     onChangeRefresh();
@@ -232,7 +224,7 @@ export default function SettingsPage() {
     axios(configurationName)
       .then((result) => {
         console.log(result);
-        console.log(user)
+        console.log(user);
       })
       .catch((error) => {
         error = new Error();
@@ -249,17 +241,15 @@ export default function SettingsPage() {
   }
   /*---------------------------User handling---------------------------*/
 
-
-
   /*---------------------------Email handling---------------------------*/
   function runEmail() {
-    console.log("Matched name")
+    console.log("Matched name");
     handleEmail();
 
     onChangeRefresh();
     setTimeout(() => {
       onChangeLogin("email");
-    }, 200)
+    }, 200);
   }
 
   function handleEmail() {
@@ -274,7 +264,7 @@ export default function SettingsPage() {
     axios(configurationEmail)
       .then((result) => {
         console.log(result);
-        console.log(user)
+        console.log(user);
       })
       .catch((error) => {
         error = new Error();
@@ -329,20 +319,33 @@ export default function SettingsPage() {
       <div>
         <p>Settings</p>
         <br />
-        <ProfilePageBox userdata={userdata}
-        /> 
+        <ProfilePageBox userdata={userdata} />
         <br />
 
-        <div className='changeUser'>
-          <Card>Change Email
-            <br /><br />
-            <InputField onChange={(e) => setOldEmail(e.target.value)} placeholder='Old Email'></InputField>
+        <div className="changeUser">
+          <Card>
+            Change Email
             <br />
             <br />
-            <InputField onChange={(e) => setEmail(e.target.value)} placeholder='New Email' />
-            <br /><br />
+            <InputField
+              onChange={(e) => setOldEmail(e.target.value)}
+              placeholder="Old Email"
+            ></InputField>
+            <br />
+            <br />
+            <InputField
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="New Email"
+            />
+            <br />
+            <br />
             <div style={{ float: "right" }}>
-              <ButtonComponent onClick={(e) => handleSubmit(e, "email")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
+              <ButtonComponent
+                onClick={(e) => handleSubmit(e, "email")}
+                style={{ width: "115px", height: "40px", fontSize: "17px" }}
+              >
+                Confirm
+              </ButtonComponent>
               <Modal
                 open={open2}
                 onClose={handleClose2}
@@ -355,35 +358,78 @@ export default function SettingsPage() {
                 }}
               >
                 <Box sx={style}>
-                  {errorPopup2 ? <p style={{ color: "orange", margin: 0 }}>Email does not match</p> : <><Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                    sx={{
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      fontFamily: "Poppins",
-                    }}
-                  >
-                    Do you really want to change your email?
-                  </Typography><br></br>
-                    {/* onClick={(e) => handleSubmit(e, "name")} */}
-                    <ButtonComponent onClick={runEmail} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
-                    <ButtonComponent onClick={handleClose2} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
-                  </>}
-
+                  {errorPopup2 ? (
+                    <p style={{ color: "orange", margin: 0 }}>
+                      Email does not match
+                    </p>
+                  ) : (
+                    <>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                        sx={{
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          fontFamily: "Poppins",
+                        }}
+                      >
+                        Do you really want to change your email?
+                      </Typography>
+                      <br></br>
+                      {/* onClick={(e) => handleSubmit(e, "name")} */}
+                      <ButtonComponent
+                        onClick={runEmail}
+                        style={{
+                          float: "left",
+                          width: "115px",
+                          height: "40px",
+                          fontSize: "17px",
+                        }}
+                      >
+                        Yes
+                      </ButtonComponent>
+                      <ButtonComponent
+                        onClick={handleClose2}
+                        style={{
+                          float: "right",
+                          width: "115px",
+                          height: "40px",
+                          fontSize: "17px",
+                        }}
+                      >
+                        No
+                      </ButtonComponent>
+                    </>
+                  )}
                 </Box>
               </Modal>
             </div>
           </Card>
-          <Card>Change User
-            <br /><br />
-            <InputField onChange={(e) => setOldName(e.target.value)} placeholder='Old User' />
-            <br /><br />
-            <InputField value={newName} onChange={(e) => setName(e.target.value)} placeholder='New User' />
-            <br /><br />
+          <Card>
+            Change User
+            <br />
+            <br />
+            <InputField
+              onChange={(e) => setOldName(e.target.value)}
+              placeholder="Old User"
+            />
+            <br />
+            <br />
+            <InputField
+              value={newName}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="New User"
+            />
+            <br />
+            <br />
             <div style={{ float: "right" }}>
-              <ButtonComponent onClick={(e) => handleSubmit(e, "name")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
+              <ButtonComponent
+                onClick={(e) => handleSubmit(e, "name")}
+                style={{ width: "115px", height: "40px", fontSize: "17px" }}
+              >
+                Confirm
+              </ButtonComponent>
               <Modal
                 open={open}
                 onClose={handleClose}
@@ -396,27 +442,52 @@ export default function SettingsPage() {
                 }}
               >
                 <Box sx={style}>
-                  {errorPopup ? <p style={{ color: "orange", margin: 0 }}>User does not match</p> : <><Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                    sx={{
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      fontFamily: "Poppins",
-                    }}
-                  >
-                    Do you really want to change your user?
-                  </Typography><br></br>
-                    {/* onClick={(e) => handleSubmit(e, "name")} */}
-                    <ButtonComponent onClick={runUser} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
-                    <ButtonComponent onClick={handleClose} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
-                  </>}
-
+                  {errorPopup ? (
+                    <p style={{ color: "orange", margin: 0 }}>
+                      User does not match
+                    </p>
+                  ) : (
+                    <>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                        sx={{
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          fontFamily: "Poppins",
+                        }}
+                      >
+                        Do you really want to change your user?
+                      </Typography>
+                      <br></br>
+                      {/* onClick={(e) => handleSubmit(e, "name")} */}
+                      <ButtonComponent
+                        onClick={runUser}
+                        style={{
+                          float: "left",
+                          width: "115px",
+                          height: "40px",
+                          fontSize: "17px",
+                        }}
+                      >
+                        Yes
+                      </ButtonComponent>
+                      <ButtonComponent
+                        onClick={handleClose}
+                        style={{
+                          float: "right",
+                          width: "115px",
+                          height: "40px",
+                          fontSize: "17px",
+                        }}
+                      >
+                        No
+                      </ButtonComponent>
+                    </>
+                  )}
                 </Box>
               </Modal>
-
-
             </div>
           </Card>
         </div>
@@ -472,16 +543,26 @@ export default function SettingsPage() {
         </Card>
         <Card style={{height: "fit-content"}}>Options
         <br/><br/>
-        <div style = {{display: "flex",}}>
+          <div style = {{display: "flex",}}>
             <p style = {{fontSize: "20px", }}>Light Mode</p>
             <div style = {{marginTop: "-0.25em"}}>
                 <Switch/>
             </div>
-        </div>
-
+          </div>
         </Card>
+          <Card style={{ height: "fit-content" }}>
+            Options
+            <br />
+            <br />
+            <div style={{ display: "flex" }}>
+              <p style={{ fontSize: "20px" }}>Light Mode</p>
+              <div style={{ marginTop: "-0.25em" }}>
+                <Switch />
+              </div>
+            </div>
+          </Card>
         </div>
-    </div>
-      </>
-    )
-  }
+      </div>
+    </>
+  );
+}

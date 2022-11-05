@@ -141,6 +141,39 @@ router.get('/aboutid/:id', (req, res, next) => {
 }
 )
 
+router.post('/color', (req, res, next) => {
+    const name = req.body.name;
+    const color = req.body.color;
+
+    User.findOneAndUpdate({ name: name }, { $set: { color: color } }, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            
+            console.log(color);
+        }
+    })
+}
+)
+
+router.get('/color/:id', (req, res, next) => {
+    var id = req.params.id;
+
+    User.find({ name: id }, function(err, info) {
+        if (err)
+            res.send(err);
+
+        res.json(info[0].color);
+        console.log(info[0].color);
+    });
+
+
+}
+)
+
+
 router.get('/', (req,res) => {
     User.find()
     .then(users => res.json(users))

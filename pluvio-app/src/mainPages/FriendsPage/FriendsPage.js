@@ -34,12 +34,12 @@ export const FriendBox = ({user, isAdded, added}) => {
 
     const configuration = {
       method: "post",
-      url:  "http://localhost:5001/users/friends",
+      url: "http://localhost:5001/users/friends",
       data: {
         name,
-        friend
-        },             
-       };
+        friend,
+      },
+    };
     axios(configuration)
     .then((result) =>
     {
@@ -96,7 +96,7 @@ const FriendsPage = () => {
         }
       )
 
-      axios
+    axios
       .get(`http://localhost:5001/users/friendsid/${currentUser.name}`)
       .then( response => {
           setAddedUsers(response.data);

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import Dropbox from '../Dropbox';
+import logo from '../../pluvioFullLogo.png'
 import Notification from './Notification';
 import {io} from "socket.io-client"
 import {Tester} from "../../mainPages/FriendsPage/FriendsPage";
@@ -71,7 +72,7 @@ if(user === null){
         >
             <Toolbar sx={{justifyContent: "space-between", alignItems: "center"}}>
                 <Link to={"/"} style ={{textDecoration: 'none'}}>
-                    <AppLogo >pluvio</AppLogo>
+                    <img src={logo} style={{height: "50px"}}></img>
                 </Link>
                 {/* <Greeting isLoggedIn={user} /> */}
                 <div style={{display:"flex"}}>

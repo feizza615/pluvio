@@ -83,7 +83,7 @@ export default function LoginComponent() {
         dispatch(loginFunc({
           name: name,
           loggedIn: true,
-          color: Math.floor(Math.random()*16777215).toString(16),
+          color: result.data.color,
         }));
 
         let path = "/home/"; 
