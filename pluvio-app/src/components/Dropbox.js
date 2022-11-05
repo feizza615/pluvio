@@ -6,6 +6,9 @@ import { selectUser } from "../features/userSlice";
 import { NavLink } from "react-router-dom";
 import { loginFunc } from "../features/userSlice";
 import { useDispatch } from "react-redux";
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 export default function Dropbox() {
@@ -18,6 +21,7 @@ export default function Dropbox() {
     {
       dispatch(loginFunc(null));
       setOpen(false);
+      window.location.reload(false);         
     };
 
     const handleToggle = () => {
@@ -95,9 +99,9 @@ export default function Dropbox() {
                       aria-labelledby="composition-button"
                       onKeyDown={handleListKeyDown}
                     >
-                      <NavLink style={{textDecoration: "None"}} to="/profile"><MenuItem sx ={{fontSize: "20px", color: "white",}} onClick={handleClose}>Profile</MenuItem></NavLink>
-                      <NavLink style={{textDecoration: "None"}} to="/settings"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={handleClose}> Setting</MenuItem></NavLink>
-                      <NavLink style={{textDecoration: "None"}} to="/welcome"><MenuItem sx ={{fontSize: "20px", color: "white"}} onClick={onClickHandler}>Logout</MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/profile"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={handleClose}><PersonIcon/> Profile </MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/settings"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={handleClose}> <SettingsIcon/> Setting</MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to="/welcome"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={onClickHandler}><LogoutIcon/> Logout</MenuItem></NavLink>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
