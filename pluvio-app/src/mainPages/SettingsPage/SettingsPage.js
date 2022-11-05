@@ -51,12 +51,8 @@ const style = {
 export default function SettingsPage() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-<<<<<<< HEAD
-  const [details2, setDetails2] = useState(null);
-=======
   const [details2, setDetails2] = useState(null)
   const usersName = user.name;
->>>>>>> 106f13249a1a10b248ad7b9b3ab88836fab175ad
 
   /* ------------- User ------------- */
   const [oldName, setOldName] = useState("");
@@ -112,9 +108,6 @@ export default function SettingsPage() {
         handleOpen2(true);
       }
     }
-<<<<<<< HEAD
-  };
-=======
 
     if (type === "password") {
       if(oldPassword === ""){
@@ -146,7 +139,6 @@ export default function SettingsPage() {
     }
   }
 
->>>>>>> 106f13249a1a10b248ad7b9b3ab88836fab175ad
 
   /* Verify the user; return proper data */
   function verifyData(type) {
@@ -208,12 +200,8 @@ export default function SettingsPage() {
     onChangeRefresh();
     setTimeout(() => {
       onChangeLogin("user");
-<<<<<<< HEAD
-    }, 200);
-=======
       window.location.reload(false);
     }, 200)
->>>>>>> 106f13249a1a10b248ad7b9b3ab88836fab175ad
   }
 
   function handleName() {
@@ -503,29 +491,6 @@ export default function SettingsPage() {
             </div>
           </Card>
         </div>
-<<<<<<< HEAD
-        <br />
-        <div className="passwordBottomArea">
-          <Card style={{ height: "fit-content" }}>
-            Change Password
-            <br />
-            <br />
-            <InputField placeholder="Old Password"></InputField>
-            <br />
-            <br />
-            <InputField
-              placeholder="New Password"
-              onChange={(e) => setPassword(e.target.value)}
-            ></InputField>
-            <br />
-            <br />
-            <div style={{ float: "right" }}>
-              <ButtonComponent
-                style={{ width: "115px", height: "40px", fontSize: "17px" }}
-              >
-                Confirm
-              </ButtonComponent>
-=======
         <br/>
         <div className='passwordBottomArea'>
         <Card style={{height: "fit-content"}}>Change Password
@@ -578,13 +543,13 @@ export default function SettingsPage() {
         </Card>
         <Card style={{height: "fit-content"}}>Options
         <br/><br/>
-        <div style = {{display: "flex",}}>
+          <div style = {{display: "flex",}}>
             <p style = {{fontSize: "20px", }}>Light Mode</p>
             <div style = {{marginTop: "-0.25em"}}>
                 <Switch/>
->>>>>>> 106f13249a1a10b248ad7b9b3ab88836fab175ad
             </div>
-          </Card>
+          </div>
+        </Card>
           <Card style={{ height: "fit-content" }}>
             Options
             <br />

@@ -7,14 +7,11 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import Dropbox from '../Dropbox';
-<<<<<<< HEAD
 import logo from '../../pluvioFullLogo.png'
-=======
 import Notification from './Notification';
 import {io} from "socket.io-client"
 import {Tester} from "../../mainPages/FriendsPage/FriendsPage";
 import { ReviewNotify } from "../ReviewFormComponent/ReviewForm";
->>>>>>> 106f13249a1a10b248ad7b9b3ab88836fab175ad
 
 export const AppLogo = styled(Typography) ({
     fontSize: '30px',
