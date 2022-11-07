@@ -116,10 +116,7 @@ export default function ProfilePageBox({userdata}) {
             <ButtonComponent style = {{width: "115px" , height: "40px", fontSize: "17px"}}>Confirm</ButtonComponent>
             </div>
             </Box>
-
-
-
-    </Modal>
-                    </>
+        </Modal>
+        </>
     );
   }
