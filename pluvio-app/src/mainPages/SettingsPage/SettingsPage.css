@@ -22,3 +22,26 @@
     width: 100%;
 }
 
+#light
+{
+    background-color: skyblue;
+}
+
+#dark
+{
+    background-color: #0b0725;
+}
+
+#light .buttonswitch{
+    background-color: red;
+}
+
+/*body  
+{
+    background-color: white;
+}*/
+
+/*#navContainer
+{
+    background-color: skyblue;
+}*/

@@ -9,6 +9,7 @@ import ReactionButtons from "./ReccomendationComponents/ReactionButtons";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import MovieViewComponent from "./MovieViewComponent/MovieViewComponent";
+
 //Review Button not implemented
 
 export const Container = styled.div`

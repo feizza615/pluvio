@@ -11,7 +11,7 @@ import MatchPage from './mainPages/MatchPage/MatchPage';
 import ProfilePage from './mainPages/ProfilePage/ProfilePage';
 import WelcomePage from './mainPages/WelcomePage/WelcomePage';
 import SettingsPage from './mainPages/SettingsPage/SettingsPage';
-import Header from './components/HeaderComponent/Header';
+import {HeaderTemp} from './components/HeaderComponent/Header';
 import { Provider } from 'react-redux';
 import store from "./app/store"
 import { useSelector } from 'react-redux';
@@ -51,7 +51,7 @@ const App = () => {
       <Provider store={store}>
       <PersistGate persistor={persistor}>
     <BrowserRouter>
-      <Header />
+      <HeaderTemp />
       <HomeContainer>
         <NavigationBar />
         <Routes>
@@ -59,7 +59,7 @@ const App = () => {
           <Route path='/home/' element = {<Protected><HomePage/></Protected>}/>
           <Route path="/welcome" element = {<WelcomePage/>}/>
           <Route path="/friends/" element = {<Protected><FriendsPage/></Protected>}/>
-          <Route path="/profile/" element = {<Protected><ProfilePage/></Protected>}/>
+          <Route path="/profile/:users" element = {<Protected><ProfilePage/></Protected>}/>
           <Route path="/match/" element = {<Protected><MatchPage/></Protected>}/>
           <Route path="/movies/" element = {<Protected><MoviesPage/></Protected>}/>
           <Route path="/settings/" element = {<Protected><SettingsPage/></Protected>}/>

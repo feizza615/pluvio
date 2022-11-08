@@ -1,8 +1,8 @@
-import React, { Component, useState } from 'react'
-import Card from '../../components/Card';
+import React, { Component, createContext, useState } from "react";
+import Card from "../../components/Card";
 import styled from "styled-components";
-import "./SettingsPage.css"
-import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
+import "./SettingsPage.css";
+import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectUser, loginFunc } from "../../features/userSlice";
@@ -10,8 +10,11 @@ import { useDispatch } from "react-redux";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Switch } from '@mui/material';
-import ProfilePageBox from '../../components/ProfileBoxComponent/ProfilePageBox';
+import { Switch } from "@mui/material";
+import ProfilePageBox from "../../components/ProfileBoxComponent/ProfilePageBox";
+
+
+export const ThemeContext = createContext(null);
 
 export const InputField = styled.input`
   width: 100%;
@@ -48,12 +51,20 @@ const style = {
   "@media (max-width: 640px)": {},
 };
 
-
 export default function SettingsPage() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [details2, setDetails2] = useState(null)
+  const usersName = user.name;
 
+  /* ------------- Light Mode ------------- */
+  const [theme, setTheme] = useState("dark")
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
+
+  /* ------------- Light Mode ------------- */
 
   /* ------------- User ------------- */
   const [oldName, setOldName] = useState("");
@@ -65,12 +76,15 @@ export default function SettingsPage() {
   const [errorPopup, setError] = useState(false);
   /* ------------- User ------------- */
 
-
   /* ------------- Password (WIP) ------------- */
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setPassword] = useState("");
+  const [hasedPw, setHashed] = useState(false)
+  const [open3, setOpen3] = useState(false);
+  const handleOpen3 = () => setOpen3(true);
+  const handleClose3 = () => setOpen3(false);
+  const [errorPopup3, setError3] = useState(false);
   /* ------------- Password (WIP) ------------- */
-
 
   /* ------------- Email ------------- */
   const [oldEmail, setOldEmail] = useState("");
@@ -82,33 +96,57 @@ export default function SettingsPage() {
   const [errorPopup2, setError2] = useState(false);
   /* ------------- Email ------------- */
 
-
-
-
   const handleSubmit = (e, type) => {
     // prevent the form from refreshing the whole page
     e.preventDefault();
     if (type === "name") {
       let verified = verifyData(type);
       if (oldName === verified) {
-        setError(false)   //No error popup since old name matches
-        handleOpen(true)
-      }
-      else {
-        setError(true)   //error popup since old name doesn't match
-        handleOpen(true)
+        setError(false); //No error popup since old name matches
+        handleOpen(true);
+      } else {
+        setError(true); //error popup since old name doesn't match
+        handleOpen(true);
       }
     }
 
     if (type === "email") {
       let verified = verifyData(type);
       if (oldEmail === verified) {
-        setError2(false)   //No error popup since old email matches
-        handleOpen2(true)
+        setError2(false); //No error popup since old email matches
+        handleOpen2(true);
+      } else {
+        setError2(true); //error popup since old email doesn't match
+        handleOpen2(true);
+      }
+    }
+
+    if (type === "password") {
+      if(oldPassword === ""){
+        setError3(true)   //error popup since old email doesn't match
+        handleOpen3(true)
       }
       else {
-        setError2(true)   //error popup since old email doesn't match
-        handleOpen2(true)
+          const configurationPassword = {
+            method: "get",
+            url: "http://localhost:5001/users/passwordCheck/" + user.name + "/"+ oldPassword,
+          };
+
+          axios(configurationPassword)
+            .then((result) => {            
+              if(result.data === true){
+                console.log(result)
+                setError3(false)   //No error popup since old email matches
+                handleOpen3(true)
+              } else {
+                console.log(result.data)
+                setError3(true)   //error popup since old email doesn't match
+                handleOpen3(true)
+              }
+            })
+            .catch((error) => {
+              error = new Error();
+            });
       }
     }
   }
@@ -131,45 +169,50 @@ export default function SettingsPage() {
     switch (type) {
       case "name":
         return details2[0].name;
-      case "password":
+
+
+      case "password":        
         return details2[0].password;
+
+
       case "email":
         return details2[0].email;
     }
   }
 
-
   /*-------- Refresh Profile --------*/
   function onChangeRefresh() {
-    dispatch(loginFunc(null))
+    dispatch(loginFunc(null));
   }
 
   function onChangeLogin(type) {
     if (type === "user") {
-      dispatch(loginFunc({
-        name: newName,
-        loggedIn: true,
-      }));
-    }
-    else if (type === "email") {
-      dispatch(loginFunc({
-        name: user.name,
-        loggedIn: true,
-      }));
+      dispatch(
+        loginFunc({
+          name: newName,
+          loggedIn: true,
+        })
+      );
+    } else if (type === "email") {
+      dispatch(
+        loginFunc({
+          name: user.name,
+          loggedIn: true,
+        })
+      );
     }
   }
   /*-------- Refresh Profile --------*/
 
-
-
   /*---------------------------User handling---------------------------*/
   function runUser() {
-    console.log("Matched name")
+    console.log("Matched name");
     handleName();
 
     onChangeRefresh();
     setTimeout(() => {
       onChangeLogin("user");
+      window.location.reload(false);
     }, 200)
   }
 
@@ -182,7 +225,24 @@ export default function SettingsPage() {
         oldName,
       },
     };
+      const configurationReviewName = {
+        method: "post",
+        url: "http://localhost:5001/reviews/modify/name",
+        data: {
+          newName,
+          oldName,
+        },
+    };
     axios(configurationName)
+      .then((result) => {
+        console.log(result);
+        console.log(user);
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+      
+      axios(configurationReviewName)
       .then((result) => {
         console.log(result);
         console.log(user)
@@ -193,17 +253,15 @@ export default function SettingsPage() {
   }
   /*---------------------------User handling---------------------------*/
 
-
-
   /*---------------------------Email handling---------------------------*/
   function runEmail() {
-    console.log("Matched name")
+    console.log("Matched name");
     handleEmail();
 
     onChangeRefresh();
     setTimeout(() => {
       onChangeLogin("email");
-    }, 200)
+    }, 200);
   }
 
   function handleEmail() {
@@ -218,13 +276,46 @@ export default function SettingsPage() {
     axios(configurationEmail)
       .then((result) => {
         console.log(result);
-        console.log(user)
+        console.log(user);
       })
       .catch((error) => {
         error = new Error();
       });
   }
   /*---------------------------Email handling---------------------------*/
+
+  
+/*---------------------------Password handling---------------------------*/
+  function runPassword() {
+    console.log("Matched password")
+    handlePassword();
+
+    onChangeRefresh();
+    setTimeout(() => {
+      onChangeLogin("email");
+    }, 200)
+  }
+
+  function handlePassword() {
+    const configurationPassword = {
+      method: "post",
+      url: "http://localhost:5001/users/changePassword",
+      data: {
+        usersName,
+        newPassword,
+      },
+    };
+    axios(configurationPassword)
+      .then((result) => {
+        console.log(result);
+        console.log(user)
+      })
+      .catch((error) => {
+        error = new Error();
+      });
+  }
+
+/*---------------------------Password handling---------------------------*/
 
   //for pulling about me
   const userdata = {
@@ -237,23 +328,37 @@ export default function SettingsPage() {
 
   return (
     <>
-      <div>
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
+      <div >
         <p>Settings</p>
         <br />
-        <ProfilePageBox userdata={userdata}
-        /> 
+        <ProfilePageBox userdata={userdata} />
         <br />
 
-        <div className='changeUser'>
-          <Card>Change Email
-            <br /><br />
-            <InputField onChange={(e) => setOldEmail(e.target.value)} placeholder='Old Email'></InputField>
+        <div className="changeUser">
+          <Card id = {theme}>
+            Change Email
             <br />
             <br />
-            <InputField onChange={(e) => setEmail(e.target.value)} placeholder='New Email' />
-            <br /><br />
+            <InputField
+              onChange={(e) => setOldEmail(e.target.value)}
+              placeholder="Old Email"
+            ></InputField>
+            <br />
+            <br />
+            <InputField
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="New Email"
+            />
+            <br />
+            <br />
             <div style={{ float: "right" }}>
-              <ButtonComponent onClick={(e) => handleSubmit(e, "email")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
+              <ButtonComponent className="buttonswitch"
+                onClick={(e) => handleSubmit(e, "email")}
+                style={{ width: "115px", height: "40px", fontSize: "17px" }}
+              >
+                Confirm
+              </ButtonComponent>
               <Modal
                 open={open2}
                 onClose={handleClose2}
@@ -266,35 +371,80 @@ export default function SettingsPage() {
                 }}
               >
                 <Box sx={style}>
-                  {errorPopup2 ? <p style={{ color: "orange", margin: 0 }}>Email does not match</p> : <><Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                    sx={{
-                      textAlign: "center",
-                      fontWeight: "bold",
-                      fontFamily: "Poppins",
-                    }}
-                  >
-                    Do you really want to change your email?
-                  </Typography><br></br>
-                    {/* onClick={(e) => handleSubmit(e, "name")} */}
-                    <ButtonComponent onClick={runEmail} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
-                    <ButtonComponent onClick={handleClose2} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
-                  </>}
-
+                  {errorPopup2 ? (
+                    <p style={{ color: "orange", margin: 0 }}>
+                      Email does not match
+                    </p>
+                  ) : (
+                    <>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                        sx={{
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          fontFamily: "Poppins",
+                        }}
+                      >
+                        Do you really want to change your email?
+                      </Typography>
+                      <br></br>
+                      {/* onClick={(e) => handleSubmit(e, "name")} */}
+                      <ButtonComponent className="buttonswitch"
+                        onClick={runEmail}
+                        style={{
+                          float: "left",
+                          width: "115px",
+                          height: "40px",
+                          fontSize: "17px",
+                        }}
+                      >
+                        Yes
+                      </ButtonComponent>
+                      <ButtonComponent
+                        className="buttonswitch"
+                        onClick={handleClose2}
+                        style={{
+                          float: "right",
+                          width: "115px",
+                          height: "40px",
+                          fontSize: "17px",
+                        }}
+                      >
+                        No
+                      </ButtonComponent>
+                    </>
+                  )}
                 </Box>
               </Modal>
             </div>
           </Card>
-          <Card>Change User
-            <br /><br />
-            <InputField onChange={(e) => setOldName(e.target.value)} placeholder='Old User' />
-            <br /><br />
-            <InputField value={newName} onChange={(e) => setName(e.target.value)} placeholder='New User' />
-            <br /><br />
+          <Card id = {theme}>
+            Change User
+            <br />
+            <br />
+            <InputField
+              onChange={(e) => setOldName(e.target.value)}
+              placeholder="Old User"
+            />
+            <br />
+            <br />
+            <InputField
+              value={newName}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="New User"
+            />
+            <br />
+            <br />
             <div style={{ float: "right" }}>
-              <ButtonComponent onClick={(e) => handleSubmit(e, "name")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
+              <ButtonComponent
+                className="buttonswitch"
+                onClick={(e) => handleSubmit(e, "name")}
+                style={{ width: "115px", height: "40px", fontSize: "17px" }}
+              >
+                Confirm
+              </ButtonComponent>
               <Modal
                 open={open}
                 onClose={handleClose}
@@ -307,7 +457,83 @@ export default function SettingsPage() {
                 }}
               >
                 <Box sx={style}>
-                  {errorPopup ? <p style={{ color: "orange", margin: 0 }}>User does not match</p> : <><Typography
+                  {errorPopup ? (
+                    <p style={{ color: "orange", margin: 0 }}>
+                      User does not match
+                    </p>
+                  ) : (
+                    <>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                        sx={{
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          fontFamily: "Poppins",
+                        }}
+                      >
+                        Do you really want to change your user?
+                      </Typography>
+                      <br></br>
+                      {/* onClick={(e) => handleSubmit(e, "name")} */}
+                      <ButtonComponent
+                        className="buttonswitch"
+                        onClick={runUser}
+                        style={{
+                          float: "left",
+                          width: "115px",
+                          height: "40px",
+                          fontSize: "17px",
+                        }}
+                      >
+                        Yes
+                      </ButtonComponent>
+                      <ButtonComponent
+                        className="buttonswitch"
+                        onClick={handleClose}
+                        style={{
+                          float: "right",
+                          width: "115px",
+                          height: "40px",
+                          fontSize: "17px",
+                        }}
+                      >
+                        No
+                      </ButtonComponent>
+                    </>
+                  )}
+                </Box>
+              </Modal>
+            </div>
+          </Card>
+        </div>
+        <br/>
+        <div className='passwordBottomArea'>
+        <Card id = {theme} style={{height: "fit-content"}}>Change Password
+        <br/><br/>
+        <InputField placeholder='Old Password' onChange={(e) => setOldPassword(e.target.value)} ></InputField>
+        <br/><br/>
+        <InputField placeholder='New Password' onChange={(e) => setPassword(e.target.value)} ></InputField>
+        <br/><br/>
+        <div style={{float: "right"}}>
+        <ButtonComponent className="buttonswitch" onClick={(e) => handleSubmit(e, "password")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
+        <br/><br/>
+        <div style={{ float: "right" }}>
+              
+              <Modal
+                open={open3}
+                onClose={handleClose3}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{
+                  ".MuiBackdrop-root": {
+                    backdropFilter: "blur(10px)",
+                  },
+                }}
+              >
+                <Box sx={style}>
+                  {errorPopup3 ? <p style={{ color: "orange", margin: 0 }}>Password does not match</p> : <><Typography
                     id="modal-modal-title"
                     variant="h6"
                     component="h2"
@@ -317,11 +543,11 @@ export default function SettingsPage() {
                       fontFamily: "Poppins",
                     }}
                   >
-                    Do you really want to change your user?
+                    Do you really want to change your password?
                   </Typography><br></br>
                     {/* onClick={(e) => handleSubmit(e, "name")} */}
-                    <ButtonComponent onClick={runUser} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
-                    <ButtonComponent onClick={handleClose} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
+                    <ButtonComponent className="buttonswitch" onClick={runPassword} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
+                    <ButtonComponent className="buttonswitch" onClick={handleClose3} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
                   </>}
 
                 </Box>
@@ -329,32 +555,23 @@ export default function SettingsPage() {
 
 
             </div>
+
+        </div>
+        </Card>
+          <Card id = {theme} style={{ height: "fit-content" }}>
+            Options
+            <br />
+            <br />
+            <div style={{ display: "flex" }}>
+              <p style={{ fontSize: "20px" }}>Light Mode</p>
+              <div style={{ marginTop: "-0.25em" }}>
+                <Switch onChange={toggleTheme} checked={theme === "light"}/>
+              </div>
+            </div>
           </Card>
         </div>
-        <br/>
-        <div className='passwordBottomArea'>
-        <Card style={{height: "fit-content"}}>Change Password
-        <br/><br/>
-        <InputField placeholder='Old Password'></InputField>
-        <br/><br/>
-        <InputField placeholder='New Password' onChange={(e) => setPassword(e.target.value)} ></InputField>
-        <br/><br/>
-        <div style={{float: "right"}}>
-        <ButtonComponent style = {{width: "115px" , height: "40px", fontSize: "17px"}}>Confirm</ButtonComponent>
-        </div>
-        </Card>
-        <Card style={{height: "fit-content"}}>Options
-        <br/><br/>
-        <div style = {{display: "flex",}}>
-            <p style = {{fontSize: "20px", }}>Light Mode</p>
-            <div style = {{marginTop: "-0.25em"}}>
-                <Switch/>
-            </div>
-        </div>
-
-        </Card>
-        </div>
-    </div>
-      </>
-    )
-  }
+      </div>
+      </ThemeContext.Provider>
+    </>
+  );
+}

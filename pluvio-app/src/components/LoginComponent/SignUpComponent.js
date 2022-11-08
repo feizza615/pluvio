@@ -89,7 +89,8 @@ export default function SignUpComponent() {
           name: name,
           email: email,
           password:password,
-          loggedIn: true
+          loggedIn: true,
+          color: Math.floor(Math.random()*16777215).toString(16),
         }));
         alert("Submited");
         let path = "/home/"; 

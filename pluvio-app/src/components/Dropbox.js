@@ -21,6 +21,7 @@ export default function Dropbox() {
     {
       dispatch(loginFunc(null));
       setOpen(false);
+      window.location.reload(false);         
     };
 
     const handleToggle = () => {
@@ -72,7 +73,7 @@ export default function Dropbox() {
             aria-haspopup="true"
             onClick={handleToggle}
           >
-          <Avatar sx={{bgcolor: '#'+(user ? user.color: random), fontFamily:"Poppins",fontWeight:800}}>{user? user.name[0] : ""}</Avatar>
+          <Avatar sx={{bgcolor:user ? user.color: "#"+(random), fontFamily:"Poppins",fontWeight:800}}>{user? user.name[0] : ""}</Avatar>
           </Button>
           <Popper
             open={open}
