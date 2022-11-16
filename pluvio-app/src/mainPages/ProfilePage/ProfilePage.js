@@ -13,13 +13,17 @@ import { useParams } from "react-router-dom";
 
 
 
+
 const ProfilePage = () => {
   const user = useSelector(selectUser);
   const [isLoaded, setIsLoaded] = useState(false);
   const [details, setDetails] = useState(null);
   const [isLoaded2, setIsLoaded2] = useState(false);
   const [details2, setDetails2] = useState(null)
-  const {users} = useParams();
+  const {handle} = useParams();
+
+  console.log(handle)
+  
 
 
 
@@ -27,7 +31,7 @@ const ProfilePage = () => {
   let det = [];
   let det2 = [];
   const userdata = {
-    username: user.name,
+    username: handle,
     following: 20,
     followers: 1,
     reviews: 21,
@@ -36,20 +40,26 @@ const ProfilePage = () => {
 
   const configuration = {
     method: "get",
-    url: "http://localhost:5001/reviews/user/" + user.name,
+    url: "http://localhost:5001/reviews/user/" + handle,
   };
 
   const name = user.name;
 
   const configurationwatchlist = {
     method: "get",
-    url: "http://localhost:5001/users/watchlistid/" + user.name,
+    url: "http://localhost:5001/users/watchlistid/" + handle,
    
   };
 
   
 
   React.useEffect(() => {
+    axios
+      .get(`http://localhost:5001/users/verify/${handle}`)
+      .catch((error) => {
+        error = new Error();
+        return <h1>Test</h1>
+      })
     axios(configuration)
       .then((result) => {
         det.push(JSON.parse(JSON.stringify(result.data)));

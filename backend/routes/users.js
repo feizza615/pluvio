@@ -151,6 +151,7 @@ router.post('/color', (req, res, next) => {
         if (!user) {
             console.log("Cant find user");
         } else {
+            res.send(color);
             
             console.log(color);
         }

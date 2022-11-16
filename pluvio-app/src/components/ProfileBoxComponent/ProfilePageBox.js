@@ -78,6 +78,8 @@ export default function ProfilePageBox({ userdata }) {
   };
 
   const name = userdata.username;
+  console.log(name)
+  
 
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
@@ -90,7 +92,7 @@ export default function ProfilePageBox({ userdata }) {
         loginFunc({
           name: user.name,
           color: color,
-          logginIn: true,
+          loggedIn: true,
         })
       );
     }, 200);
@@ -137,6 +139,12 @@ export default function ProfilePageBox({ userdata }) {
         //setLoading(false)
         setAbout(response.data);
       });
+   
+      axios
+      .get(`http://localhost:5001/users/color/${userdata.username}`)
+      .then((response) => {
+        setColor(response.data);
+      });
   }, []);
 
   var random = Math.floor(Math.random() * 16777215).toString(16);
@@ -150,7 +158,7 @@ export default function ProfilePageBox({ userdata }) {
             sx={{
               width: "75px",
               height: "75px",
-              bgcolor: userdata.color,
+              bgcolor: color,
               fontSize: "36px",
               fontFamily: "Poppins",
               fontWeight: 800,
@@ -162,7 +170,8 @@ export default function ProfilePageBox({ userdata }) {
             <p style={{ fontSize: "18px" }}>
               @{userdata ? userdata.username : "username"}
             </p>
-            <Button
+            {user.name == userdata.username?
+              <Button
               sx={{
                 color: "gray",
                 fontSize: "12px",
@@ -174,7 +183,7 @@ export default function ProfilePageBox({ userdata }) {
               onClick={handleOpen}
             >
               Edit Profile
-            </Button>
+            </Button>:null}
           </div>
           <div className="bottom">
             <div>
