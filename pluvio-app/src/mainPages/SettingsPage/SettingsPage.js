@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, createContext, useState } from "react";
 import Card from "../../components/Card";
 import styled from "styled-components";
 import "./SettingsPage.css";
@@ -12,6 +12,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Switch } from "@mui/material";
 import ProfilePageBox from "../../components/ProfileBoxComponent/ProfilePageBox";
+
+
+export const ThemeContext = createContext(null);
 
 export const InputField = styled.input`
   width: 100%;
@@ -53,6 +56,15 @@ export default function SettingsPage() {
   const user = useSelector(selectUser);
   const [details2, setDetails2] = useState(null)
   const usersName = user.name;
+
+  /* ------------- Light Mode ------------- */
+  const [theme, setTheme] = useState("dark")
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
+
+  /* ------------- Light Mode ------------- */
 
   /* ------------- User ------------- */
   const [oldName, setOldName] = useState("");
@@ -316,14 +328,15 @@ export default function SettingsPage() {
 
   return (
     <>
-      <div>
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
+      <div >
         <p>Settings</p>
         <br />
         <ProfilePageBox userdata={userdata} />
         <br />
 
         <div className="changeUser">
-          <Card>
+          <Card id = {theme}>
             Change Email
             <br />
             <br />
@@ -340,7 +353,7 @@ export default function SettingsPage() {
             <br />
             <br />
             <div style={{ float: "right" }}>
-              <ButtonComponent
+              <ButtonComponent className="buttonswitch"
                 onClick={(e) => handleSubmit(e, "email")}
                 style={{ width: "115px", height: "40px", fontSize: "17px" }}
               >
@@ -378,7 +391,7 @@ export default function SettingsPage() {
                       </Typography>
                       <br></br>
                       {/* onClick={(e) => handleSubmit(e, "name")} */}
-                      <ButtonComponent
+                      <ButtonComponent className="buttonswitch"
                         onClick={runEmail}
                         style={{
                           float: "left",
@@ -390,6 +403,7 @@ export default function SettingsPage() {
                         Yes
                       </ButtonComponent>
                       <ButtonComponent
+                        className="buttonswitch"
                         onClick={handleClose2}
                         style={{
                           float: "right",
@@ -406,7 +420,7 @@ export default function SettingsPage() {
               </Modal>
             </div>
           </Card>
-          <Card>
+          <Card id = {theme}>
             Change User
             <br />
             <br />
@@ -425,6 +439,7 @@ export default function SettingsPage() {
             <br />
             <div style={{ float: "right" }}>
               <ButtonComponent
+                className="buttonswitch"
                 onClick={(e) => handleSubmit(e, "name")}
                 style={{ width: "115px", height: "40px", fontSize: "17px" }}
               >
@@ -463,6 +478,7 @@ export default function SettingsPage() {
                       <br></br>
                       {/* onClick={(e) => handleSubmit(e, "name")} */}
                       <ButtonComponent
+                        className="buttonswitch"
                         onClick={runUser}
                         style={{
                           float: "left",
@@ -474,6 +490,7 @@ export default function SettingsPage() {
                         Yes
                       </ButtonComponent>
                       <ButtonComponent
+                        className="buttonswitch"
                         onClick={handleClose}
                         style={{
                           float: "right",
@@ -493,14 +510,14 @@ export default function SettingsPage() {
         </div>
         <br/>
         <div className='passwordBottomArea'>
-        <Card style={{height: "fit-content"}}>Change Password
+        <Card id = {theme} style={{height: "fit-content"}}>Change Password
         <br/><br/>
         <InputField placeholder='Old Password' onChange={(e) => setOldPassword(e.target.value)} ></InputField>
         <br/><br/>
         <InputField placeholder='New Password' onChange={(e) => setPassword(e.target.value)} ></InputField>
         <br/><br/>
         <div style={{float: "right"}}>
-        <ButtonComponent onClick={(e) => handleSubmit(e, "password")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
+        <ButtonComponent className="buttonswitch" onClick={(e) => handleSubmit(e, "password")} style={{ width: "115px", height: "40px", fontSize: "17px" }}>Confirm</ButtonComponent>
         <br/><br/>
         <div style={{ float: "right" }}>
               
@@ -529,8 +546,8 @@ export default function SettingsPage() {
                     Do you really want to change your password?
                   </Typography><br></br>
                     {/* onClick={(e) => handleSubmit(e, "name")} */}
-                    <ButtonComponent onClick={runPassword} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
-                    <ButtonComponent onClick={handleClose3} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
+                    <ButtonComponent className="buttonswitch" onClick={runPassword} style={{ float: "left", width: "115px", height: "40px", fontSize: "17px" }}>Yes</ButtonComponent>
+                    <ButtonComponent className="buttonswitch" onClick={handleClose3} style={{ float: "right", width: "115px", height: "40px", fontSize: "17px" }}>No</ButtonComponent>
                   </>}
 
                 </Box>
@@ -541,28 +558,20 @@ export default function SettingsPage() {
 
         </div>
         </Card>
-        <Card style={{height: "fit-content"}}>Options
-        <br/><br/>
-          <div style = {{display: "flex",}}>
-            <p style = {{fontSize: "20px", }}>Light Mode</p>
-            <div style = {{marginTop: "-0.25em"}}>
-                <Switch/>
-            </div>
-          </div>
-        </Card>
-          <Card style={{ height: "fit-content" }}>
+          <Card id = {theme} style={{ height: "fit-content" }}>
             Options
             <br />
             <br />
             <div style={{ display: "flex" }}>
               <p style={{ fontSize: "20px" }}>Light Mode</p>
               <div style={{ marginTop: "-0.25em" }}>
-                <Switch />
+                <Switch onChange={toggleTheme} checked={theme === "light"}/>
               </div>
             </div>
           </Card>
         </div>
       </div>
+      </ThemeContext.Provider>
     </>
   );
 }

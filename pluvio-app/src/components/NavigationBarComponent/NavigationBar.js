@@ -48,9 +48,11 @@ const NavigationBar = () => {
     //<LogoutIcon/>,
   ];
 
-  const linkArray = ["/home/","/profile/","/friends/","/match/","/movies",]
+  
 
   const user = useSelector(selectUser);
+
+  const linkArray = ["/home/","/profile/"+(user?user.name:""),"/friends/","/match/","/movies",]
 
   if (!user) {
     return <div></div>

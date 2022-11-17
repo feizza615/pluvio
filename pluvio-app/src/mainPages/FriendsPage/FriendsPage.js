@@ -8,6 +8,7 @@ import { Avatar, Skeleton, Grid } from '@mui/material';
 import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
 import CircularProgress from '@mui/material/CircularProgress';
 import {io} from "socket.io-client"
+import { NavLink } from 'react-router-dom';
 
 let socket;
 
@@ -65,7 +66,7 @@ export const FriendBox = ({user, isAdded, added}) => {
     <div style={{display: "flex", justifyContent:"space-between",alignItems: "center"}}>
       <div style={{display: "flex",alignItems: "center",gap:"20px"}}>
         <Avatar sx={{width: "75px", height: "75px", bgcolor: '#'+Math.floor(Math.random()*16777215).toString(16),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{user.name[0]}</Avatar>
-        <p style={{ fontSize: "20px", margin: 0}}>@{user.name}</p>
+        <NavLink style={{textDecoration: "None"}} to={"/profile/"+user.name}><p style={{ fontSize: "20px", margin: 0, color: "white"}}>@{user.name}</p></NavLink>
       </div>
       {isAdded? <></>: <ButtonComponent onClick={(e) => handleClick(e,user.name)} style={{width:"100px"}}>FOLLOW</ButtonComponent>}
     </div>
@@ -143,9 +144,9 @@ const FriendsPage = () => {
       <div style={{display: "flex", justifyContent:"space-between",alignItems: "center"}}>
       <div style={{display: "flex",alignItems: "center",gap:"20px"}}>
             <Avatar sx={{marginTop:"15px", width: "60px", height: "60px", bgcolor: '#'+Math.floor(Math.random()*16777215).toString(16),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{added[0]}</Avatar>
-            <p style={{ fontSize: "20px", marginRight:"15px"}}>@{added}</p>
+            <NavLink style={{textDecoration: "None"}} to={"/profile/"+added}><p style={{ fontSize: "20px", marginRight:"15px", color: "white"}}>@{added}</p></NavLink>
           </div>
-          <ButtonComponent style={{width:"80px"}}>VIEW</ButtonComponent>
+          {/* <ButtonComponent style={{width:"80px"}}>VIEW</ButtonComponent> */}
       </div>) : <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
       </Card>
       </div>
@@ -158,7 +159,7 @@ const FriendsPage = () => {
       <div style={{display: "flex", justifyContent:"space-between",alignItems: "center"}}>
           <div style={{display: "flex",alignItems: "center",gap:"20px"}}>
           <Avatar sx={{marginTop:"15px", width: "60px", height: "60px", bgcolor: '#'+Math.floor(Math.random()*16777215).toString(16),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{followed.name[0]}</Avatar>
-            <p style={{ fontSize: "20px", margin: 0}}>{followed.name}</p>
+            <NavLink style={{textDecoration: "None"}} to={"/profile/"+followed.name}><p style={{ fontSize: "20px", margin: 0, color: "white" }}>@{followed.name}</p></NavLink>
           </div>
         </div>
       </div>): <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
