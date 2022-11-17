@@ -8,6 +8,7 @@ import { Avatar, Skeleton, Grid } from '@mui/material';
 import ButtonComponent from '../../components/LoginComponent/ButtonComponent';
 import CircularProgress from '@mui/material/CircularProgress';
 import {io} from "socket.io-client"
+import { NavLink } from 'react-router-dom';
 
 let socket;
 
@@ -145,7 +146,7 @@ const FriendsPage = () => {
             <Avatar sx={{marginTop:"15px", width: "60px", height: "60px", bgcolor: '#'+Math.floor(Math.random()*16777215).toString(16),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{added[0]}</Avatar>
             <p style={{ fontSize: "20px", marginRight:"15px"}}>@{added}</p>
           </div>
-          <ButtonComponent style={{width:"80px"}}>VIEW</ButtonComponent>
+          <NavLink style={{textDecoration: "None"}} to={"/profile/"+added}><ButtonComponent style={{width:"80px"}}>VIEW</ButtonComponent></NavLink>
       </div>) : <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
       </Card>
       </div>
@@ -160,6 +161,7 @@ const FriendsPage = () => {
           <Avatar sx={{marginTop:"15px", width: "60px", height: "60px", bgcolor: '#'+Math.floor(Math.random()*16777215).toString(16),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{followed.name[0]}</Avatar>
             <p style={{ fontSize: "20px", margin: 0}}>{followed.name}</p>
           </div>
+          <NavLink style={{textDecoration: "None"}} to={"/profile/"+followed.name}><ButtonComponent style={{width:"80px"}}>VIEW</ButtonComponent></NavLink>
         </div>
       </div>): <div style={{display:"flex",justifyContent:"center"}}><CircularProgress /></div>}
       </Card>
