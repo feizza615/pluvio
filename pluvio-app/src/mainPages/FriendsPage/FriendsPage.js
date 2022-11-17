@@ -8,6 +8,7 @@ import { Avatar, Skeleton, Grid } from "@mui/material";
 import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 import CircularProgress from "@mui/material/CircularProgress";
 import { io } from "socket.io-client";
+import { NavLink } from 'react-router-dom';
 
 let socket;
 
@@ -75,7 +76,7 @@ export const FriendBox = ({ user, isAdded, added }) => {
           >
             {user.name[0]}
           </Avatar>
-          <p style={{ fontSize: "20px", margin: 0 }}>@{user.name}</p>
+          <NavLink style={{textDecoration: "None"}} to={"/profile/"+user.name}><p style={{ fontSize: "20px", margin: 0, color: "white"}}>@{user.name}</p></NavLink>
         </div>
         {isAdded ? (
           <></>
@@ -182,15 +183,8 @@ const FriendsPage = () => {
                             >
                               {added[0]}
                             </Avatar>
-                            <p
-                              style={{ fontSize: "20px", marginRight: "15px" }}
-                            >
-                              @{added}
-                            </p>
+                            <NavLink style={{textDecoration: "None"}} to={"/profile/"+added}><p style={{ fontSize: "20px", marginRight:"15px", color: "white"}}>@{added}</p></NavLink>
                           </div>
-                          <ButtonComponent style={{ width: "80px" }}>
-                            VIEW
-                          </ButtonComponent>
                         </div>
                       ))
                     ) : (
@@ -246,9 +240,7 @@ const FriendsPage = () => {
                             >
                               {followed.name[0]}
                             </Avatar>
-                            <p style={{ fontSize: "20px", margin: 0 }}>
-                              {followed.name}
-                            </p>
+                            <NavLink style={{textDecoration: "None"}} to={"/profile/"+followed.name}><p style={{ fontSize: "20px", margin: 0, color: "white" }}>@{followed.name}</p></NavLink>
                           </div>
                         </div>
                       </div>
