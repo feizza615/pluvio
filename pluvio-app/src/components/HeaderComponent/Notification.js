@@ -81,9 +81,7 @@ const Notification = ({socket}) => {
     
 
     return (
-      <Stack direction="row" spacing={2}>
-
-        <div>
+      <>
           <Button 
             sx={{textTransform:"none"}}
             ref={anchorRef}
@@ -131,8 +129,7 @@ const Notification = ({socket}) => {
               </Grow>
             )}
           </Popper>
-        </div>
-      </Stack>
+        </>
     );
   }
 

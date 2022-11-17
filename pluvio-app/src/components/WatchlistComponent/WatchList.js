@@ -23,7 +23,7 @@ const Watchlist = ({ watchlistdata }, { data }) => {
                 await axios
                     .get("https://api.themoviedb.org/3/movie/" + watchlistdata.watchlist[i] + "?api_key=" + config.DB_KEY)
                     .then((response) => {
-                        det.push("https://image.tmdb.org/t/p/w500" + response.data.poster_path)
+                        det.push(response.data)
                     })
             }       
             setDetails(det)
@@ -38,11 +38,11 @@ const Watchlist = ({ watchlistdata }, { data }) => {
             <Card>
                 <div class="scroll">
                     <h3 className="test"> Watchlist</h3>
-                    <ul className="contentsList">
+                    <div className="contentsList">
                         {isLoaded && details ? details.map((movie, x) =>
-                            <WatchListCard title={movie} />
+                            <WatchListCard image={"https://image.tmdb.org/t/p/w500" + movie.poster_path} movie={movie.id}/>
                         ) : <Skeleton />}
-                    </ul>
+                    </div>
                 </div>
             </Card>
         </>
