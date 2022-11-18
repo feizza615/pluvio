@@ -1,0 +1,20 @@
+.matchDeck{
+    display: flex;
+    flex-flow: column wrap; 
+    overflow: hidden;
+}
+
+
+#buttonContainer{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 250px; 
+}
+
+.circle
+{
+    background-color: #4930FF;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}

@@ -73,7 +73,7 @@ export default function Dropbox() {
             aria-haspopup="true"
             onClick={handleToggle}
           >
-          <Avatar sx={{bgcolor: '#'+(user ? user.color: random), fontFamily:"Poppins",fontWeight:800}}>{user? user.name[0] : ""}</Avatar>
+          <Avatar sx={{bgcolor:user ? user.color: "#"+(random), fontFamily:"Poppins",fontWeight:800}}>{user? user.name[0] : ""}</Avatar>
           </Button>
           <Popper
             open={open}
@@ -99,7 +99,7 @@ export default function Dropbox() {
                       aria-labelledby="composition-button"
                       onKeyDown={handleListKeyDown}
                     >
-                      <NavLink style={{textDecoration: "None"}} to="/profile"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={handleClose}><PersonIcon/> Profile </MenuItem></NavLink>
+                      <NavLink style={{textDecoration: "None"}} to={"/profile/"+user.name}><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={handleClose}><PersonIcon/> Profile </MenuItem></NavLink>
                       <NavLink style={{textDecoration: "None"}} to="/settings"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={handleClose}> <SettingsIcon/> Setting</MenuItem></NavLink>
                       <NavLink style={{textDecoration: "None"}} to="/welcome"><MenuItem sx ={{fontSize: "17px", color: "white", gap: "10px"}} onClick={onClickHandler}><LogoutIcon/> Logout</MenuItem></NavLink>
                     </MenuList>

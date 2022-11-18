@@ -9,6 +9,10 @@ import ReactionButtons from "./ReccomendationComponents/ReactionButtons";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import MovieViewComponent from "./MovieViewComponent/MovieViewComponent";
+import axios from "axios";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
+
 //Review Button not implemented
 
 export const Container = styled.div`
@@ -207,13 +211,68 @@ const MovieCard = ({
 
 
 export const WatchListCard = ({
-  title,
+  image,
+  movie,
 }) => {
+  const [close, setClose] = useState(false);
+
+  const user = useSelector(selectUser);
+  const name = user.name;
+
+  const handleMouseOver = (e) => {
+    const button = e.target.parentElement.firstChild;
+    button.style.width="25px";
+    button.style.opacity="100%";
+  }
+
+  const handleMouseOut = (e) => {
+    const button = e.target.parentElement.firstChild;
+    if (button.id !== "closeButton") {
+      button.style.width="0";
+      button.style.opacity="0";
+    }
+  }
+
+  const handleClick = (e) => {
+    e.target.parentElement.remove();
+    console.log(name, movie);
+    const configuration = {
+      method: "delete",
+      url: "http://localhost:5001/users/watchlist",
+      data: {
+        name,
+        movie,
+      },
+    }
+    axios(configuration)
+      .then((result) => {
+
+      })
+  }
 
   return (
     <>
-      <li>
-        <img src={title} alt="" style={{ height: "20vh", borderRadius: "5px", marginLeft: "5px" }} />
+      <li id="watchlistImage" style={{position: "relative"}} >
+        <button id="closeButton" onClick={handleClick}
+          style={{
+            position: "absolute", 
+            background: "red",
+            width: "0",
+            height: "auto",
+            top: "-12px",
+            right: "-12px",
+            textAlign: "center",
+            margin: 0,
+            borderRadius: "50%",
+            opacity: 0,
+            color: "white",
+            border: "none",
+            transition: "width 500ms ease, opacity 500ms ease",
+          }}
+        >
+          X
+        </button>
+        <img src={image} alt="" style={{ height: "20vh", borderRadius: "5px"}} onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOut} />
       </li>
     </>
   );

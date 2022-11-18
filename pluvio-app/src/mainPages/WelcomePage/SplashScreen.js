@@ -1,5 +1,6 @@
 import React, {useRef, Component, useEffect } from "react";
-import splash from "./splash.png";
+import splash from "./pluvioLogo.png";
+import splash2 from "../../pluvioFullLogo.png";
 import { animated, useSpring, useSpringRef, useChain } from 'react-spring';
 import { useNavigate, Navigate } from 'react-router-dom'
 import {AnimatePresence} from "framer-motion";
@@ -21,13 +22,13 @@ export default function Splash(){
     const logoRef = useSpringRef();
     const spring = useSpring({
     from: {top: "0%" , opacity: "0%"},
-    to: { top: "60%", opacity: "100%" },
+    to: { top: "40%", opacity: "100%" },
       ref: logoRef
     });
  
     const pluvioRef = useSpringRef();
   const spring1 = useSpring({
-    from: { opacity: "0%", top: "60%" },
+    from: { opacity: "0%", top: "30%" },
     to: { opacity: "100%" },
     ref: pluvioRef
   });
@@ -52,8 +53,8 @@ export default function Splash(){
     <div className = "App">
      
      
-      <animated.div className="splash"  style={spring}> <img src= {splash} alt="" width = "200"/>  </animated.div>
-      <animated.h1  className="splash"  style={spring1}> pluvio </animated.h1>
+      <animated.div className="splash"  style={spring}> <img src= {splash} alt="" width = "200px"/>  </animated.div>
+      <animated.div  className="splash"  style={spring1}> <img src= {splash2} alt="" width = "500px"/> </animated.div>
      
     </div>
     );

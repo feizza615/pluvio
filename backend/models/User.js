@@ -10,6 +10,7 @@ const userSchema = new Schema({
     watchlist: [Number],
     friends: [String],
     about: String,
+    color: String,
 });
 
 userSchema.pre('save', function (next) {

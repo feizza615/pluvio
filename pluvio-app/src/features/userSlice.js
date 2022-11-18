@@ -10,6 +10,9 @@ export const userSlice = createSlice({
         loginFunc: (state, action) =>{
             state.user = action.payload;
         },
+        changeColor: (state, color) => {
+            state.user = color;
+        },
         logout: (state)=>{
             state.user = null;
         }
@@ -17,7 +20,7 @@ export const userSlice = createSlice({
 
 })
 
-export const {loginFunc,logout} = userSlice.actions;
+export const {loginFunc,logout,changeColor} = userSlice.actions;
 
 export const selectUser = (state)=> state.user;
 
