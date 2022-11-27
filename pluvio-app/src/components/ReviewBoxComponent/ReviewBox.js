@@ -8,6 +8,8 @@ import Picture from "./ProfilePic.png";
 import { Avatar, Skeleton } from "@mui/material";
 import Spoiler from "../SpoilerComponent/Spoiler";
 import axios from "axios";
+import { NavLink } from 'react-router-dom';
+
 
 export default function ReviewBox({reviewdata}) {
     const [color, setColor] = useState("")
@@ -35,7 +37,7 @@ export default function ReviewBox({reviewdata}) {
                     
                         <Avatar sx={{width: "75px", height: "75px", bgcolor: (color ? color : "#"+random),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{reviewdata ? reviewdata.name[0]: "u"}</Avatar>
                         <div style={{}}>
-                            <p className = "topLine" style={{ fontSize: "25px", margin: 0}}>@{reviewdata ? reviewdata.name : "username"}</p>
+                            <NavLink style={{textDecoration: "None"}} to={"/profile/"+reviewdata.name}><p className = "topLine" style={{ fontSize: "25px", margin: 0, color: "white"}}>@{reviewdata ? reviewdata.name : "username"}</p></NavLink>
                             <RatingArea ratingdata={reviewdata ? reviewdata.score : 5}/>
                         </div>
                     </div>
@@ -54,7 +56,7 @@ export default function ReviewBox({reviewdata}) {
         
             <Avatar sx={{width: "75px", height: "75px", bgcolor: (color ? color : "#"+random),fontSize:"36px",fontFamily:"Poppins",fontWeight:800}}>{reviewdata ? reviewdata.name[0]: "u"}</Avatar>
             <div style={{}}>
-                <p className = "topLine" style={{ fontSize: "25px", margin: 0}}>@{reviewdata ? reviewdata.name : "username"}</p>
+            <NavLink style={{textDecoration: "None"}} to={"/profile/"+reviewdata.name}><p className = "topLine" style={{ fontSize: "25px", margin: 0, color: "white"}}>@{reviewdata ? reviewdata.name : "username"}</p></NavLink>
                 <RatingArea ratingdata={reviewdata ? reviewdata.score : 5}/>
             </div>
         </div>
