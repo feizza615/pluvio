@@ -8,6 +8,10 @@
     gap: 20px
 }
 
+.friendsList{
+
+}
+
 .contentsList li{    
 
 }
@@ -16,11 +20,22 @@ div .scroll{
     width: auto;
 }
 
+
 .contentsList::-webkit-scrollbar {
     height: 10px;
     width: 10px;
 }
 .contentsList::-webkit-scrollbar-thumb {
+    background-color: #180F53;
+    border-radius: 15px;
+}
+
+
+.friendsList::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+.friendsList::-webkit-scrollbar-thumb {
     background-color: #180F53;
     border-radius: 15px;
 }
