@@ -142,13 +142,13 @@ const FriendsPage = () => {
   }
   return (
     <>
-      <div style={{ gap: "20px" }}>
-        <Grid sx={{ flexGrow: 1 }} container spacing={2}>
+      <div style={{ gap: "20px" }} >
+        <Grid sx={{ flexGrow: 1 }} container spacing={2} >
           <Grid item xs={12}>
-            <Grid container spacing={3}>
-              <Grid key={1} item>
+            <Grid container spacing={3} >
+              <Grid key={1} item style={{width:"50%"}} >
                 <div>
-                  <Card style={{ height: "450px", overflowY: "scroll" }}>
+                  <Card  style={{ width:"100%", height: "450px", overflowY: "scroll"}} className="friendsList">
                     <h2>Following</h2>
                     {!followerLoading && users && addedUsers ? (
                       addedUsers.map((added, x) => (
@@ -197,13 +197,13 @@ const FriendsPage = () => {
                   </Card>
                 </div>
               </Grid>
-              <Grid key={2} item>
+              <Grid key={2} item style={{width:"50%"}}>
                 <Card
                   style={{
-                    minWidth: 330,
+                    width: "100%",
                     height: "450px",
                     overflowY: "scroll",
-                  }}
+                  }}className="friendsList"
                 >
                   <h2>Followers</h2>
                   {!followerLoading && followedUsers ? (
