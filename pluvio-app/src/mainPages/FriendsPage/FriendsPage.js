@@ -4,7 +4,7 @@ import "styled-components";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import axios from "axios";
-import { Avatar, Skeleton, Grid } from "@mui/material";
+import { Avatar, Skeleton, Grid, Button } from "@mui/material";
 import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 import CircularProgress from "@mui/material/CircularProgress";
 import { io } from "socket.io-client";
@@ -54,6 +54,7 @@ export const FriendBox = ({ user, isAdded, added }) => {
     // handleSocket(socket);
   };
 
+  
   return (
     <Card style={{ marginBottom: "5px" }}>
       <div
@@ -104,6 +105,30 @@ const FriendsPage = () => {
   let sizeOfUser = mappedUsers.length;
 
   console.log(" size: " + sizeOfUser);
+
+  const handleUnfollow = (user) => {
+    const configuration = {
+      method: "post",
+      url:  "http://localhost:5001/users/unfollow/" + currentUser.name,
+      data: {
+        user
+        },             
+       };
+
+
+       axios(configuration)
+       .then((result) =>
+       {
+         console.log("result");
+       })
+       .catch((error) => {
+         error = new Error();
+       });
+
+      window.location.reload(false);
+
+  }
+  
 
   useEffect(() => {
     axios.get("http://localhost:5001/users").then((response) => {
@@ -166,6 +191,7 @@ const FriendsPage = () => {
                               gap: "20px",
                             }}
                           >
+                            <Button sx={{margin:"-30px"}} onClick={(e) => handleUnfollow(added)} >X</Button>
                             <Avatar
                               sx={{
                                 marginTop: "15px",
