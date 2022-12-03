@@ -54,19 +54,19 @@ export default function MatchPage() {
       console.log(reccList);
     }
     //Dislike: Continue showing movies from reccList
-    else if(like == false && reccList.length>2){
+    else if(like == true && reccList.length>2){
       //[24,25,26]
-      console.log("DISLIKE**")
+      console.log("LIKE**")
       let temp = reccList;
-      temp.splice(0,1);
+      temp.shift();
       setReccList(temp);
       console.log(reccList);
     }
     //Like: Grab current ID and grab new list
     else{
-      console.log("LIKE**")
+      console.log("DISLIKE**")
       let temp = reccList;
-      temp.splice(0,1);
+      temp.shift();
       setReccList(temp);
       fetch(notebookURL + reccList[0])
         .then((res) => res.json())
