@@ -62,6 +62,23 @@ router.post('/watchlist', (req, res, next) => {
 }
 )
 
+router.delete('/watchlist', (req,res,next) => {
+    const name = req.body.name;
+    const movie = req.body.movie;
+
+    User.findOneAndUpdate({ name: name }, { $pull: { watchlist: movie } }, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Removed " + movie);
+            res.send("Removed " + movie)
+        }
+    })
+})
+
 router.post('/friends', (req, res, next) => {
     const name = req.body.name;
     const friend = req.body.friend;
@@ -151,6 +168,7 @@ router.post('/color', (req, res, next) => {
         if (!user) {
             console.log("Cant find user");
         } else {
+            res.send(color);
             
             console.log(color);
         }
@@ -301,6 +319,22 @@ router.post('/changePassword', (req, res, next) => {
     });
 
 
+})
+
+router.post('/unfollow/:id', (req, res, next) => {
+    const user = req.params.id;
+    const unfollow = req.body.user;
+
+    User.updateOne({ name: user }, {$pull: { friends: unfollow}}, (err, user) => {
+        if (err) return next(err);
+
+        if (!user) {
+            console.log("Cant find user");
+        } else {
+            // Added movie " + movie + " to " + name + "'s watchlist"
+            console.log("Removed " + unfollow);
+        }
+    })
 })
 
 module.exports = router;

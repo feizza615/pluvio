@@ -2,25 +2,40 @@
     list-style: none;
     width: 100%;
     padding: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
     white-space: nowrap; 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px
+}
+
+.friendsList{
+
 }
 
 .contentsList li{    
-    display: inline;
-    margin-left: 10px;
+
 }
 
 div .scroll{
-    width: 700px;
+    width: auto;
 }
+
 
 .contentsList::-webkit-scrollbar {
     height: 10px;
     width: 10px;
 }
 .contentsList::-webkit-scrollbar-thumb {
+    background-color: #180F53;
+    border-radius: 15px;
+}
+
+
+.friendsList::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+.friendsList::-webkit-scrollbar-thumb {
     background-color: #180F53;
     border-radius: 15px;
 }

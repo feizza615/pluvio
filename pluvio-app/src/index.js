@@ -59,7 +59,7 @@ const App = () => {
           <Route path='/home/' element = {<Protected><HomePage/></Protected>}/>
           <Route path="/welcome" element = {<WelcomePage/>}/>
           <Route path="/friends/" element = {<Protected><FriendsPage/></Protected>}/>
-          <Route path="/profile/" element = {<Protected><ProfilePage/></Protected>}/>
+          <Route path="/profile/:handle" element = {<Protected><ProfilePage/></Protected>}/>
           <Route path="/match/" element = {<Protected><MatchPage/></Protected>}/>
           <Route path="/movies/" element = {<Protected><MoviesPage/></Protected>}/>
           <Route path="/settings/" element = {<Protected><SettingsPage/></Protected>}/>
