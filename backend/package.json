@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server"
+    "start": "node server.js",
+    "build": "cd ../pluvio-app && npm run build",
+    "install-client": "cd ../pluvio-app && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "client": "cd ../pluvio-app && npm start"
   },
   "keywords": [],
   "author": "",
