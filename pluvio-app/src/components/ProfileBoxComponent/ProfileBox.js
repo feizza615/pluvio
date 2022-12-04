@@ -10,7 +10,6 @@ import {loginFunc, selectUser} from "../../features/userSlice";
 import { Box, Button, Modal } from "@mui/material";
 import ButtonComponent from "../LoginComponent/ButtonComponent";
 import axios from "axios";
-import Tag from "../TagComponent/Tag";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
