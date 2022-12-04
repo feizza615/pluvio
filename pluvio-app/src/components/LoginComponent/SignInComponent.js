@@ -156,6 +156,7 @@ export default function LoginComponent() {
             sx={{ mt: 3, fontFamily: "Poppins" }}
           >
             Need an account? Sign Up!
+            <br/>
           </Typography>
         </Box>
       </Modal>

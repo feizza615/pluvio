@@ -17,6 +17,8 @@ import {
   changeColor,
 } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
+import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
+import { red } from "@mui/material/colors";
 
 export const TextField = styled.textarea`
   width: 100%;
@@ -184,6 +186,19 @@ export default function ProfilePageBox({ userdata }) {
             >
               Edit Profile
             </Button>:null}
+            {user.name != userdata.username?
+              <ButtonComponent
+              style={{
+                width: 100,
+                height: 25,
+                fontSize: 10,
+                borderRadius: 20,
+              }}
+              //onClick={handleOpen}
+            >
+              Follow
+            </ButtonComponent>:null}
+            
           </div>
           <div className="bottom">
             <div>
@@ -197,7 +212,7 @@ export default function ProfilePageBox({ userdata }) {
             </div>
           </div>
         </div>
-        <Tag text="About Me" />
+        {/* <Tag text="About Me" /> */}
         <p>
           {" "}
           {/*Connect this w/user in database so it can be pulled in settings profilepage too*/}
