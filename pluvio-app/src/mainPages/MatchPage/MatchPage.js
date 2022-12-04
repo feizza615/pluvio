@@ -25,6 +25,7 @@ export default function MatchPage() {
   const [reccList, setReccList] = useState([]);
   const [id, setId] = useState(118);
   const [like, setLike] = useState(null);
+  const [dislike, setMap] = useState(new Map());
   const [details, setDetails] = useState([
     {
       title: "Despicable Me 3",
@@ -54,15 +55,52 @@ export default function MatchPage() {
       console.log(reccList);
     }
     //Dislike: Continue showing movies from reccList
-    else if(like == true && reccList.length>2){
-      //[24,25,26]
-      console.log("LIKE**")
+    else if(reccList.length>2){
+      //If user dislikes a movie add it to the map
+      if(like == false){
+        console.log("I dislike " + reccList[0]);
+        if(dislike.has(reccList[0])==false){
+          setMap(new Map(dislike.set(reccList[0], reccList[0])));
+        }
+        console.log([...dislike]);
+
+      }
+      
+      //delete current movie
       let temp = reccList;
       temp.shift();
       setReccList(temp);
       console.log(reccList);
+
+      if(like == true){
+        fetch(notebookURL + reccList[0])
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setReccList(result);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      console.log(reccList);
+      }
+
+
+
+      //While the first movie is disliked, and length of list > 2 -> delete disliked movie
+      while(dislike.has(reccList[0])){
+        console.log("IN WHILE LOOP");
+        if(reccList.length>2){
+          console.log("Removing Movie" + reccList[0])
+          let temp = reccList;
+          temp.shift();
+          setReccList(temp);
+        }
+      }      
+      
     }
-    //Like: Grab current ID and grab new list
+    //Like: Grab current ID and grab  
     else{
       console.log("DISLIKE**")
       let temp = reccList;
