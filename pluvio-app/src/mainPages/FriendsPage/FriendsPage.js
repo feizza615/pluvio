@@ -4,7 +4,7 @@ import "styled-components";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import axios from "axios";
-import { Avatar, Skeleton, Grid } from "@mui/material";
+import { Avatar, Skeleton, Grid, Button } from "@mui/material";
 import ButtonComponent from "../../components/LoginComponent/ButtonComponent";
 import CircularProgress from "@mui/material/CircularProgress";
 import { io } from "socket.io-client";
@@ -54,6 +54,7 @@ export const FriendBox = ({ user, isAdded, added }) => {
     // handleSocket(socket);
   };
 
+  
   return (
     <Card style={{ marginBottom: "5px" }}>
       <div
@@ -105,6 +106,30 @@ const FriendsPage = () => {
 
   console.log(" size: " + sizeOfUser);
 
+  const handleUnfollow = (user) => {
+    const configuration = {
+      method: "post",
+      url:  "http://localhost:5001/users/unfollow/" + currentUser.name,
+      data: {
+        user
+        },             
+       };
+
+
+       axios(configuration)
+       .then((result) =>
+       {
+         console.log("result");
+       })
+       .catch((error) => {
+         error = new Error();
+       });
+
+      window.location.reload(false);
+
+  }
+  
+
   useEffect(() => {
     axios.get("http://localhost:5001/users").then((response) => {
       setUsers(response.data);
@@ -142,13 +167,13 @@ const FriendsPage = () => {
   }
   return (
     <>
-      <div style={{ gap: "20px" }}>
-        <Grid sx={{ flexGrow: 1 }} container spacing={2}>
+      <div style={{ gap: "20px" }} >
+        <Grid sx={{ flexGrow: 1 }} container spacing={2} >
           <Grid item xs={12}>
-            <Grid container spacing={3}>
-              <Grid key={1} item>
+            <Grid container spacing={3} >
+              <Grid key={1} item style={{width:"50%"}} >
                 <div>
-                  <Card style={{ height: "450px", overflowY: "scroll" }}>
+                  <Card  style={{ width:"100%", height: "450px", overflowY: "scroll"}} className="friendsList">
                     <h2>Following</h2>
                     {!followerLoading && users && addedUsers ? (
                       addedUsers.map((added, x) => (
@@ -166,6 +191,7 @@ const FriendsPage = () => {
                               gap: "20px",
                             }}
                           >
+                            <Button sx={{margin:"-30px"}} onClick={(e) => handleUnfollow(added)} >X</Button>
                             <Avatar
                               sx={{
                                 marginTop: "15px",
@@ -197,13 +223,13 @@ const FriendsPage = () => {
                   </Card>
                 </div>
               </Grid>
-              <Grid key={2} item>
+              <Grid key={2} item style={{width:"50%"}}>
                 <Card
                   style={{
-                    minWidth: 330,
+                    width: "100%",
                     height: "450px",
                     overflowY: "scroll",
-                  }}
+                  }}className="friendsList"
                 >
                   <h2>Followers</h2>
                   {!followerLoading && followedUsers ? (
