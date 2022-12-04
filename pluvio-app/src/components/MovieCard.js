@@ -272,7 +272,8 @@ export const WatchListCard = ({
         >
           X
         </button>
-        <img src={image} alt="" style={{ height: "20vh", borderRadius: "5px"}} onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOut} />
+        <img src={image} alt="" style={{ height: "20vh", borderRadius: "5px",
+          "&:hover": {transform: "translateY(20px)"}      }} onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOut} />
       </li>
     </>
   );

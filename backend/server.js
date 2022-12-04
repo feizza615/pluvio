@@ -31,6 +31,12 @@ app.use('/users',usersRouter);
 const reviewsRouter = require('./routes/reviews')
 app.use('/reviews',reviewsRouter);
 
+app.use(express.static(path.join(__dirname, "../pluvio-app/build")));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../pluvio-app/build', 'index.html'));
+});
+
 app.listen(port, () => {
     console.log(`Server on port: ${port}`)
 })
