@@ -212,7 +212,7 @@ export default function ProfilePageBox({ userdata }) {
             </div>
           </div>
         </div>
-        <Tag text="About Me" />
+        {/* <Tag text="About Me" /> */}
         <p>
           {" "}
           {/*Connect this w/user in database so it can be pulled in settings profilepage too*/}
