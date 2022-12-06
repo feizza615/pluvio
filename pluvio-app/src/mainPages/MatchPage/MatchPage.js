@@ -139,7 +139,7 @@ export default function MatchPage() {
           "https://api.themoviedb.org/3/movie/" +
             reccList[0] +
             "?api_key=" +
-            config.DB_KEY
+            process.env.DB_KEY
         )
         .then((response) => {
           console.log(JSON.parse(JSON.stringify(response.data)));

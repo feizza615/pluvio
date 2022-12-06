@@ -21,7 +21,7 @@ const Watchlist = ({ watchlistdata }, { data }) => {
             setIsLoaded(false)
             for (var i = 0; i < sizeOfList; i++) {
                 await axios
-                    .get("https://api.themoviedb.org/3/movie/" + watchlistdata.watchlist[i] + "?api_key=" + config.DB_KEY)
+                    .get("https://api.themoviedb.org/3/movie/" + watchlistdata.watchlist[i] + "?api_key=" + process.env.DB_KEY)
                     .then((response) => {
                         det.push(response.data)
                     })

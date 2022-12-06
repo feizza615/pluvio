@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 
 const baseURL =
-  "https://api.themoviedb.org/3/search/movie?api_key=" + config.DB_KEY;
+  "https://api.themoviedb.org/3/search/movie?api_key=" + process.env.DB_KEY;
 
 export const InputField = styled.input`
   width: 250px;
