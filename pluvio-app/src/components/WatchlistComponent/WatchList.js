@@ -3,11 +3,11 @@ import "./watchlist.css"
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import Card from "../Card";
 import axios from "axios";
-import { config } from "../../config"
+// import { config } from "../../config"
 import { WatchListCard } from "../MovieCard";
 import { Skeleton } from "@mui/material";
 
-const baseURL = "https://api.themoviedb.org/3/search/movie?api_key=" + config.DB_KEY;
+const baseURL = "https://api.themoviedb.org/3/search/movie?api_key=" + process.env.DB_KEY;
 
 const Watchlist = ({ watchlistdata }, { data }) => {
 
