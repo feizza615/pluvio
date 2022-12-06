@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.af234401.css",
+    "main.js": "/static/js/main.59a7c76d.js",
+    "static/media/thumbnail.png": "/static/media/thumbnail.a1b1c9a671f47a08df02.png",
+    "static/media/poppins-all-400-normal.woff": "/static/media/poppins-all-400-normal.6fbfdac99c274b77fe96.woff",
+    "static/media/rain.png": "/static/media/rain.8f1dfd3ff24c29cd8b19.png",
+    "static/media/poppins-devanagari-400-normal.woff2": "/static/media/poppins-devanagari-400-normal.64d5f06ee726edd58ca3.woff2",
+    "static/media/poppins-latin-400-normal.woff2": "/static/media/poppins-latin-400-normal.405055dd680fa1dcdfa2.woff2",
+    "static/media/poppins-latin-ext-400-normal.woff2": "/static/media/poppins-latin-ext-400-normal.4f38b4331448d2313adc.woff2",
+    "index.html": "/index.html",
+    "main.af234401.css.map": "/static/css/main.af234401.css.map",
+    "main.59a7c76d.js.map": "/static/js/main.59a7c76d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.af234401.css",
+    "static/js/main.59a7c76d.js"
+  ]
+}
