@@ -1,14 +1,13 @@
 .matchDeck{
     display: flex;
-    flex-flow: column wrap; 
-    overflow: hidden;
+    flex-direction: column;
 }
 
 
-#buttonContainer{
+.buttonContainer{
     display: flex;
-    justify-content: space-around;
-    margin-top: 250px; 
+    justify-content: center;
+    margin-top: 90px; 
 }
 
 .circle
