@@ -5,14 +5,18 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const mongoose = require('mongoose');
 const { Server } = require("socket.io");
-
 require('dotenv').config();
 
 const app = express();
+const admin_app = express();
+const admin_port = 8889;
 const port = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
+
+admin_app.use(cors());
+admin_app.use(express.json())
 
 const uri = process.env.ATLAS_URI;
 
@@ -25,6 +29,14 @@ connection.once('open', () => {
     console.log('Connected to database');
 });
 
+admin_app.get('/convert?index=:id', (req, res) => {
+    res.send('Hello World!')
+  })
+
+admin_app.listen(admin_port, () => {
+    console.log(`Server on port: ${admin_port}`)
+})
+
 const usersRouter = require('./routes/users')
 app.use('/users',usersRouter);
 
@@ -34,6 +46,7 @@ app.use('/reviews',reviewsRouter);
 app.listen(port, () => {
     console.log(`Server on port: ${port}`)
 })
+
 
 const io = new Server({ 
     cors:{
@@ -94,3 +107,4 @@ socket.on("sendNotification", ({senderName, receiverName, type})=> {
 });
 
 io.listen(5002);
+
