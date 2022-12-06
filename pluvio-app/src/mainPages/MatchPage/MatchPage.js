@@ -7,7 +7,7 @@ import "../../components/ReccomendationComponents/ReactionButtons.css";
 import "./MatchPage.css";
 import { Button } from "@mui/material";
 import axios from "axios";
-import { config } from "../../config";
+// import { config } from "../../config";
 import { LinearProgress } from "@mui/material";
 import Watchlist from "../../components/WatchlistComponent/WatchListAlt"
 
@@ -17,7 +17,7 @@ import Watchlist from "../../components/WatchlistComponent/WatchListAlt"
 // One array for recommended movie id's
 const notebookURL = "/convert?index=";
 const baseURL =
-  "https://api.themoviedb.org/3/search/movie?api_key=" + config.DB_KEY;
+  "https://api.themoviedb.org/3/search/movie?api_key=" + process.env.DB_KEY;
 
 export default function MatchPage() {
   const [isLoaded, setIsLoaded] = useState(true);
