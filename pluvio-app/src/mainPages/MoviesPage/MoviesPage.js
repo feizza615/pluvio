@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-// import { config } from "../../config";
+import { config } from "../../config";
 import MovieCard from "../../components/MovieCard";
 import { Chip, CircularProgress, LinearProgress, Pagination, Rating } from "@mui/material";
 import Watchlist from "../../components/WatchlistComponent/WatchList";
@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 
 const baseURL =
-  "https://api.themoviedb.org/3/search/movie?api_key=" + process.env.DB_KEY;
+  "https://api.themoviedb.org/3/search/movie?api_key=" + config.DB_KEY;
 
 export const InputField = styled.input`
   width: 250px;
@@ -48,7 +48,7 @@ const Movies = ({ data, page }) => {
             "https://api.themoviedb.org/3/movie/" +
               results[i].id +
               "?api_key=" +
-              process.env.DB_KEY
+              config.DB_KEY
           )
           .then((response) => {
             det.push(JSON.parse(JSON.stringify(response.data)));
