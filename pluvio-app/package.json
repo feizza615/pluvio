@@ -56,5 +56,5 @@
     ]
   },
   "proxy": "http://127.0.0.1:8889",
-  "homepage": "https://pluvio.vercel.app/"
+  "homepage": "https://pluvio-app.vercel.app/"
 }

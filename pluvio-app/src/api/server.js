@@ -50,7 +50,7 @@ app.listen(port, () => {
 
 const io = new Server({ 
     cors:{
-        origin:"http://localhost:3000"
+        origin:["http://localhost:3000","https://pluvio-app.vercel.app/"]
     }
  });
 
