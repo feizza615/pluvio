@@ -9,9 +9,8 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { config } from "../../config";
 import { LinearProgress } from "@mui/material";
-import {movieID} from "./movieid"
 import Watchlist from "../../components/WatchlistComponent/WatchListAlt"
-
+import {movieID} from "./movieid"
 // One array to hold disliked movies from userSlice
 // One URL for the Jupyter API
 // One URL for MovieDB URL
