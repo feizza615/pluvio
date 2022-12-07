@@ -10,6 +10,8 @@ import axios from "axios";
 import { config } from "../../config";
 import { LinearProgress } from "@mui/material";
 import {movieID} from "./movieid"
+import Watchlist from "../../components/WatchlistComponent/WatchListAlt"
+
 // One array to hold disliked movies from userSlice
 // One URL for the Jupyter API
 // One URL for MovieDB URL
@@ -41,7 +43,18 @@ export default function MatchPage() {
       description:"DespicableDespicable Me 3 is a 2017 American computer-animated comedy film produced by Illumination and distributed by Universal Pictures. It is the sequal to Despicable Me 2, the third main installment, and the fourth installment overall in the Despicable Me.",
     },
   ]);
-  
+  function AddReviewWatch(props) {
+
+      return (
+        <Watchlist
+          id={props.id}
+          title={props.title}
+          description={props.description}
+        />
+      );
+    
+  }
+
 
   useEffect(() => {
     const fetchPopular = async() => {
@@ -138,7 +151,6 @@ export default function MatchPage() {
         //   setDupe(true)
         // }
         console.log("Liked")
-        let temp;
         fetch(notebookURL + reccList[0])
         .then((res) => res.json())
         .then(
@@ -153,6 +165,9 @@ export default function MatchPage() {
           },
           
         );
+        let temp = reccList;
+        temp.shift()
+        setReccList(temp)
       // console.log(reccList);
       }
 
@@ -309,7 +324,7 @@ return (
             duration={details[0].runtime}
             image={details[0].poster_path}
             description={details[0].overview}
-            add={true}
+            add={false}
             react={false}
           /> : <>Loading </>}
        
@@ -317,25 +332,35 @@ return (
         
       </TinderLikeCard>
 
-      <div id="buttonContainer">
-        <Button onClick={onTinderSwipeLeft}>
-          <div className="circle">
-            <ThumbUpOffAltIcon
-              className="icon"
-              sx={{ fontSize: 55, paddingTop: 1 }}
-            />
-          </div>
-        </Button>
-        <Button>
-          <div onClick={onTinderSwipeRight} className="circle">
-            <ThumbDownOffAltIcon
-              className="icon"
-              sx={{ fontSize: 55, paddingTop: 1 }}
-            />
-          </div>
-        </Button>
+        <div class="buttonContainer">
+        
+        </div>
+        <div class="buttonContainer">
+        
+          <Button onClick={onTinderSwipeLeft}>
+            <div className="circle">
+              <ThumbUpOffAltIcon
+                className="icon"
+                sx={{ fontSize: 55, paddingTop: 1 }}
+              />
+            </div>
+          </Button>
+          <AddReviewWatch
+          id={details[0].id}
+          title={details[0].title}
+          description={details[0].description}
+        />
+          <Button>
+            <div onClick={onTinderSwipeRight} className="circle">
+              <ThumbDownOffAltIcon
+                className="icon"
+                sx={{ fontSize: 55, paddingTop: 1 }}
+              />
+            </div>
+          </Button>
+        </div>
       </div>
-    </div>
+    
   </>
 );
 }
