@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const app = express();
 const admin_app = express();
-const admin_port = 8889;
+const admin_port = 8890;
 const port = process.env.PORT || 5001;
 
 app.use(cors());
