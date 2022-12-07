@@ -48,8 +48,8 @@ export default function MatchPage() {
 
     const data = await fetch(baseURL2);
   const movies = await data.json();
-  console.log("MOVIES: " + movies.results[0].id)
-  console.log(movies.results[0])
+  // console.log("MOVIES: " + movies.results[0].id)
+  // console.log(movies.results[0])
     setId(movies.results[0].id)
     // setDetails({
     //   title: "hi",
@@ -61,10 +61,14 @@ export default function MatchPage() {
    
     // })
     // setStatus(true)
-    // setIsLoaded(true)
+    setIsLoaded(true)
   }
+  if(isLoaded === false){
     fetchPopular();
 
+  }
+
+    console.log("Last movie was " + reccList[0])
     // console.log("DIPLICATE?? " + handleDupe)
     // console.log("PREVIOUS MOVIE WAS " + reccList[0])
     let det = [];
@@ -77,7 +81,7 @@ export default function MatchPage() {
       temp.shift();
       setReccList(temp)
     }
-    if (like == null) {
+    if (like === null) {
       console.log("using ID: " + id)
       fetch(notebookURL + id)
         .then((res) => res.json())
@@ -133,12 +137,15 @@ export default function MatchPage() {
         // if(reccList.length === 4){
         //   setDupe(true)
         // }
+        console.log("Liked")
         let temp;
         fetch(notebookURL + reccList[0])
         .then((res) => res.json())
         .then(
           (result) => {            
             // temp = result;
+        console.log("Setting liked movies: " + result)
+
             setReccList(result);
           },
           (error) => {
