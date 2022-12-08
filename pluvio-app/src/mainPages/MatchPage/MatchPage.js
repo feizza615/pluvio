@@ -49,6 +49,7 @@ export default function MatchPage() {
           id={props.id}
           title={props.title}
           description={props.description}
+          image={props.image}
         />
       );
     
@@ -354,6 +355,7 @@ return (
           id={details[0].id}
           title={details[0].title}
           description={details[0].description}
+          image={details[0].poster_path}
         />
           <Button>
             <div onClick={onTinderSwipeRight} className="circle">
