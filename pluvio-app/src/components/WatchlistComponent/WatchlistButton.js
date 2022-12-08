@@ -13,11 +13,11 @@ const style = {
 }
  
 const Watchlist = (props) => {
+    console.log(props.image)
    const user = useSelector(selectUser);
    const [buttonText, setButtonText] = useState('Add to watchlist');
    const handleClick = (e) => {
        e.preventDefault();
-        
        if (buttonText === "Add to watchlist") {
         const name = user.name;
         const movie = props.id;

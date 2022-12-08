@@ -79,7 +79,7 @@ export default function MatchPage() {
     fetchPopular();
 
   }
-
+console.log(details[0].poster_path)
     console.log("Last movie was " + reccList[0])
     // console.log("DIPLICATE?? " + handleDupe)
     // console.log("PREVIOUS MOVIE WAS " + reccList[0])
@@ -217,6 +217,9 @@ export default function MatchPage() {
             // console.log(error);
           }
         );
+        let temp = reccList;
+        temp.shift()
+        setReccList(temp)
       } else {
         dislike.push(reccList[0])
         // for(let i = 0; i < 10; i++){
@@ -246,6 +249,9 @@ export default function MatchPage() {
               // console.log(error);
             }
           );
+          let temp = reccList;
+        temp.shift()
+        setReccList(temp)
       }
 
       
